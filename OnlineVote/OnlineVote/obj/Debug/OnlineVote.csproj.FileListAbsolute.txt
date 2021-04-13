@@ -1,0 +1,15 @@
+C:\Git\onlineVote\OnlineVote\OnlineVote\bin\Debug\OnlineVote.exe.config
+C:\Git\onlineVote\OnlineVote\OnlineVote\bin\Debug\OnlineVote.exe
+C:\Git\onlineVote\OnlineVote\OnlineVote\bin\Debug\OnlineVote.pdb
+C:\Git\onlineVote\OnlineVote\OnlineVote\obj\Debug\OnlineVote.csprojAssemblyReference.cache
+C:\Git\onlineVote\OnlineVote\OnlineVote\obj\Debug\MainWindow.g.cs
+C:\Git\onlineVote\OnlineVote\OnlineVote\obj\Debug\App.g.cs
+C:\Git\onlineVote\OnlineVote\OnlineVote\obj\Debug\OnlineVote_MarkupCompile.cache
+C:\Git\onlineVote\OnlineVote\OnlineVote\obj\Debug\OnlineVote_MarkupCompile.lref
+C:\Git\onlineVote\OnlineVote\OnlineVote\obj\Debug\MainWindow.baml
+C:\Git\onlineVote\OnlineVote\OnlineVote\obj\Debug\OnlineVote.g.resources
+C:\Git\onlineVote\OnlineVote\OnlineVote\obj\Debug\OnlineVote.Properties.Resources.resources
+C:\Git\onlineVote\OnlineVote\OnlineVote\obj\Debug\OnlineVote.csproj.GenerateResource.cache
+C:\Git\onlineVote\OnlineVote\OnlineVote\obj\Debug\OnlineVote.csproj.CoreCompileInputs.cache
+C:\Git\onlineVote\OnlineVote\OnlineVote\obj\Debug\OnlineVote.exe
+C:\Git\onlineVote\OnlineVote\OnlineVote\obj\Debug\OnlineVote.pdb
