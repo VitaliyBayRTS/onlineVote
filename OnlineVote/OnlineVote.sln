@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.31019.35
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineVote", "OnlineVote\OnlineVote.csproj", "{E58BF6FA-06AF-4E12-9806-EFE2FB612700}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OV.MainDb", "OV.MainDb\OV.MainDb.csproj", "{1DC566BA-0A2F-4E11-9973-6CEAEA553464}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E58BF6FA-06AF-4E12-9806-EFE2FB612700}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E58BF6FA-06AF-4E12-9806-EFE2FB612700}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E58BF6FA-06AF-4E12-9806-EFE2FB612700}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DC566BA-0A2F-4E11-9973-6CEAEA553464}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DC566BA-0A2F-4E11-9973-6CEAEA553464}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DC566BA-0A2F-4E11-9973-6CEAEA553464}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DC566BA-0A2F-4E11-9973-6CEAEA553464}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
