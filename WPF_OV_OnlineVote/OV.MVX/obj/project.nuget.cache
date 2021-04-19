@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "NeXejAgVTJVwJsIbp/nbh3DI0bsm+gGqhbIVne59kWx1JdRwRmfTpRg2zXFxqs/JPze8WhI8jAz2/D/w3TFggw==",
+  "success": true,
+  "projectFilePath": "C:\\Git\\onlineVote\\WPF_OV_OnlineVote\\OV.MVX\\OV.MVX.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Vital\\.nuget\\packages\\mvvmcross\\7.1.2\\mvvmcross.7.1.2.nupkg.sha512"
+  ],
+  "logs": []
+}

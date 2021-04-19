@@ -65,3 +65,9 @@ C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\obj\Debug\netcoreapp3.1\WP
 C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\obj\Debug\netcoreapp3.1\WPF_OV_OnlineVote.dll
 C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\obj\Debug\netcoreapp3.1\WPF_OV_OnlineVote.pdb
 C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\obj\Debug\netcoreapp3.1\WPF_OV_OnlineVote.genruntimeconfig.cache
+C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\bin\Debug\netcoreapp3.1\MvvmCross.dll
+C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\bin\Debug\netcoreapp3.1\MvvmCross.Platforms.Wpf.dll
+C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\bin\Debug\netcoreapp3.1\OV.MVX.dll
+C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\bin\Debug\netcoreapp3.1\OV.MVX.pdb
+C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\obj\Debug\netcoreapp3.1\Views\InitialView.g.cs
+C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\obj\Debug\netcoreapp3.1\Views\InitialView.baml

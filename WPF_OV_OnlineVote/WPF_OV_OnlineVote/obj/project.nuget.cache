@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "v3QsqIirHJB+U+ZZtCcYULGnkEDDW/tXKEU/6jSZj2zjFEMRt/ozcxs3SBPUcyvrBAEg7I86nL2v5k0NVeVYXg==",
+  "dgSpecHash": "WlkQ7P35b7gVaKxiBF/gYbQyY2WI+OqPYRDnrIeI75k1aCjPZA6G8SA7HV/YF8eJtvz57kfmReFSweU/Yzun9Q==",
   "success": true,
   "projectFilePath": "C:\\Git\\onlineVote\\WPF_OV_OnlineVote\\WPF_OV_OnlineVote\\WPF_OV_OnlineVote.csproj",
   "expectedPackageFiles": [
@@ -33,6 +33,8 @@
     "C:\\Users\\Vital\\.nuget\\packages\\microsoft.netcore.targets\\1.1.3\\microsoft.netcore.targets.1.1.3.nupkg.sha512",
     "C:\\Users\\Vital\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\Vital\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\Vital\\.nuget\\packages\\mvvmcross\\7.1.2\\mvvmcross.7.1.2.nupkg.sha512",
+    "C:\\Users\\Vital\\.nuget\\packages\\mvvmcross.platforms.wpf\\7.1.2\\mvvmcross.platforms.wpf.7.1.2.nupkg.sha512",
     "C:\\Users\\Vital\\.nuget\\packages\\newtonsoft.json\\10.0.1\\newtonsoft.json.10.0.1.nupkg.sha512",
     "C:\\Users\\Vital\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\Vital\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",

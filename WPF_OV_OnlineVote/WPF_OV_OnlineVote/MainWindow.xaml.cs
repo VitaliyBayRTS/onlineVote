@@ -1,34 +1,21 @@
-﻿using OV.MainDb.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using MvvmCross.Platforms.Wpf.Views;
 
 namespace WPF_OV_OnlineVote
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : MvxWindow
     {
-        private OvMainDbContext _ovMainDbContext;
-        public MainWindow(OvMainDbContext ovMainDbContext)
+        //private OvMainDbContext _ovMainDbContext;
+        //OvMainDbContext ovMainDbContext
+        public MainWindow()
         {
-            _ovMainDbContext = ovMainDbContext ?? throw new ArgumentNullException(nameof(ovMainDbContext));
+            //_ovMainDbContext = ovMainDbContext ?? throw new ArgumentNullException(nameof(ovMainDbContext));
             InitializeComponent();
 
-            var test = _ovMainDbContext.Provinces.ToList();
-            test = test.Where(p => p.Name == "Malaga").ToList();
+            //var test = _ovMainDbContext.Provinces.ToList();
+            //test = test.Where(p => p.Name == "Malaga").ToList();
         }
     }
 }
