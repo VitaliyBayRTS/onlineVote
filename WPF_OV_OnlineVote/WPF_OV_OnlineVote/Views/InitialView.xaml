@@ -8,12 +8,36 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPF_OV_OnlineVote.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="1000"
+            >
     <Grid>
-        <StackPanel Margin="10">
-            <TextBlock Text="{Binding FirstProp}" Margin="0 0 0 15"/>
-            <TextBlock Text="First Prop"/>
-            <TextBox Text="{Binding FirstProp, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 15"/>
-        </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Border CornerRadius="10" Grid.RowSpan="5" Grid.ColumnSpan="6">
+            <Border.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#7be9f6" Offset="0.15"/>
+                    <GradientStop Color="#7be" Offset="0.51"/>
+                    <GradientStop Color="#f083da" Offset="1.05"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+
+        <Button Grid.Column="1" Grid.Row="1" Margin="5">Habitant</Button>
+        <Button Grid.Column="2" Grid.Row="1" Margin="5">Organizer</Button>
+        <Button Grid.Column="3" Grid.Row="1" Margin="5">SuperAdmin</Button>
+
     </Grid>
 </views:MvxWpfView>

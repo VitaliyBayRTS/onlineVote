@@ -71,3 +71,5 @@ C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\bin\Debug\netcoreapp3.1\OV
 C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\bin\Debug\netcoreapp3.1\OV.MVX.pdb
 C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\obj\Debug\netcoreapp3.1\Views\InitialView.g.cs
 C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\obj\Debug\netcoreapp3.1\Views\InitialView.baml
+C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\obj\Debug\netcoreapp3.1\ButtonTheme.baml
+C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\obj\Debug\netcoreapp3.1\App.baml

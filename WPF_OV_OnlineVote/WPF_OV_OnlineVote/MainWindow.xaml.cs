@@ -1,4 +1,5 @@
 ﻿using MvvmCross.Platforms.Wpf.Views;
+using System.Windows.Input;
 
 namespace WPF_OV_OnlineVote
 {
@@ -16,6 +17,14 @@ namespace WPF_OV_OnlineVote
 
             //var test = _ovMainDbContext.Provinces.ToList();
             //test = test.Where(p => p.Name == "Malaga").ToList();
+        }
+
+        private void MvxWindow_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if(e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
         }
     }
 }
