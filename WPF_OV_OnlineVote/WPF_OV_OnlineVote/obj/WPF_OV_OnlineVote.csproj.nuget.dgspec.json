@@ -197,9 +197,17 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "MahApps.Metro.IconPacks.Material": {
+              "target": "Package",
+              "version": "[4.8.0, )"
+            },
             "Microsoft.Extensions.DependencyInjection": {
               "target": "Package",
               "version": "[5.0.1, )"
+            },
+            "MvvmCross.Binding": {
+              "target": "Package",
+              "version": "[5.7.0, )"
             },
             "MvvmCross.Platforms.Wpf": {
               "target": "Package",

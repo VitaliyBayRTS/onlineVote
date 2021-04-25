@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
 C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\App.xaml
-31275550356
+7105623948
 
-41230220072
-220-1318437333
-ButtonTheme.xaml;MainWindow.xaml;Views\InitialView.xaml;
+8-489725970
+229889571416
+ButtonTheme.xaml;MainWindow.xaml;Views\InitialView.xaml;Views\Login\HabitantLoginForm.xaml;Views\Login\OrganizerLoginForm.xaml;Views\Login\SingIn.xaml;Views\Login\SuperAdminLoginForm.xaml;
 
 False
 

@@ -10,6 +10,18 @@
     <Compile Update="Views\InitialView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Login\HabitantLoginForm.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Login\OrganizerLoginForm.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Login\SingIn.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Login\SuperAdminLoginForm.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="ButtonTheme.xaml">
@@ -19,6 +31,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\InitialView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Login\HabitantLoginForm.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Login\OrganizerLoginForm.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Login\SingIn.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Login\SuperAdminLoginForm.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

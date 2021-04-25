@@ -7,37 +7,75 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPF_OV_OnlineVote.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="1000"
+    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    mc:Ignorable="d" 
+             d:DesignHeight="550" d:DesignWidth="1000"
             >
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="30"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <Border CornerRadius="10" Grid.RowSpan="5" Grid.ColumnSpan="6">
+        <Border CornerRadius="10" Grid.RowSpan="5" Grid.ColumnSpan="8">
             <Border.Background>
                 <LinearGradientBrush>
-                    <GradientStop Color="#7be9f6" Offset="0.15"/>
-                    <GradientStop Color="#7be" Offset="0.51"/>
-                    <GradientStop Color="#f083da" Offset="1.05"/>
+                    <GradientStop Color="Black" Offset="0.15"/>
                 </LinearGradientBrush>
             </Border.Background>
         </Border>
 
-        <Button Grid.Column="1" Grid.Row="1" Margin="5">Habitant</Button>
-        <Button Grid.Column="2" Grid.Row="1" Margin="5">Organizer</Button>
-        <Button Grid.Column="3" Grid.Row="1" Margin="5">SuperAdmin</Button>
+        <Button x:Name="closeBtn" FontWeight="Bold" Foreground="Red" 
+                Grid.Column="7" Grid.Row="0" 
+                Margin="5" Click="closeBtn_Click">X</Button>
+        <Button x:Name="habitantOption" 
+                Grid.Column="2" Grid.Row="1" 
+                Margin="5" Click="Button_Click"
+                Content="Habitante">
+            <Button.Background>
+                <ImageBrush Stretch="Fill" ImageSource="..\img\habitantBg.jpg"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="organizerOption"
+                Grid.Column="3" Grid.Row="1"
+                Margin="5" Click="Button_Click_1" Content="Organizador">
+            <Button.Background>
+                <ImageBrush Stretch="Fill" ImageSource="C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\img\organizerBg.jpg"/>
+            </Button.Background>    
+        </Button>
+        <Button x:Name="superAdminOption"
+                Grid.Column="4" Grid.Row="1"
+                Margin="5" Content="SuperAdmin" Click="Button_Click_2">
+            <Button.Background>
+                <ImageBrush Stretch="Fill" ImageSource="..\img\superAdminBg.jpg"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="newHabitantOption"
+                Grid.Column="5" Grid.Row="1"
+                Margin="5" Click="newHabitantOption_Click"
+                Content="Nuevo Usuario">
+            <Button.Background>
+                <ImageBrush Stretch="Fill" ImageSource="..\img\newUserBg.jpg"/>
+            </Button.Background>
+        </Button>
 
+        <Grid x:Name="initialViewContent" Grid.Column="1" Grid.Row="2" 
+              Grid.ColumnSpan="6" Grid.RowSpan="3">
+          
+
+        </Grid>
     </Grid>
 </views:MvxWpfView>

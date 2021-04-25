@@ -14,7 +14,7 @@ namespace OV.MVX.ViewModels
             set { SetProperty(ref _inistials, value); }
         }
 
-        private string _firstProp;
+        private string _firstProp = "asd";
 
         public string FirstProp
         {

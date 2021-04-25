@@ -7,13 +7,29 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="img\habitantBg.jpg" />
+    <None Remove="img\newUserBg.jpg" />
+    <None Remove="img\organizerBg.jpg" />
+    <None Remove="img\superAdminBg.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MahApps.Metro.IconPacks.Material" Version="4.8.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
+    <PackageReference Include="MvvmCross.Binding" Version="5.7.0" />
     <PackageReference Include="MvvmCross.Platforms.Wpf" Version="7.1.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\OV.MainDb\OV.MainDb.csproj" />
     <ProjectReference Include="..\OV.MVX\OV.MVX.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="img\habitantBg.jpg" />
+    <Resource Include="img\newUserBg.jpg" />
+    <Resource Include="img\organizerBg.jpg" />
+    <Resource Include="img\superAdminBg.jpg" />
   </ItemGroup>
 
 </Project>

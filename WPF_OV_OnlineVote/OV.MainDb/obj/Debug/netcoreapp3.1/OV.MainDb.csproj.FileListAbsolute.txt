@@ -1,7 +1,6 @@
 C:\Git\onlineVote\WPF_OV_OnlineVote\OV.MainDb\bin\Debug\netcoreapp3.1\OV.MainDb.deps.json
 C:\Git\onlineVote\WPF_OV_OnlineVote\OV.MainDb\bin\Debug\netcoreapp3.1\OV.MainDb.dll
 C:\Git\onlineVote\WPF_OV_OnlineVote\OV.MainDb\bin\Debug\netcoreapp3.1\OV.MainDb.pdb
-C:\Git\onlineVote\WPF_OV_OnlineVote\OV.MainDb\obj\Debug\netcoreapp3.1\OV.MainDb.csprojAssemblyReference.cache
 C:\Git\onlineVote\WPF_OV_OnlineVote\OV.MainDb\obj\Debug\netcoreapp3.1\OV.MainDb.AssemblyInfoInputs.cache
 C:\Git\onlineVote\WPF_OV_OnlineVote\OV.MainDb\obj\Debug\netcoreapp3.1\OV.MainDb.AssemblyInfo.cs
 C:\Git\onlineVote\WPF_OV_OnlineVote\OV.MainDb\obj\Debug\netcoreapp3.1\OV.MainDb.csproj.CoreCompileInputs.cache

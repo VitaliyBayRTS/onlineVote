@@ -8,13 +8,27 @@
     ".NETCoreApp,Version=v3.1": {
       "WPF_OV_OnlineVote/1.0.0": {
         "dependencies": {
+          "MahApps.Metro.IconPacks.Material": "4.8.0",
           "Microsoft.Extensions.DependencyInjection": "5.0.1",
+          "MvvmCross.Binding": "5.7.0",
           "MvvmCross.Platforms.Wpf": "7.1.2",
           "OV.MVX": "1.0.0",
           "OV.MainDb": "1.0.0"
         },
         "runtime": {
           "WPF_OV_OnlineVote.dll": {}
+        }
+      },
+      "MahApps.Metro.IconPacks.Material/4.8.0": {
+        "runtime": {
+          "lib/netcoreapp3.1/MahApps.Metro.IconPacks.Core.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.8.0.6"
+          },
+          "lib/netcoreapp3.1/MahApps.Metro.IconPacks.Material.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.8.0.6"
+          }
         }
       },
       "Microsoft.CSharp/4.5.0": {},
@@ -367,6 +381,52 @@
           "lib/netcoreapp3.1/MvvmCross.dll": {
             "assemblyVersion": "7.1.2.0",
             "fileVersion": "7.1.2.0"
+          }
+        }
+      },
+      "MvvmCross.Binding/5.7.0": {
+        "dependencies": {
+          "MvvmCross.Core": "5.7.0"
+        },
+        "runtime": {
+          "lib/net45/MvvmCross.Binding.Wpf.dll": {
+            "assemblyVersion": "5.7.0.0",
+            "fileVersion": "5.7.0.0"
+          },
+          "lib/net45/MvvmCross.Binding.dll": {
+            "assemblyVersion": "5.7.0.0",
+            "fileVersion": "5.7.0.0"
+          },
+          "lib/net45/MvvmCross.Localization.dll": {
+            "assemblyVersion": "5.7.0.0",
+            "fileVersion": "5.7.0.0"
+          }
+        }
+      },
+      "MvvmCross.Core/5.7.0": {
+        "dependencies": {
+          "MvvmCross.Platform": "5.7.0"
+        },
+        "runtime": {
+          "lib/net45/MvvmCross.Core.dll": {
+            "assemblyVersion": "5.7.0.0",
+            "fileVersion": "5.7.0.0"
+          },
+          "lib/net45/MvvmCross.Wpf.dll": {
+            "assemblyVersion": "5.7.0.0",
+            "fileVersion": "5.7.0.0"
+          }
+        }
+      },
+      "MvvmCross.Platform/5.7.0": {
+        "runtime": {
+          "lib/net45/MvvmCross.Platform.Wpf.dll": {
+            "assemblyVersion": "5.7.0.0",
+            "fileVersion": "5.7.0.0"
+          },
+          "lib/net45/MvvmCross.Platform.dll": {
+            "assemblyVersion": "5.7.0.0",
+            "fileVersion": "5.7.0.0"
           }
         }
       },
@@ -1115,6 +1175,13 @@
       "serviceable": false,
       "sha512": ""
     },
+    "MahApps.Metro.IconPacks.Material/4.8.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-KZ6BRhXtFlcKuuh5n13ezexZSuyVOo7O+tQwacLRvzfl421P+/rWfRO1rcsHimvo2Bpm4cG8uTj7KXagsioJyg==",
+      "path": "mahapps.metro.iconpacks.material/4.8.0",
+      "hashPath": "mahapps.metro.iconpacks.material.4.8.0.nupkg.sha512"
+    },
     "Microsoft.CSharp/4.5.0": {
       "type": "package",
       "serviceable": true,
@@ -1324,6 +1391,27 @@
       "sha512": "sha512-1tYkYslR8c7Dp/3itlx8+djBp+cim/ieS1Xp+d/waL0Yrl3H4HGmqxSm89yz/Ts+H9pmrS5DeKpOb+HUOzaERQ==",
       "path": "mvvmcross/7.1.2",
       "hashPath": "mvvmcross.7.1.2.nupkg.sha512"
+    },
+    "MvvmCross.Binding/5.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ndWpYu8+j75NM+ZSaOxFtimYAD7jDwatN8PInVwKJIvJLTP/PqFfHlw7OQ5uuVZRFJEXanPoazaV3cZQ5jO2Pg==",
+      "path": "mvvmcross.binding/5.7.0",
+      "hashPath": "mvvmcross.binding.5.7.0.nupkg.sha512"
+    },
+    "MvvmCross.Core/5.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-PC2aLSm61hnsLOau/qgfDPChGpqIiY8QVuV8wcaTPz0e6WgTEVO1rPxXwpkNuhod55hhMl3dFgFofcRwcI2x3g==",
+      "path": "mvvmcross.core/5.7.0",
+      "hashPath": "mvvmcross.core.5.7.0.nupkg.sha512"
+    },
+    "MvvmCross.Platform/5.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-0J0Rzk3TisxYswq2aDEfNfdfl5X92399TmM8X9L828e36rqXK0z+OFTmwn7ViMqC9d7Cqroz4gVbkxThHfHEng==",
+      "path": "mvvmcross.platform/5.7.0",
+      "hashPath": "mvvmcross.platform.5.7.0.nupkg.sha512"
     },
     "MvvmCross.Platforms.Wpf/7.1.2": {
       "type": "package",
