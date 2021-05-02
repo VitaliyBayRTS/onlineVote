@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "KHMOjbxLeP0z+aeoa7awWRms+GNuJ7QYw//LlsSLoYD23KQGxxAJAl9srR0vu8+5zfxFjOSi/TAKGSceiGYtbQ==",
+  "dgSpecHash": "6t07oTcm4XqegPs57p0RWv101mOPvh+fGM5rV7XvbV3/yIC5i7H7l1/ZqpXmkxwI2FucYbuUAs0fGa0/is7YvA==",
   "success": true,
   "projectFilePath": "C:\\Git\\onlineVote\\WPF_OV_OnlineVote\\WPF_OV_OnlineVote\\WPF_OV_OnlineVote.csproj",
   "expectedPackageFiles": [
@@ -35,9 +35,6 @@
     "C:\\Users\\Vital\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\Vital\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\Vital\\.nuget\\packages\\mvvmcross\\7.1.2\\mvvmcross.7.1.2.nupkg.sha512",
-    "C:\\Users\\Vital\\.nuget\\packages\\mvvmcross.binding\\5.7.0\\mvvmcross.binding.5.7.0.nupkg.sha512",
-    "C:\\Users\\Vital\\.nuget\\packages\\mvvmcross.core\\5.7.0\\mvvmcross.core.5.7.0.nupkg.sha512",
-    "C:\\Users\\Vital\\.nuget\\packages\\mvvmcross.platform\\5.7.0\\mvvmcross.platform.5.7.0.nupkg.sha512",
     "C:\\Users\\Vital\\.nuget\\packages\\mvvmcross.platforms.wpf\\7.1.2\\mvvmcross.platforms.wpf.7.1.2.nupkg.sha512",
     "C:\\Users\\Vital\\.nuget\\packages\\newtonsoft.json\\10.0.1\\newtonsoft.json.10.0.1.nupkg.sha512",
     "C:\\Users\\Vital\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
@@ -112,36 +109,5 @@
     "C:\\Users\\Vital\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Users\\Vital\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'MvvmCross.Binding 5.7.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
-      "libraryId": "MvvmCross.Binding",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v3.1"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'MvvmCross.Core 5.7.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
-      "libraryId": "MvvmCross.Core",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v3.1"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'MvvmCross.Platform 5.7.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
-      "libraryId": "MvvmCross.Platform",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v3.1"
-      ]
-    }
-  ]
+  "logs": []
 }

@@ -21,7 +21,7 @@ namespace OV.MainDb.Configuration
         {
             var optionsBuilder = new DbContextOptionsBuilder<OvMainDbContext>();
             //optionsBuilder.UseSqlServer(_ovMainDatabase.GetConnectionString());
-            //optionsBuilder.UseSqlServer("Data Source=DESKTOP-O2K81VH;Initial Catalog=OV_MainDb;Integrated Security=True");
+            optionsBuilder.UseSqlServer("Data Source=DESKTOP-O2K81VH;Initial Catalog=OV_MainDb;Integrated Security=True");
             return new OvMainDbContext(optionsBuilder.Options);
         }
     }

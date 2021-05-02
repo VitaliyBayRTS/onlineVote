@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using OV.MainDb.Configuration;
 using System.Windows;
-using MvvmCross.Binding.Wpf;
 
 namespace WPF_OV_OnlineVote
 {

@@ -7,3 +7,8 @@ C:\Git\onlineVote\WPF_OV_OnlineVote\OV.MVX\obj\Debug\netcoreapp3.1\OV.MVX.Assemb
 C:\Git\onlineVote\WPF_OV_OnlineVote\OV.MVX\obj\Debug\netcoreapp3.1\OV.MVX.csproj.CoreCompileInputs.cache
 C:\Git\onlineVote\WPF_OV_OnlineVote\OV.MVX\obj\Debug\netcoreapp3.1\OV.MVX.dll
 C:\Git\onlineVote\WPF_OV_OnlineVote\OV.MVX\obj\Debug\netcoreapp3.1\OV.MVX.pdb
+C:\Git\onlineVote\WPF_OV_OnlineVote\OV.MVX\bin\Debug\netcoreapp3.1\OV.MainDb.dll
+C:\Git\onlineVote\WPF_OV_OnlineVote\OV.MVX\bin\Debug\netcoreapp3.1\OV.MainDb.pdb
+C:\Git\onlineVote\WPF_OV_OnlineVote\OV.MVX\obj\Debug\netcoreapp3.1\OV.MVX.csproj.CopyComplete
+C:\Git\onlineVote\WPF_OV_OnlineVote\OV.MVX\bin\Debug\netcoreapp3.1\OV.Models.dll
+C:\Git\onlineVote\WPF_OV_OnlineVote\OV.MVX\bin\Debug\netcoreapp3.1\OV.Models.pdb

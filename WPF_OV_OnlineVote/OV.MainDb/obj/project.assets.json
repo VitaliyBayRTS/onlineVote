@@ -1569,6 +1569,19 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "OV.Models/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/OV.Models.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/OV.Models.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
       }
     }
   },
@@ -5970,6 +5983,11 @@
         "system.xml.xmlserializer.4.3.0.nupkg.sha512",
         "system.xml.xmlserializer.nuspec"
       ]
+    },
+    "OV.Models/1.0.0": {
+      "type": "project",
+      "path": "../OV.Models/OV.Models.csproj",
+      "msbuildProject": "../OV.Models/OV.Models.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -5977,6 +5995,7 @@
       "Microsoft.EntityFrameworkCore >= 5.0.5",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.5",
       "Microsoft.Extensions.Options.ConfigurationExtensions >= 5.0.0",
+      "OV.Models >= 1.0.0",
       "System.Data.SqlClient >= 4.8.2"
     ]
   },
@@ -6011,7 +6030,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Git\\onlineVote\\WPF_OV_OnlineVote\\OV.Models\\OV.Models.csproj": {
+              "projectPath": "C:\\Git\\onlineVote\\WPF_OV_OnlineVote\\OV.Models\\OV.Models.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

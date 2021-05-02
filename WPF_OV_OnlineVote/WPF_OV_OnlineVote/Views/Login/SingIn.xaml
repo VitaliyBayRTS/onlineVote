@@ -8,7 +8,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPF_OV_OnlineVote.Views.Login"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks" xmlns:viewmodels="clr-namespace:OV.MVX.ViewModels;assembly=OV.MVX"
-            d:DataContext="{d:DesignInstance Type=viewmodels:HabitantLoginViewModel}"         
+            d:DataContext="{d:DesignInstance Type=viewmodels:SingupViewModel}"         
             mc:Ignorable="d" 
     d:DesignHeight="390" d:DesignWidth="800">
 
@@ -36,15 +36,17 @@
         </Label>
         <StackPanel x:Name="organizador" Grid.Row="1" HorizontalAlignment="Center">
 
-                <Label FontFamily="Helvetica"
+                <TextBlock FontFamily="Helvetica"
                    FontWeight="Light"
                    FontSize="20"
                    Foreground="White">
-                    Nombre/s
-                </Label>
+                Nombre/s
+                <TextBlock BaselineOffset="20" Foreground="RED" Text="*"/>
+            </TextBlock>
             <StackPanel Orientation="Horizontal">
                 <TextBox FontFamily="Helvetica"
                          FontWeight="SemiBold"
+                         Text="{Binding Path=Name}"
                          FontSize="20"
                          HorizontalAlignment="Center"
                          Foreground="#FF0069C0"
@@ -61,16 +63,18 @@
 
             <StackPanel Grid.Row="1" Margin="0 5">
 
-                <Label FontFamily="Helvetica"
+                <TextBlock FontFamily="Helvetica"
                    FontWeight="Light"
                    FontSize="20"
                    Foreground="White">
                     Primer Apellido
-                </Label>
+                    <TextBlock BaselineOffset="20" Foreground="RED" Text="*"/>
+                </TextBlock>
                 <StackPanel Orientation="Horizontal">
                     <TextBox FontFamily="Helvetica"
                          FontWeight="SemiBold"
                          FontSize="20"
+                             Text="{Binding Path=FirstSurName}"
                          HorizontalAlignment="Center"
                          Foreground="#FF0069C0"
                          Width="235"
@@ -97,6 +101,8 @@
                     <TextBox FontFamily="Helvetica"
                          FontWeight="SemiBold"
                          FontSize="20"
+                             Text="{Binding Path=SecondSurName}"
+                             
                          HorizontalAlignment="Center"
                          Foreground="#FF0069C0"
                          Width="235"
@@ -113,15 +119,17 @@
 
             <StackPanel Grid.Row="1" Margin="0 5">
 
-                <Label FontFamily="Helvetica"
+                <TextBlock FontFamily="Helvetica"
                    FontWeight="Light"
                    FontSize="20"
                    Foreground="White">
                     Fecha de Nacimiento
-                </Label>
+                    <TextBlock BaselineOffset="20" Foreground="RED" Text="*"/>
+                </TextBlock>
                 <StackPanel Orientation="Horizontal">
                     <DatePicker Name="dateOfBirth" FontFamily="Helvetica"
-                                
+                         SelectedDate="{Binding Path=DateOfBirth, Mode=OneWayToSource}"  
+                         Text="{Binding Path=DateOfBirthString, Mode=OneWay}"
                          FontWeight="Light"
                          FontSize="17"
                          HorizontalAlignment="Center"
@@ -154,18 +162,20 @@
 
             <StackPanel Grid.Row="1">
 
-                <Label FontFamily="Helvetica"
+                <TextBlock FontFamily="Helvetica"
                    FontWeight="Light"
                    FontSize="20"
                    Foreground="White">
                     Comunidad autonoma
-                </Label>
+                    <TextBlock BaselineOffset="20" Foreground="RED" Text="*"/>
+                </TextBlock>
                 <StackPanel Orientation="Horizontal">
                     <ComboBox FontFamily="Helvetica"
                          FontWeight="SemiBold"
                          x:Name="Comunities"
-                         ItemsSource="{Binding Path=Comunities}"
-                         SelectedItem="{Binding Path=SelectedComunity, Mode=OneWayToSource}"
+                         ItemsSource="{Binding Path=AllAutonomousCommunities}"
+                         SelectedItem="{Binding Path=AutonomousCommunity, Mode=OneWayToSource}"
+                         DisplayMemberPath="Name"
                          FontSize="20"
                          HorizontalAlignment="Center"
                          Foreground="#FF0069C0"
@@ -181,19 +191,21 @@
             </StackPanel>
 
             <StackPanel Grid.Row="1" Margin="0 5">
-                <Label FontFamily="Helvetica"
+                <TextBlock FontFamily="Helvetica"
                    FontWeight="Light"
                    FontSize="20"
                    Foreground="White">
                     Provincia
-                </Label>
+                    <TextBlock BaselineOffset="20" Foreground="RED" Text="*"/>
+                </TextBlock>
                 <StackPanel Orientation="Horizontal">
                     <ComboBox FontFamily="Helvetica"
                          FontWeight="SemiBold"
                          FontSize="20"
                          x:Name="Provinces"
-                         ItemsSource="{Binding Path=Provinces}"
-                         SelectedItem="{Binding Path=SelectedProvince, Mode=OneWayToSource}"
+                         ItemsSource="{Binding Path=ProvincesOfCommunity}"
+                         SelectedItem="{Binding Path=Province, Mode=OneWayToSource}"
+                         DisplayMemberPath="Name"
                          HorizontalAlignment="Center"
                          Foreground="#FF0069C0"
                          Width="235"
@@ -209,16 +221,18 @@
 
             <StackPanel Grid.Row="1" Margin="0 5">
 
-                <Label FontFamily="Helvetica"
+                <TextBlock FontFamily="Helvetica"
                    FontWeight="Light"
                    FontSize="20"
                    Foreground="White">
                     Correo electronico
-                </Label>
+                    <TextBlock BaselineOffset="20" Foreground="RED" Text="*"/>
+                </TextBlock>
                 <StackPanel Orientation="Horizontal">
                     <TextBox FontFamily="Helvetica"
                          FontWeight="SemiBold"
                          FontSize="20"
+                             Text="{Binding Path=Email}"
                          HorizontalAlignment="Center"
                          Foreground="#FF0069C0"
                          Width="235"
@@ -234,16 +248,18 @@
 
             <StackPanel Grid.Row="1" Margin="0 5">
 
-                <Label FontFamily="Helvetica"
+                <TextBlock FontFamily="Helvetica"
                    FontWeight="Light"
                    FontSize="20"
                    Foreground="White">
                     Número de telefono
-                </Label>
+                    <TextBlock BaselineOffset="20" Foreground="RED" Text="*"/>
+                </TextBlock>
                 <StackPanel Orientation="Horizontal">
                     <TextBox FontFamily="Helvetica"
                          FontWeight="SemiBold"
                          FontSize="20"
+                             Text="{Binding Path=PhoneNumber}"
                          HorizontalAlignment="Center"
                          Foreground="#FF0069C0"
                          Width="235"
@@ -275,16 +291,18 @@
 
             <StackPanel Grid.Row="1">
 
-                <Label FontFamily="Helvetica"
+                <TextBlock FontFamily="Helvetica"
                    FontWeight="Light"
                    FontSize="20"
                    Foreground="White">
                     DNI
-                </Label>
+                    <TextBlock BaselineOffset="20" Foreground="RED" Text="*"/>
+                </TextBlock>
                 <StackPanel Orientation="Horizontal">
                     <TextBox FontFamily="Helvetica"
                          FontWeight="SemiBold"
                          FontSize="20"
+                             Text="{Binding Path=DNI_NIE}"
                          HorizontalAlignment="Center"
                          Foreground="#FF0069C0"
                          Width="235"
@@ -299,16 +317,18 @@
             </StackPanel>
 
             <StackPanel Grid.Row="1" Margin="0 5" >
-                <Label FontFamily="Helvetica"
+                <TextBlock FontFamily="Helvetica"
                    FontWeight="Light"
                    FontSize="20"
                    Foreground="White">
                     Contraseña
-                </Label>
+                    <TextBlock BaselineOffset="20" Foreground="RED" Text="*"/>
+                </TextBlock>
                 <StackPanel Orientation="Horizontal">
                     <PasswordBox FontFamily="Helvetica"
                          FontWeight="SemiBold"
                          FontSize="20"
+                             PasswordChanged="PasswordBox_PasswordChanged" 
                          HorizontalAlignment="Center"
                          Foreground="#FF0069C0"
                          Width="235"
@@ -323,16 +343,18 @@
             </StackPanel>
 
             <StackPanel Grid.Row="1" Margin="0 5" >
-                <Label FontFamily="Helvetica"
+                <TextBlock FontFamily="Helvetica"
                    FontWeight="Light"
                    FontSize="20"
                    Foreground="White">
                     Confirmar Contraseña
-                </Label>
+                    <TextBlock BaselineOffset="20" Foreground="RED" Text="*"/>
+                </TextBlock>
                 <StackPanel Orientation="Horizontal">
                     <PasswordBox FontFamily="Helvetica"
                          FontWeight="SemiBold"
                          FontSize="20"
+                                 PasswordChanged="PasswordBox_PasswordChanged_1"
                          HorizontalAlignment="Center"
                          Foreground="#FF0069C0"
                          Width="235"
@@ -349,7 +371,9 @@
         </StackPanel>
 
 
-        <Button Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" VerticalAlignment="Top"
+        <Button Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" 
+                mvx:Bi.nd="Command CreateUserCommand"
+                VerticalAlignment="Top"
                 Width="250" Height="35" FontSize="18" FontWeight="SemiBold" Content="Crear nuevo usuario"/>
 
     </Grid>

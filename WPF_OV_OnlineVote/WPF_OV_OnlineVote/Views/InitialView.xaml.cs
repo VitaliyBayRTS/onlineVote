@@ -1,4 +1,7 @@
 ﻿using MvvmCross.Platforms.Wpf.Views;
+using OV.MainDb.Configuration;
+using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using WPF_OV_OnlineVote.Views.Login;
@@ -10,8 +13,12 @@ namespace WPF_OV_OnlineVote.Views
     /// </summary>
     public partial class InitialView : MvxWpfView
     {
+        private OvMainDbContext _ovMainDbContext;
+        //OvMainDbContext ovMainDbContext
         public InitialView()
         {
+            //_ovMainDbContext = ovMainDbContext ?? throw new ArgumentNullException(nameof(ovMainDbContext));
+            //var test = _ovMainDbContext.AutonomousCommunities.ToList();
             InitializeComponent();
         }
 

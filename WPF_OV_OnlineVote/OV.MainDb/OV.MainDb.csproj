@@ -12,4 +12,12 @@
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Province\Find\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OV.Models\OV.Models.csproj" />
+  </ItemGroup>
+
 </Project>

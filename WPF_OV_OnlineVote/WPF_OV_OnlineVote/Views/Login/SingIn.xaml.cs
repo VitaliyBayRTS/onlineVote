@@ -1,17 +1,8 @@
-﻿using MvvmCross.Platforms.Wpf.Views;
+﻿using MvvmCross;
+using MvvmCross.Platforms.Wpf.Views;
+using OV.MainDb.AutonomousCommunity.Find;
 using OV.MVX.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WPF_OV_OnlineVote.Views.Login
 {
@@ -23,7 +14,19 @@ namespace WPF_OV_OnlineVote.Views.Login
         public SingIn()
         {
             InitializeComponent();
-            DataContext = new HabitantLoginViewModel("asd");
+            DataContext = new SingupViewModel();
+        }
+
+        private void PasswordBox_PasswordChanged(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (this.DataContext != null)
+            { ((dynamic)this.DataContext).Password = ((PasswordBox)sender).SecurePassword; }
+        }
+
+        private void PasswordBox_PasswordChanged_1(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (this.DataContext != null)
+            { ((dynamic)this.DataContext).ConfirmPassword = ((PasswordBox)sender).SecurePassword; }
         }
     }
 }

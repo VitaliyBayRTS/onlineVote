@@ -29,13 +29,6 @@ C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\bin\Debug\netcoreapp3.1\Mi
 C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
 C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\bin\Debug\netcoreapp3.1\MvvmCross.dll
-C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\bin\Debug\netcoreapp3.1\MvvmCross.Binding.Wpf.dll
-C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\bin\Debug\netcoreapp3.1\MvvmCross.Binding.dll
-C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\bin\Debug\netcoreapp3.1\MvvmCross.Localization.dll
-C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\bin\Debug\netcoreapp3.1\MvvmCross.Core.dll
-C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\bin\Debug\netcoreapp3.1\MvvmCross.Wpf.dll
-C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\bin\Debug\netcoreapp3.1\MvvmCross.Platform.Wpf.dll
-C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\bin\Debug\netcoreapp3.1\MvvmCross.Platform.dll
 C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\bin\Debug\netcoreapp3.1\MvvmCross.Platforms.Wpf.dll
 C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
@@ -90,3 +83,5 @@ C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\obj\Debug\netcoreapp3.1\WP
 C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\obj\Debug\netcoreapp3.1\WPF_OV_OnlineVote.dll
 C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\obj\Debug\netcoreapp3.1\WPF_OV_OnlineVote.pdb
 C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\obj\Debug\netcoreapp3.1\WPF_OV_OnlineVote.genruntimeconfig.cache
+C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\bin\Debug\netcoreapp3.1\OV.Models.dll
+C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\bin\Debug\netcoreapp3.1\OV.Models.pdb

@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using OV.MainDb.AutonomousCommunity.Find;
 using OV.MainDb.Configuration;
 using System;
 using System.Collections.Generic;
@@ -45,6 +46,7 @@ namespace OV.MainDb
              );
 
             serviceCollection.TryAddScoped<IOvMainDbContextFactory, OvMainDbContextFactory>();
+            serviceCollection.TryAddScoped<IFindAutonomousCommunityService, FindAutonomousCommunityService>();
 
             return serviceCollection;
         }
