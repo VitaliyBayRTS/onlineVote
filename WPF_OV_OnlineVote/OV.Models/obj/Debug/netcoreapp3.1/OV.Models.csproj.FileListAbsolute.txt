@@ -1,0 +1,9 @@
+C:\Git\onlineVote\WPF_OV_OnlineVote\OV.Models\bin\Debug\netcoreapp3.1\OV.Models.deps.json
+C:\Git\onlineVote\WPF_OV_OnlineVote\OV.Models\bin\Debug\netcoreapp3.1\OV.Models.dll
+C:\Git\onlineVote\WPF_OV_OnlineVote\OV.Models\bin\Debug\netcoreapp3.1\OV.Models.pdb
+C:\Git\onlineVote\WPF_OV_OnlineVote\OV.Models\obj\Debug\netcoreapp3.1\OV.Models.csprojAssemblyReference.cache
+C:\Git\onlineVote\WPF_OV_OnlineVote\OV.Models\obj\Debug\netcoreapp3.1\OV.Models.AssemblyInfoInputs.cache
+C:\Git\onlineVote\WPF_OV_OnlineVote\OV.Models\obj\Debug\netcoreapp3.1\OV.Models.AssemblyInfo.cs
+C:\Git\onlineVote\WPF_OV_OnlineVote\OV.Models\obj\Debug\netcoreapp3.1\OV.Models.csproj.CoreCompileInputs.cache
+C:\Git\onlineVote\WPF_OV_OnlineVote\OV.Models\obj\Debug\netcoreapp3.1\OV.Models.dll
+C:\Git\onlineVote\WPF_OV_OnlineVote\OV.Models\obj\Debug\netcoreapp3.1\OV.Models.pdb

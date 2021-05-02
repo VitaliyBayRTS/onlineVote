@@ -1,0 +1,308 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Git\\onlineVote\\WPF_OV_OnlineVote\\WPF_OV_OnlineVote\\WPF_OV_OnlineVote.csproj": {}
+  },
+  "projects": {
+    "C:\\Git\\onlineVote\\WPF_OV_OnlineVote\\OV.MainDb\\OV.MainDb.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Git\\onlineVote\\WPF_OV_OnlineVote\\OV.MainDb\\OV.MainDb.csproj",
+        "projectName": "OV.MainDb",
+        "projectPath": "C:\\Git\\onlineVote\\WPF_OV_OnlineVote\\OV.MainDb\\OV.MainDb.csproj",
+        "packagesPath": "C:\\Users\\Vital\\.nuget\\packages\\",
+        "outputPath": "C:\\Git\\onlineVote\\WPF_OV_OnlineVote\\OV.MainDb\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "V:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Vital\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "C:\\Git\\onlineVote\\WPF_OV_OnlineVote\\OV.Models\\OV.Models.csproj": {
+                "projectPath": "C:\\Git\\onlineVote\\WPF_OV_OnlineVote\\OV.Models\\OV.Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.5, )"
+            },
+            "Microsoft.Extensions.Options.ConfigurationExtensions": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Git\\onlineVote\\WPF_OV_OnlineVote\\OV.Models\\OV.Models.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Git\\onlineVote\\WPF_OV_OnlineVote\\OV.Models\\OV.Models.csproj",
+        "projectName": "OV.Models",
+        "projectPath": "C:\\Git\\onlineVote\\WPF_OV_OnlineVote\\OV.Models\\OV.Models.csproj",
+        "packagesPath": "C:\\Users\\Vital\\.nuget\\packages\\",
+        "outputPath": "C:\\Git\\onlineVote\\WPF_OV_OnlineVote\\OV.Models\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "V:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Vital\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Git\\onlineVote\\WPF_OV_OnlineVote\\OV.MVX\\OV.MVX.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Git\\onlineVote\\WPF_OV_OnlineVote\\OV.MVX\\OV.MVX.csproj",
+        "projectName": "OV.MVX",
+        "projectPath": "C:\\Git\\onlineVote\\WPF_OV_OnlineVote\\OV.MVX\\OV.MVX.csproj",
+        "packagesPath": "C:\\Users\\Vital\\.nuget\\packages\\",
+        "outputPath": "C:\\Git\\onlineVote\\WPF_OV_OnlineVote\\OV.MVX\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "V:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Vital\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "C:\\Git\\onlineVote\\WPF_OV_OnlineVote\\OV.MainDb\\OV.MainDb.csproj": {
+                "projectPath": "C:\\Git\\onlineVote\\WPF_OV_OnlineVote\\OV.MainDb\\OV.MainDb.csproj"
+              },
+              "C:\\Git\\onlineVote\\WPF_OV_OnlineVote\\OV.Models\\OV.Models.csproj": {
+                "projectPath": "C:\\Git\\onlineVote\\WPF_OV_OnlineVote\\OV.Models\\OV.Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "MvvmCross": {
+              "target": "Package",
+              "version": "[7.1.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Git\\onlineVote\\WPF_OV_OnlineVote\\WPF_OV_OnlineVote\\WPF_OV_OnlineVote.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Git\\onlineVote\\WPF_OV_OnlineVote\\WPF_OV_OnlineVote\\WPF_OV_OnlineVote.csproj",
+        "projectName": "WPF_OV_OnlineVote",
+        "projectPath": "C:\\Git\\onlineVote\\WPF_OV_OnlineVote\\WPF_OV_OnlineVote\\WPF_OV_OnlineVote.csproj",
+        "packagesPath": "C:\\Users\\Vital\\.nuget\\packages\\",
+        "outputPath": "C:\\Git\\onlineVote\\WPF_OV_OnlineVote\\WPF_OV_OnlineVote\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "V:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Vital\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "C:\\Git\\onlineVote\\WPF_OV_OnlineVote\\OV.MainDb\\OV.MainDb.csproj": {
+                "projectPath": "C:\\Git\\onlineVote\\WPF_OV_OnlineVote\\OV.MainDb\\OV.MainDb.csproj"
+              },
+              "C:\\Git\\onlineVote\\WPF_OV_OnlineVote\\OV.MVX\\OV.MVX.csproj": {
+                "projectPath": "C:\\Git\\onlineVote\\WPF_OV_OnlineVote\\OV.MVX\\OV.MVX.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "MahApps.Metro.IconPacks.Material": {
+              "target": "Package",
+              "version": "[4.8.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "MvvmCross.Platforms.Wpf": {
+              "target": "Package",
+              "version": "[7.1.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
