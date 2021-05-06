@@ -6,7 +6,8 @@ namespace OV.MVX.Models
 {
     class SingupModel
     {
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+        public string SecondName { get; set; }
         public string FirstSurName { get; set; }
         public string SecondSurName { get; set; }
         public DateTime DateOfBirth { get; set; }

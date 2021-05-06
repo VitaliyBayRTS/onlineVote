@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v3.1": {
       "OV.MainDb/1.0.0": {
         "dependencies": {
+          "FluentValidation": "10.1.0",
           "Microsoft.EntityFrameworkCore": "5.0.5",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.5",
           "Microsoft.Extensions.Options.ConfigurationExtensions": "5.0.0",
@@ -16,6 +17,14 @@
         },
         "runtime": {
           "OV.MainDb.dll": {}
+        }
+      },
+      "FluentValidation/10.1.0": {
+        "runtime": {
+          "lib/netstandard2.1/FluentValidation.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "10.1.0.0"
+          }
         }
       },
       "Microsoft.CSharp/4.5.0": {},
@@ -1071,6 +1080,9 @@
         }
       },
       "OV.Models/1.0.0": {
+        "dependencies": {
+          "FluentValidation": "10.1.0"
+        },
         "runtime": {
           "OV.Models.dll": {}
         }
@@ -1082,6 +1094,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "FluentValidation/10.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-RxhhfY9IcEY2qUMYjoUxegInbuE5Bwll7dVLsXpiJf25g0ztmzUK+HHqtPcub1caPemhMJsC+NwjHei+NgAkvA==",
+      "path": "fluentvalidation/10.1.0",
+      "hashPath": "fluentvalidation.10.1.0.nupkg.sha512"
     },
     "Microsoft.CSharp/4.5.0": {
       "type": "package",

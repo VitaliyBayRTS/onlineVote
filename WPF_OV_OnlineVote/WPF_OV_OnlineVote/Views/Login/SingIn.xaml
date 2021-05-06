@@ -40,13 +40,13 @@
                    FontWeight="Light"
                    FontSize="20"
                    Foreground="White">
-                Nombre/s
+                Primer Nombre
                 <TextBlock BaselineOffset="20" Foreground="RED" Text="*"/>
             </TextBlock>
             <StackPanel Orientation="Horizontal">
                 <TextBox FontFamily="Helvetica"
                          FontWeight="SemiBold"
-                         Text="{Binding Path=Name}"
+                         Text="{Binding Path=FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          FontSize="20"
                          HorizontalAlignment="Center"
                          Foreground="#FF0069C0"
@@ -67,6 +67,32 @@
                    FontWeight="Light"
                    FontSize="20"
                    Foreground="White">
+                    Segundo Nombre
+                </TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox FontFamily="Helvetica"
+                         FontWeight="SemiBold"
+                         FontSize="20"
+                             Text="{Binding Path=SecondName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         HorizontalAlignment="Center"
+                         Foreground="#FF0069C0"
+                         Width="235"
+                         HorizontalContentAlignment="Left"
+                         Height="25"/>
+                    <iconPacks:PackIconMaterial Kind="Account"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Center"
+                                 Margin="5 0 0 0"
+                                 Foreground="#FF0069C0"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Margin="0 5">
+
+                <TextBlock FontFamily="Helvetica"
+                   FontWeight="Light"
+                   FontSize="20"
+                   Foreground="White">
                     Primer Apellido
                     <TextBlock BaselineOffset="20" Foreground="RED" Text="*"/>
                 </TextBlock>
@@ -74,7 +100,7 @@
                     <TextBox FontFamily="Helvetica"
                          FontWeight="SemiBold"
                          FontSize="20"
-                             Text="{Binding Path=FirstSurName}"
+                             Text="{Binding Path=FirstSurName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          HorizontalAlignment="Center"
                          Foreground="#FF0069C0"
                          Width="235"
@@ -101,43 +127,13 @@
                     <TextBox FontFamily="Helvetica"
                          FontWeight="SemiBold"
                          FontSize="20"
-                             Text="{Binding Path=SecondSurName}"
-                             
+                         Text="{Binding Path=SecondSurName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          HorizontalAlignment="Center"
                          Foreground="#FF0069C0"
                          Width="235"
                          HorizontalContentAlignment="Left"
                          Height="25"/>
                     <iconPacks:PackIconMaterial Kind="Account"
-                                 VerticalAlignment="Center"
-                                 HorizontalAlignment="Center"
-                                 Margin="5 0 0 0"
-                                 Foreground="#FF0069C0"/>
-                </StackPanel>
-            </StackPanel>
-
-
-            <StackPanel Grid.Row="1" Margin="0 5">
-
-                <TextBlock FontFamily="Helvetica"
-                   FontWeight="Light"
-                   FontSize="20"
-                   Foreground="White">
-                    Fecha de Nacimiento
-                    <TextBlock BaselineOffset="20" Foreground="RED" Text="*"/>
-                </TextBlock>
-                <StackPanel Orientation="Horizontal">
-                    <DatePicker Name="dateOfBirth" FontFamily="Helvetica"
-                         SelectedDate="{Binding Path=DateOfBirth, Mode=OneWayToSource}"  
-                         Text="{Binding Path=DateOfBirthString, Mode=OneWay}"
-                         FontWeight="Light"
-                         FontSize="17"
-                         HorizontalAlignment="Center"
-                         Foreground="#FF0069C0"
-                         Width="235"
-                         HorizontalContentAlignment="Left"
-                         Height="25"/>
-                    <iconPacks:PackIconMaterial Kind="CalendarAccount"
                                  VerticalAlignment="Center"
                                  HorizontalAlignment="Center"
                                  Margin="5 0 0 0"
@@ -232,7 +228,7 @@
                     <TextBox FontFamily="Helvetica"
                          FontWeight="SemiBold"
                          FontSize="20"
-                             Text="{Binding Path=Email}"
+                             Text="{Binding Path=Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          HorizontalAlignment="Center"
                          Foreground="#FF0069C0"
                          Width="235"
@@ -259,7 +255,8 @@
                     <TextBox FontFamily="Helvetica"
                          FontWeight="SemiBold"
                          FontSize="20"
-                             Text="{Binding Path=PhoneNumber}"
+                             Text="{Binding Path=PhoneNumber, Mode=TwoWay, 
+                        UpdateSourceTrigger=PropertyChanged}"
                          HorizontalAlignment="Center"
                          Foreground="#FF0069C0"
                          Width="235"
@@ -289,6 +286,35 @@
         <StackPanel Grid.Column="2" Grid.Row="1" 
                     VerticalAlignment="Top" HorizontalAlignment="Center">
 
+
+            <StackPanel Grid.Row="1" Margin="0 5">
+
+                <TextBlock FontFamily="Helvetica"
+                   FontWeight="Light"
+                   FontSize="20"
+                   Foreground="White">
+                    Fecha de Nacimiento
+                    <TextBlock BaselineOffset="20" Foreground="RED" Text="*"/>
+                </TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <DatePicker Name="dateOfBirth" FontFamily="Helvetica"
+                         SelectedDate="{Binding Path=DateOfBirth, Mode=TwoWay}"  
+                         Text="{Binding Path=DateOfBirthString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         FontWeight="Light"
+                         FontSize="17"
+                         HorizontalAlignment="Center"
+                         Foreground="#FF0069C0"
+                         Width="235"
+                         HorizontalContentAlignment="Left"
+                         Height="25"/>
+                    <iconPacks:PackIconMaterial Kind="CalendarAccount"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Center"
+                                 Margin="5 0 0 0"
+                                 Foreground="#FF0069C0"/>
+                </StackPanel>
+            </StackPanel>
+
             <StackPanel Grid.Row="1">
 
                 <TextBlock FontFamily="Helvetica"
@@ -302,7 +328,7 @@
                     <TextBox FontFamily="Helvetica"
                          FontWeight="SemiBold"
                          FontSize="20"
-                             Text="{Binding Path=DNI_NIE}"
+                             Text="{Binding Path=DNI_NIE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          HorizontalAlignment="Center"
                          Foreground="#FF0069C0"
                          Width="235"

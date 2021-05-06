@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "yYgwHvO01Kie6hAn1coqIbuC7Aduz0ufYrEicTF7c4EuQROtjsys1j29T2Z1miCkbCwOjqda2cHukNny85LzzQ==",
+  "dgSpecHash": "ibgwGsxUoKvGe9P6FEGSqvTwIRZdpntZ0FsxQwij8eZf1ALtgKGwaL6ASHTC5v6QYS384Irac6gIVF+hKZlsVg==",
   "success": true,
   "projectFilePath": "C:\\Git\\onlineVote\\WPF_OV_OnlineVote\\OV.MainDb\\OV.MainDb.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Vital\\.nuget\\packages\\fluentvalidation\\10.1.0\\fluentvalidation.10.1.0.nupkg.sha512",
     "C:\\Users\\Vital\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\Vital\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",
     "C:\\Users\\Vital\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.0.1\\microsoft.data.sqlclient.sni.runtime.2.0.1.nupkg.sha512",

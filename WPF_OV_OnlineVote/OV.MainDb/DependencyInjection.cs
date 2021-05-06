@@ -29,21 +29,21 @@ namespace OV.MainDb
             return serviceCollection;
         }
 
-        private static object TryAddMainDbDependencies(this IServiceCollection serviceCollection, IConfiguration configuration)
+        public static object TryAddMainDbDependencies(this IServiceCollection serviceCollection)
         {
-            serviceCollection.Configure<ConnectionStringConfig>(configuration.GetSection("ConnectionStrings"));
+            //serviceCollection.Configure<ConnectionStringConfig>(configuration.GetSection("ConnectionStrings"));
 
             serviceCollection.TryAddOvMainDbQueryExecutor();
 
-            serviceCollection.AddDbContext<IOvMainDbContext, OvMainDbContext>(
-                builder =>
-                    builder.UseSqlServer(
-                        configuration.GetSection("ConnectionsStrings").Get<ConnectionStringConfig>().OvMainDb)
-                //.Get<ConnectionStringConfig>()
-                //.OvMainDb;
-                ,
-                ServiceLifetime.Transient
-             );
+            //serviceCollection.AddDbContext<IOvMainDbContext, OvMainDbContext>(
+            //    builder =>
+            //        builder.UseSqlServer(
+            //            configuration.GetSection("ConnectionsStrings").Get<ConnectionStringConfig>().OvMainDb)
+            //    //.Get<ConnectionStringConfig>()
+            //    //.OvMainDb;
+            //    ,
+            //    ServiceLifetime.Transient
+            // );
 
             serviceCollection.TryAddScoped<IOvMainDbContextFactory, OvMainDbContextFactory>();
             serviceCollection.TryAddScoped<IFindAutonomousCommunityService, FindAutonomousCommunityService>();

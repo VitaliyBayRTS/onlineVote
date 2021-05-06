@@ -1,4 +1,5 @@
 ﻿using MvvmCross.Platforms.Wpf.Views;
+using OV.MainDb.AutonomousCommunity.Find;
 using OV.MainDb.Configuration;
 using System;
 using System.Linq;
@@ -14,10 +15,12 @@ namespace WPF_OV_OnlineVote.Views
     public partial class InitialView : MvxWpfView
     {
         private OvMainDbContext _ovMainDbContext;
+        private IFindAutonomousCommunityService _findAutonomousCommunityService;
         //OvMainDbContext ovMainDbContext
         public InitialView()
         {
-            //_ovMainDbContext = ovMainDbContext ?? throw new ArgumentNullException(nameof(ovMainDbContext));
+            //_findAutonomousCommunityService = findAutonomousCommunityService ?? throw new ArgumentNullException(nameof(findAutonomousCommunityService));
+            //var test = _findAutonomousCommunityService.Find();
             //var test = _ovMainDbContext.AutonomousCommunities.ToList();
             InitializeComponent();
         }

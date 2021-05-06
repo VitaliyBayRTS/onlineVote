@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using OV.MainDb.Configuration;
 using OV.MainDb.Province.Models;
+using OV.MainDb.User.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -16,6 +17,7 @@ namespace OV.MainDb.AutonomousCommunity.Models
         [Column("Name")] public string Name { get; set; }
 
         public IEnumerable<PersistedProvince>? Provinces { get; set; }
+        public IEnumerable<PersistedUser>? Users { get; set; }
 
         public OV.Models.MainDb.AutonomousCommunity.AutonomousCommunity ToAutonomousCommunity()
         {

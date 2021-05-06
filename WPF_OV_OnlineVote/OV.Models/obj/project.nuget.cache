@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "EH+rQh0+ArERHmNYtrRVpC/l23WCTJGR33pSTMUzcUSclyAFJ8csRriPH3CtWllT9fVh+EPPSwn5g3XE3ltzuA==",
+  "dgSpecHash": "elLHGxNyWNnZmRuxKEBHjByLs6w8rvfUCwpoB+JWuTW3Ya2onbyXqg8E1Q79AWeql34JzEohtJLbNqTs4Qi8QQ==",
   "success": true,
   "projectFilePath": "C:\\Git\\onlineVote\\WPF_OV_OnlineVote\\OV.Models\\OV.Models.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Vital\\.nuget\\packages\\fluentvalidation\\10.1.0\\fluentvalidation.10.1.0.nupkg.sha512"
+  ],
   "logs": []
 }
