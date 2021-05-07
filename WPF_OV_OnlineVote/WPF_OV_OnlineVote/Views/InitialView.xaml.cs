@@ -4,6 +4,7 @@ using OV.MainDb.Configuration;
 using System;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using WPF_OV_OnlineVote.Views.Login;
 
@@ -15,7 +16,7 @@ namespace WPF_OV_OnlineVote.Views
     public partial class InitialView : MvxWpfView
     {
         private OvMainDbContext _ovMainDbContext;
-        private IFindAutonomousCommunityService _findAutonomousCommunityService;
+        private IFindAutonomousCommunityDataService _findAutonomousCommunityService;
         //OvMainDbContext ovMainDbContext
         public InitialView()
         {
@@ -99,7 +100,13 @@ namespace WPF_OV_OnlineVote.Views
             superAdminOption.Foreground = Brushes.White;
             newHabitantOption.Foreground = Brushes.DeepSkyBlue;
             initialViewContent.Children.Clear();
-            initialViewContent.Children.Add(new SingIn());
+            var loadingText = new TextBlock();
+            loadingText.Text = "Loading";
+            initialViewContent.Children.Add(loadingText);
+            var singInGrid = new SingIn();
+            singInGrid.LoadDataContext();
+            initialViewContent.Children.Clear();
+            initialViewContent.Children.Add(singInGrid);
         }
     }
 }

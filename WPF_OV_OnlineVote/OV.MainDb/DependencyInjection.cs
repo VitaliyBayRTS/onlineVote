@@ -46,6 +46,10 @@ namespace OV.MainDb
             // );
 
             serviceCollection.TryAddScoped<IOvMainDbContextFactory, OvMainDbContextFactory>();
+
+            //AutonomousCommunity
+            //-Find
+            serviceCollection.TryAddScoped<IFindAutonomousCommunityDataService, FindAutonomousCommunityDataService>();
             serviceCollection.TryAddScoped<IFindAutonomousCommunityService, FindAutonomousCommunityService>();
 
             return serviceCollection;

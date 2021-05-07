@@ -1,30 +1,33 @@
-﻿using Microsoft.EntityFrameworkCore;
-using OV.MainDb.AutonomousCommunity.Models;
-using OV.MainDb.Configuration;
+﻿using OV.MainDb.AutonomousCommunity.Find.Models.Public;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace OV.MainDb.AutonomousCommunity.Find
 {
     public interface IFindAutonomousCommunityService
     {
-        IEnumerable<OV.Models.MainDb.AutonomousCommunity.AutonomousCommunity> Find();
+        Task<IEnumerable<OV.Models.MainDb.AutonomousCommunity.AutonomousCommunity>> FindAsync(AutonomousCommunityFilter filter, 
+                                                                                         CancellationToken cancellationToken);
     }
+
     public class FindAutonomousCommunityService : IFindAutonomousCommunityService
     {
-        private IOvMainDbContext _ovMainDbContext;
-        public FindAutonomousCommunityService(IOvMainDbContext ovMainDbContext)
+        private readonly IFindAutonomousCommunityDataService _findAutonomousCommunityDataService;
+
+        public FindAutonomousCommunityService(IFindAutonomousCommunityDataService findAutonomousCommunityDataService)
         {
-            _ovMainDbContext = ovMainDbContext ?? throw new ArgumentNullException(nameof(ovMainDbContext));
+            _findAutonomousCommunityDataService = findAutonomousCommunityDataService ?? 
+                                                  throw new ArgumentNullException(nameof(findAutonomousCommunityDataService));
         }
-        public IEnumerable<OV.Models.MainDb.AutonomousCommunity.AutonomousCommunity> Find()
+
+        public async Task<IEnumerable<OV.Models.MainDb.AutonomousCommunity.AutonomousCommunity>> FindAsync(AutonomousCommunityFilter filter, CancellationToken cancellationToken)
         {
-            return _ovMainDbContext.AutonomousCommunities
-                            .Include(ac => ac.Provinces)
-                            .Select(ac => ac.ToAutonomousCommunity());
+            var autonomousCommunity = await _findAutonomousCommunityDataService.FindAsync(filter, cancellationToken);
+            return autonomousCommunity.Select(ac => ac.ToAutonomousCommunity()).ToList();
         }
     }
 }

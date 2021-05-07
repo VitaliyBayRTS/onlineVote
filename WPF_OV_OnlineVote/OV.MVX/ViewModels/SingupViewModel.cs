@@ -1,6 +1,7 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using OV.MainDb.AutonomousCommunity.Find;
+using OV.MainDb.AutonomousCommunity.Find.Models.Public;
 using OV.MainDb.User.Create.Models.Public;
 using OV.MainDb.User.Models.Public;
 using OV.Models.MainDb.AutonomousCommunity;
@@ -244,18 +245,23 @@ namespace OV.MVX.ViewModels
         }
 
 
-        private IAutonomousCommunityService autonomousCommunityService;
+        private IAutonomousCommunityService _autonomousCommunityService;
         private IUserService _userService;
 
 
         public SingupViewModel()
         {
-            autonomousCommunityService = new AutonomousCommunityService();
-            var autonomousCommunities = autonomousCommunityService.Find();
-            _allAutonomousCommunities = new ObservableCollection<AutonomousCommunity>(autonomousCommunities);
+            _autonomousCommunityService = new AutonomousCommunityService();
+            _allAutonomousCommunities = new ObservableCollection<AutonomousCommunity>();
+            LoadData();
             _userService = new UserService();
-
             CreateUserCommand = new MvxCommand(createUser);
+        }
+
+        public async void LoadData()
+        {
+            var autonomousCommunities = await _autonomousCommunityService.FindAsync(AutonomousCommunityFilter.All.AndIncludeProvince(), new CancellationToken());
+            AllAutonomousCommunities = new ObservableCollection<AutonomousCommunity>(autonomousCommunities);
         }
 
         public async void createUser()
