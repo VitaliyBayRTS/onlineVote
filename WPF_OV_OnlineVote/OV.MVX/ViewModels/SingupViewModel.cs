@@ -278,7 +278,7 @@ namespace OV.MVX.ViewModels
                 var errorText = "";
                 foreach (var error in errors.OrderBy(_ => _.Key))
                 {
-                    errorText += error.Key + " : " + error.Value + "\r\n";
+                    errorText += "- " + error.Key + " : " + error.Value + "\r\n\r\n";
                 } 
 
                 foreach (var error in _propertyError.OrderBy(_ => _.Key))
@@ -286,9 +286,9 @@ namespace OV.MVX.ViewModels
                     var errorItemText = "";
                     foreach (var errorItem in error.Value)
                     {
-                        errorItemText += errorItem + "\r\n";
+                        errorItemText += "- " + errorItem + "\r\n\r\n";
                     }
-                    errorText += error.Key + " : " + errorItemText + "\r\n";
+                    errorText += "- " + error.Key + " : " + errorItemText + "\r\n\r\n";
                 }
                 MessageBox.Show(errorText, "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
             } else

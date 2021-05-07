@@ -8,6 +8,14 @@ namespace OV.MainDb.User
     {
         FirstNameIsEmpty,
         FirstSurNameIsEmpty,
+        PasswordIsEmpty,
+        DateOfBirthIsEmpty,
+        AutonomousCommunityIsEmpty,
+        AutonomousCommunityDoesNotExist,
+        ProvinceIsEmpty,
+        ProvinceDoesNotExist,
+        EmailIsEmpty,
+        PhoneNumberIsEmpty,
         FailureInsertingIntoDataBase
     }
 }
