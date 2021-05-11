@@ -7,12 +7,12 @@ namespace OV.MainDb.AutonomousCommunity.Find.Models.Public
     public class AutonomousCommunityFilter
     {
         public int Id { get; }
-        public string? Name { get; }
+        public string Name { get; }
         public bool ProvinceIncluded { get; } = false;
 
         public AutonomousCommunityFilter() { }
 
-        public AutonomousCommunityFilter(int id, string? name, bool provinceIncluded)
+        public AutonomousCommunityFilter(int id, string name, bool provinceIncluded)
         {
             Id = id;
             Name = name;

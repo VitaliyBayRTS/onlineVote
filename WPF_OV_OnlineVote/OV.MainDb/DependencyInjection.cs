@@ -4,6 +4,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using OV.MainDb.AutonomousCommunity.Find;
 using OV.MainDb.Configuration;
+using OV.MainDb.Province.Find;
+using OV.MainDb.User.Create;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -51,6 +53,17 @@ namespace OV.MainDb
             //-Find
             serviceCollection.TryAddScoped<IFindAutonomousCommunityDataService, FindAutonomousCommunityDataService>();
             serviceCollection.TryAddScoped<IFindAutonomousCommunityService, FindAutonomousCommunityService>();
+
+            //Province
+            //-Find
+            serviceCollection.TryAddScoped<IFindProvinceDataService, FindProvinceDataService>();
+            serviceCollection.TryAddScoped<IFindProvinceService, FindProvinceService>();
+
+            //User
+            //-Create
+            serviceCollection.TryAddScoped<ICandidateUserValidator, CandidateUserValidator>();
+            serviceCollection.TryAddScoped<ICreateUserDataService, CreateUserDataService>();
+            serviceCollection.TryAddScoped<ICreateUserService, CreateUserService>();
 
             return serviceCollection;
         }

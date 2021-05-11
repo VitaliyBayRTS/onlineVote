@@ -279,7 +279,8 @@ namespace OV.MVX.ViewModels
             //var confirmPassword = SecureStringToString(ConfirmPassword);
 
             var errors = ValidateData();
-            if (errors.Count > 0 || HasErrors)
+            //if (errors.Count > 0 || HasErrors)
+            if (false)
             {
                 var errorText = "";
                 foreach (var error in errors.OrderBy(_ => _.Key))
@@ -301,16 +302,17 @@ namespace OV.MVX.ViewModels
             {
                 CandidateUser candidate = new CandidateUser()
                 {
-                    FirstName = FirstName,
-                    SecondName = SecondName,
-                    SurName = FirstSurName,
-                    SecondSurName = SecondSurName,
-                    Password = SecureStringToString(Password),
+                    FirstName = FirstName + "asd",
+                    SecondName = SecondName + "asd",
+                    SurName = FirstSurName + "asd",
+                    SecondSurName = SecondSurName + "asd",
+                    //Password = SecureStringToString(Password),
+                    Password = "asd",
                     DOB = DateOfBirth,
-                    TblAutonomousCommunities_UID = AutonomousCommunity.Id,
-                    TblProvince_UID = Province.Id,
-                    Email = Email,
-                    PhoneNumber = PhoneNumber
+                    TblAutonomousCommunities_UID = 1,
+                    TblProvince_UID = 26,
+                    Email = Email + "asd",
+                    PhoneNumber = PhoneNumber + "asd"
                 };
                 var response = await _userService.CreateUserAsync(candidate, new CancellationToken());
                 if (response is CreateUserFailure failure)

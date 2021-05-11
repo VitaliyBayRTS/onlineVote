@@ -1,4 +1,6 @@
-﻿using OV.MainDb.Configuration;
+﻿using OV.MainDb.AutonomousCommunity.Find;
+using OV.MainDb.Configuration;
+using OV.MainDb.Province.Find;
 using OV.MainDb.User.Create;
 using OV.MainDb.User.Create.Models.Public;
 using OV.MainDb.User.Models.Public;
@@ -22,7 +24,12 @@ namespace OV.MVX.Services.User
         public UserService()
         {
             dbContext = new CreateDbContext().getOvMainDbContext();
-            _createUserService = new CreateUserService(new CreateUserDataService(dbContext), new CandidateUserValidator());
+
+            var findAutonomousCommunityDataService = new FindAutonomousCommunityDataService(dbContext);
+            var findProvinceDataService = new FindProvinceDataService(dbContext);
+            var validator = new CandidateUserValidator(findAutonomousCommunityDataService, findProvinceDataService);
+
+            _createUserService = new CreateUserService(new CreateUserDataService(dbContext), validator);
         }
         public async Task<ICreateUserResponse> CreateUserAsync(CandidateUser candidate, CancellationToken cancellation = default)
         {

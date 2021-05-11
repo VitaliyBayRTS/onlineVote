@@ -8,6 +8,7 @@ namespace OV.MVX.Helpers
     internal interface ICreateDbContext
     {
         IOvMainDbContext getOvMainDbContext();
+        IOvMainDbContextFactory getOvMainDbContextFactory();
     }
     public class CreateDbContext : ICreateDbContext
     {
@@ -21,6 +22,11 @@ namespace OV.MVX.Helpers
         public IOvMainDbContext getOvMainDbContext()
         {
             return _ovMainDbContext;
+        }
+
+        public IOvMainDbContextFactory getOvMainDbContextFactory()
+        {
+            return new OvMainDbContextFactory(new OvMainDatabase());
         }
     }
 }

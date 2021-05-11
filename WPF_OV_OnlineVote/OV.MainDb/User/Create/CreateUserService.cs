@@ -46,7 +46,7 @@ namespace OV.MainDb.User.Create
                 }
                 return new CreateUserFailure(new FailureReason<UserFailureReason>(UserFailureReason.FailureInsertingIntoDataBase));
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return new CreateUserFailure(new FailureReason<UserFailureReason>(UserFailureReason.FailureInsertingIntoDataBase));
             }
