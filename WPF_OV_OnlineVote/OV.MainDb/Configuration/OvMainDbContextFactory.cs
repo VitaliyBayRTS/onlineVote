@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Configuration;
 
 namespace OV.MainDb.Configuration
 {
@@ -20,8 +19,7 @@ namespace OV.MainDb.Configuration
         public IOvMainDbContext Create()
         {
             var optionsBuilder = new DbContextOptionsBuilder<OvMainDbContext>();
-            //optionsBuilder.UseSqlServer(_ovMainDatabase.GetConnectionString());
-            optionsBuilder.UseSqlServer("Data Source=DESKTOP-O2K81VH;Initial Catalog=OV_MainDb;Integrated Security=True");
+            optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["OvMainDb"].ConnectionString);
             return new OvMainDbContext(optionsBuilder.Options);
         }
     }

@@ -8,10 +8,12 @@ using OV.Models.MainDb.Province;
 using OV.MVX.Helpers;
 using OV.MVX.Services.AutonomousCommunity;
 using OV.MVX.Services.User;
+using OV.Services.AES_Operation;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Configuration;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security;
@@ -291,7 +293,7 @@ namespace OV.MVX.ViewModels
                     SecondName = SecondName,
                     SurName = FirstSurName,
                     SecondSurName = SecondSurName,
-                    Password = SecureStringToString(Password),
+                    Password = EncrypedPassword(),
                     DOB = DateOfBirth,
                     TblProvince_UID = Province.Id,
                     Email = Email,
@@ -311,8 +313,15 @@ namespace OV.MVX.ViewModels
 
                 MessageBox.Show("Ok", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-           
 
+
+        }
+
+        private string EncrypedPassword()
+        {
+            var password = SecureStringToString(Password);
+            var aesKey = ConfigurationManager.AppSettings.Get("AesKey");
+            return AES.EncryptString(aesKey, password);
         }
 
         private Dictionary<string, string> ValidateData()
