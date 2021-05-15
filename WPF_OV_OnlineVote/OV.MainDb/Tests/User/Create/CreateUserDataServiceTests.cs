@@ -3,10 +3,7 @@ using OV.MainDb.Configuration;
 using OV.MainDb.User.Create;
 using OV.MainDb.User.Models.Public;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace OV.MainDb.Tests.User.Create
@@ -16,15 +13,13 @@ namespace OV.MainDb.Tests.User.Create
         public class TestForCreateUser
         {
             private readonly IOvMainDbContextFactory _inMemoryOvMainDbContextFactory;
-            private readonly IOvMainDbContext _inMemoryOvMainDbContext;
             private readonly ICreateUserDataService _createUserDataService;
             private readonly CancellationToken cancellationToken = default;
 
             public TestForCreateUser()
             {
                 _inMemoryOvMainDbContextFactory = new InMemoryOvMainDbContextFactory(Guid.NewGuid().ToString());
-                _inMemoryOvMainDbContext = _inMemoryOvMainDbContextFactory.Create();
-                _createUserDataService = new CreateUserDataService(_inMemoryOvMainDbContext);
+                _createUserDataService = new CreateUserDataService(_inMemoryOvMainDbContextFactory);
             }
 
             [Fact]
@@ -39,7 +34,6 @@ namespace OV.MainDb.Tests.User.Create
                     SecondSurName = "SecondSurName",
                     Password = "Password",
                     DOB = DateTime.Now,
-                    TblAutonomousCommunities_UID = 1,
                     TblProvince_UID = 1,
                     Email = "Email",
                     PhoneNumber = "PhoneNumber"

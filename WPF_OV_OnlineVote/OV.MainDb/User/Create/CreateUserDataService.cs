@@ -1,10 +1,7 @@
 ﻿using OV.MainDb.Configuration;
-using OV.MainDb.User.Create.Models.Public;
 using OV.MainDb.User.Models;
 using OV.MainDb.User.Models.Public;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -16,14 +13,17 @@ namespace OV.MainDb.User.Create
     }
     public class CreateUserDataService : ICreateUserDataService
     {
-        private IOvMainDbContext _ovMainDbContext;
-        public CreateUserDataService(IOvMainDbContext ovMainDbContext)
+        private IOvMainDbContextFactory _ovMainDbContextFactory;
+        public CreateUserDataService(IOvMainDbContextFactory ovMainDbContextFactory)
         {
-            _ovMainDbContext = ovMainDbContext ?? throw new ArgumentNullException(nameof(ovMainDbContext));
+            _ovMainDbContextFactory = ovMainDbContextFactory ?? throw new ArgumentNullException(nameof(ovMainDbContextFactory));
         }
 
         public async Task<PersistedUser> CreateAsync(CandidateUser candidate, CancellationToken cancellationToken)
         {
+
+            var _ovMainDbContext = _ovMainDbContextFactory.Create();
+
             PersistedUser user = new PersistedUser()
             {
                 FirstName = candidate.FirstName,
@@ -32,16 +32,13 @@ namespace OV.MainDb.User.Create
                 SecondSurName = candidate.SecondSurName,
                 Password = candidate.Password,
                 DOB = candidate.DOB,
-                TblAutonomousCommunities_UID = candidate.TblAutonomousCommunities_UID,
                 TblProvince_UID = candidate.TblProvince_UID,
                 Email = candidate.Email,
                 PhoneNumber = candidate.PhoneNumber,
             };
 
-            var newUser = await _ovMainDbContext.Users.AddAsync(user);
-
-            //TODO: Add new user to UnauthorithedUsers table
-
+            var newUser = _ovMainDbContext.Users.Add(user);
+            
             await _ovMainDbContext.SaveChangesAsync(cancellationToken);
 
             return newUser.Entity;

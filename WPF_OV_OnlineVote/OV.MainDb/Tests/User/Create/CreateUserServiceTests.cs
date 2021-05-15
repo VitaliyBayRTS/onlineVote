@@ -11,7 +11,6 @@ using OV.MainDb.User.Models.Public;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using Xunit;
 
@@ -41,7 +40,7 @@ namespace OV.MainDb.Tests.User.Create
                 _findProvinceDataService = new FindProvinceDataService(_inMemoryOvMainDbContext);
 
                 _validator = new CandidateUserValidator(_findAutonomousCommunityDataService, _findProvinceDataService);
-                _createUserDataService = new CreateUserDataService(_inMemoryOvMainDbContext);
+                _createUserDataService = new CreateUserDataService(_inMemoryOvMainDbContextFactory);
 
                 _createUserService = new CreateUserService(_createUserDataService, _validator);
             }
@@ -52,15 +51,19 @@ namespace OV.MainDb.Tests.User.Create
                 //Arrange
                 PersistedAutonomousCommunity autonomousCommunity = new PersistedAutonomousCommunity()
                 {
-                    Name = "NameAC"
+                    Id = 1,
+                    Name = "NameAC",
+                    Provinces = new List<PersistedProvince>()
+                    {
+                        new PersistedProvince()
+                        {
+                            Id = 1,
+                            Name = "NameProvince",
+                            tblAutonomousCommunity_UID = 1
+                        }
+                    }
                 };
                 _inMemoryOvMainDbContext.AutonomousCommunities.Add(autonomousCommunity);
-                PersistedProvince province = new PersistedProvince()
-                {
-                    Name = "NameProvince",
-                    tblAutonomousCommunity_UID = autonomousCommunity.Id
-                };
-                _inMemoryOvMainDbContext.Provinces.Add(province);
                 await _inMemoryOvMainDbContext.SaveChangesAsync(cancellationToken);
 
                 CandidateUser candidate = new CandidateUser()
@@ -71,8 +74,7 @@ namespace OV.MainDb.Tests.User.Create
                     SecondSurName = "SecondSurName",
                     Password = "Password",
                     DOB = DateTime.Now,
-                    TblAutonomousCommunities_UID = autonomousCommunity.Id,
-                    TblProvince_UID = province.Id,
+                    TblProvince_UID = autonomousCommunity.Provinces.FirstOrDefault().Id,
                     Email = "Email",
                     PhoneNumber = "PhoneNumber"
                 };
@@ -83,10 +85,6 @@ namespace OV.MainDb.Tests.User.Create
                 //Assert
                 var isSuccess = result is CreateUserSuccess;
                 isSuccess.Should().BeTrue();
-                var newContext = _inMemoryOvMainDbContextFactory.Create();
-                newContext.AutonomousCommunities.Should().HaveCount(1);
-                newContext.Users.Should().HaveCount(1);
-                newContext.Provinces.Should().HaveCount(1);
             }
 
             [Fact]
@@ -113,7 +111,7 @@ namespace OV.MainDb.Tests.User.Create
                     SecondSurName = "SecondSurName", // Can be null
                     Password = "Password",
                     DOB = DateTime.Now,
-                    TblAutonomousCommunities_UID = autonomousCommunity.Id,
+
                     TblProvince_UID = province.Id,
                     Email = "Email",
                     PhoneNumber = "PhoneNumber"
@@ -125,7 +123,7 @@ namespace OV.MainDb.Tests.User.Create
                 //Assert
                 var isFailure = result is CreateUserFailure;
                 isFailure.Should().BeTrue();
-                if(result is CreateUserFailure failure)
+                if (result is CreateUserFailure failure)
                 {
                     failure.FailureReasons[0].Code.ToString().Should().Be(UserFailureReason.FirstNameIsEmpty.ToString());
                 }
@@ -155,7 +153,6 @@ namespace OV.MainDb.Tests.User.Create
                     SecondSurName = "SecondSurName", // Can be null
                     Password = "Password",
                     DOB = DateTime.Now,
-                    TblAutonomousCommunities_UID = autonomousCommunity.Id,
                     TblProvince_UID = province.Id,
                     Email = "Email",
                     PhoneNumber = "PhoneNumber"
@@ -167,7 +164,7 @@ namespace OV.MainDb.Tests.User.Create
                 //Assert
                 var isFailure = result is CreateUserFailure;
                 isFailure.Should().BeTrue();
-                if(result is CreateUserFailure failure)
+                if (result is CreateUserFailure failure)
                 {
                     failure.FailureReasons[0].Code.ToString().Should().Be(UserFailureReason.FirstSurNameIsEmpty.ToString());
                 }
@@ -197,7 +194,7 @@ namespace OV.MainDb.Tests.User.Create
                     SecondSurName = "SecondSurName", // Can be null
                     Password = null,
                     DOB = DateTime.Now,
-                    TblAutonomousCommunities_UID = autonomousCommunity.Id,
+
                     TblProvince_UID = province.Id,
                     Email = "Email",
                     PhoneNumber = "PhoneNumber"
@@ -209,7 +206,7 @@ namespace OV.MainDb.Tests.User.Create
                 //Assert
                 var isFailure = result is CreateUserFailure;
                 isFailure.Should().BeTrue();
-                if(result is CreateUserFailure failure)
+                if (result is CreateUserFailure failure)
                 {
                     failure.FailureReasons[0].Code.ToString().Should().Be(UserFailureReason.PasswordIsEmpty.ToString());
                 }
@@ -238,7 +235,6 @@ namespace OV.MainDb.Tests.User.Create
                     SurName = "SurName",
                     SecondSurName = "SecondSurName", // Can be null
                     Password = "Password",
-                    TblAutonomousCommunities_UID = autonomousCommunity.Id,
                     TblProvince_UID = province.Id,
                     Email = "Email",
                     PhoneNumber = "PhoneNumber"
@@ -250,38 +246,9 @@ namespace OV.MainDb.Tests.User.Create
                 //Assert
                 var isFailure = result is CreateUserFailure;
                 isFailure.Should().BeTrue();
-                if(result is CreateUserFailure failure)
+                if (result is CreateUserFailure failure)
                 {
                     failure.FailureReasons[0].Code.ToString().Should().Be(UserFailureReason.DateOfBirthIsEmpty.ToString());
-                }
-            }
-
-            [Fact]
-            public async void ShouldReturnFailureResponseIfAutonomousCommunityIdIsEmpty()
-            {
-                //Arrange
-                CandidateUser candidate = new CandidateUser()
-                {
-                    FirstName = "FirstName",
-                    SecondName = "SecondName", // Can be null
-                    SurName = "SurName",
-                    SecondSurName = "SecondSurName", // Can be null
-                    Password = "Password",
-                    DOB = DateTime.Now,
-                    TblProvince_UID = 1,
-                    Email = "Email",
-                    PhoneNumber = "PhoneNumber"
-                };
-
-                //Act
-                ICreateUserResponse result = await _createUserService.CreateAsync(candidate, cancellationToken);
-
-                //Assert
-                var isFailure = result is CreateUserFailure;
-                isFailure.Should().BeTrue();
-                if(result is CreateUserFailure failure)
-                {
-                    failure.FailureReasons[0].Code.ToString().Should().Be(UserFailureReason.AutonomousCommunityIsEmpty.ToString());
                 }
             }
 
@@ -303,7 +270,6 @@ namespace OV.MainDb.Tests.User.Create
                     SecondSurName = "SecondSurName", // Can be null
                     Password = "Password",
                     DOB = DateTime.Now,
-                    TblAutonomousCommunities_UID = autonomousCommunity.Id,
                     Email = "Email",
                     PhoneNumber = "PhoneNumber"
                 };
@@ -314,7 +280,7 @@ namespace OV.MainDb.Tests.User.Create
                 //Assert
                 var isFailure = result is CreateUserFailure;
                 isFailure.Should().BeTrue();
-                if(result is CreateUserFailure failure)
+                if (result is CreateUserFailure failure)
                 {
                     failure.FailureReasons[0].Code.ToString().Should().Be(UserFailureReason.ProvinceIsEmpty.ToString());
                 }
@@ -344,7 +310,6 @@ namespace OV.MainDb.Tests.User.Create
                     SecondSurName = "SecondSurName", // Can be null
                     Password = "Password",
                     DOB = DateTime.Now,
-                    TblAutonomousCommunities_UID = autonomousCommunity.Id,
                     TblProvince_UID = province.Id,
                     Email = null,
                     PhoneNumber = "PhoneNumber"
@@ -356,7 +321,7 @@ namespace OV.MainDb.Tests.User.Create
                 //Assert
                 var isFailure = result is CreateUserFailure;
                 isFailure.Should().BeTrue();
-                if(result is CreateUserFailure failure)
+                if (result is CreateUserFailure failure)
                 {
                     failure.FailureReasons[0].Code.ToString().Should().Be(UserFailureReason.EmailIsEmpty.ToString());
                 }
@@ -386,7 +351,6 @@ namespace OV.MainDb.Tests.User.Create
                     SecondSurName = "SecondSurName", // Can be null
                     Password = "Password",
                     DOB = DateTime.Now,
-                    TblAutonomousCommunities_UID = autonomousCommunity.Id,
                     TblProvince_UID = province.Id,
                     Email = "Email",
                     PhoneNumber = null
@@ -404,35 +368,6 @@ namespace OV.MainDb.Tests.User.Create
                 }
             }
 
-            [Fact]
-            public async void ShouldReturnFailureResponseIfAutonomousCommunityIdDoeNotExist()
-            {
-                //Arrange
-                CandidateUser candidate = new CandidateUser()
-                {
-                    FirstName = "FirstName",
-                    SecondName = "SecondName", // Can be null
-                    SurName = "SurName",
-                    SecondSurName = "SecondSurName", // Can be null
-                    Password = "Password",
-                    DOB = DateTime.Now,
-                    TblAutonomousCommunities_UID = 1,
-                    TblProvince_UID = 1,
-                    Email = "Email",
-                    PhoneNumber = "PhoneNumber"
-                };
-
-                //Act
-                ICreateUserResponse result = await _createUserService.CreateAsync(candidate, cancellationToken);
-
-                //Assert
-                var isFailure = result is CreateUserFailure;
-                isFailure.Should().BeTrue();
-                if(result is CreateUserFailure failure)
-                {
-                    failure.FailureReasons[0].Code.ToString().Should().Be(UserFailureReason.AutonomousCommunityDoesNotExist.ToString());
-                }
-            }
 
             [Fact]
             public async void ShouldReturnFailureResponseIfProvinceIdDoeNotExist()
@@ -453,7 +388,7 @@ namespace OV.MainDb.Tests.User.Create
                     SecondSurName = "SecondSurName", // Can be null
                     Password = "Password",
                     DOB = DateTime.Now,
-                    TblAutonomousCommunities_UID = autonomousCommunity.Id,
+
                     TblProvince_UID = 1,
                     Email = "Email",
                     PhoneNumber = "PhoneNumber"
@@ -465,7 +400,7 @@ namespace OV.MainDb.Tests.User.Create
                 //Assert
                 var isFailure = result is CreateUserFailure;
                 isFailure.Should().BeTrue();
-                if(result is CreateUserFailure failure)
+                if (result is CreateUserFailure failure)
                 {
                     failure.FailureReasons[0].Code.ToString().Should().Be(UserFailureReason.ProvinceDoesNotExist.ToString());
                 }

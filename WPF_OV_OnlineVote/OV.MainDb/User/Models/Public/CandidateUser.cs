@@ -11,7 +11,6 @@ namespace OV.MainDb.User.Models.Public
         public string SecondSurName { get; set; }
         public string Password { get; set; }
         public DateTime DOB { get; set; }
-        public int TblAutonomousCommunities_UID { get; set; }
         public int TblProvince_UID { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
@@ -25,7 +24,6 @@ namespace OV.MainDb.User.Models.Public
             SecondSurName = user.SecondSurName;
             Password = user.Password;
             DOB = user.DOB;
-            TblAutonomousCommunities_UID = user.TblAutonomousCommunities_UID;
             TblProvince_UID = user.TblProvince_UID;
             Email = user.Email;
             PhoneNumber = user.PhoneNumber;

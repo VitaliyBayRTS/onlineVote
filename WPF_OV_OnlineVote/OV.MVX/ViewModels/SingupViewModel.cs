@@ -1,6 +1,5 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.ViewModels;
-using OV.MainDb.AutonomousCommunity.Find;
 using OV.MainDb.AutonomousCommunity.Find.Models.Public;
 using OV.MainDb.User.Create.Models.Public;
 using OV.MainDb.User.Models.Public;
@@ -16,7 +15,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security;
-using System.Text;
 using System.Threading;
 using System.Windows;
 
@@ -266,21 +264,8 @@ namespace OV.MVX.ViewModels
 
         public async void createUser()
         {
-            //var name = Name;
-            //var firstSurName = FirstSurName;
-            //var secondSurName = SecondSurName;
-            //var dateOfBirth = DateOfBirth;
-            //var autonomousCommunity = AutonomousCommunity;
-            //var province = Province;
-            //var email = Email;
-            //var phoneNumber = PhoneNumber;
-            //var DNI = DNI_NIE;
-            //var password = SecureStringToString(Password);
-            //var confirmPassword = SecureStringToString(ConfirmPassword);
-
             var errors = ValidateData();
-            //if (errors.Count > 0 || HasErrors)
-            if (false)
+            if (errors.Count > 0 || HasErrors)
             {
                 var errorText = "";
                 foreach (var error in errors.OrderBy(_ => _.Key))
@@ -302,17 +287,15 @@ namespace OV.MVX.ViewModels
             {
                 CandidateUser candidate = new CandidateUser()
                 {
-                    FirstName = FirstName + "asd",
-                    SecondName = SecondName + "asd",
-                    SurName = FirstSurName + "asd",
-                    SecondSurName = SecondSurName + "asd",
-                    //Password = SecureStringToString(Password),
-                    Password = "asd",
+                    FirstName = FirstName,
+                    SecondName = SecondName,
+                    SurName = FirstSurName,
+                    SecondSurName = SecondSurName,
+                    Password = SecureStringToString(Password),
                     DOB = DateOfBirth,
-                    TblAutonomousCommunities_UID = 1,
-                    TblProvince_UID = 26,
-                    Email = Email + "asd",
-                    PhoneNumber = PhoneNumber + "asd"
+                    TblProvince_UID = Province.Id,
+                    Email = Email,
+                    PhoneNumber = PhoneNumber
                 };
                 var response = await _userService.CreateUserAsync(candidate, new CancellationToken());
                 if (response is CreateUserFailure failure)

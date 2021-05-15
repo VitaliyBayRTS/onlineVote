@@ -5,9 +5,6 @@ using OV.MainDb.User.Create;
 using OV.MainDb.User.Create.Models.Public;
 using OV.MainDb.User.Models.Public;
 using OV.MVX.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -19,17 +16,20 @@ namespace OV.MVX.Services.User
     }
     public class UserService : IUserService
     {
-        private IOvMainDbContext dbContext;
+        private IOvMainDbContext _dbContext;
+        private IOvMainDbContextFactory _ovMainDbContextFactory;
         private ICreateUserService _createUserService;
         public UserService()
         {
-            dbContext = new CreateDbContext().getOvMainDbContext();
+            var dbContextCreator = new CreateDbContext();
+            _ovMainDbContextFactory = dbContextCreator.getOvMainDbContextFactory();
+            _dbContext = dbContextCreator.getOvMainDbContext();
 
-            var findAutonomousCommunityDataService = new FindAutonomousCommunityDataService(dbContext);
-            var findProvinceDataService = new FindProvinceDataService(dbContext);
+            var findAutonomousCommunityDataService = new FindAutonomousCommunityDataService(_dbContext);
+            var findProvinceDataService = new FindProvinceDataService(_dbContext);
             var validator = new CandidateUserValidator(findAutonomousCommunityDataService, findProvinceDataService);
 
-            _createUserService = new CreateUserService(new CreateUserDataService(dbContext), validator);
+            _createUserService = new CreateUserService(new CreateUserDataService(_ovMainDbContextFactory), validator);
         }
         public async Task<ICreateUserResponse> CreateUserAsync(CandidateUser candidate, CancellationToken cancellation = default)
         {

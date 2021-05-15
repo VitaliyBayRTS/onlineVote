@@ -36,19 +36,6 @@ namespace OV.MainDb.User.Create
                 .NotEmpty()
                 .WithErrorCode(UserFailureReason.DateOfBirthIsEmpty.ToString());
 
-            RuleFor(candidate => candidate.TblAutonomousCommunities_UID)
-                .NotEmpty()
-                .WithErrorCode(UserFailureReason.AutonomousCommunityIsEmpty.ToString());
-
-            RuleFor(candidate => candidate.TblAutonomousCommunities_UID)
-                .MustAsync(async (candidate, tblAutonomousCommunities_UID, cancellationToken) =>
-                {
-                    var existingAuthonomousCommunity = await findAutonomousCommunityDataService
-                                    .FindAsync(AutonomousCommunityFilter.ById(candidate.TblAutonomousCommunities_UID), cancellationToken);
-                    return existingAuthonomousCommunity.Any();
-                })
-                .WithErrorCode(UserFailureReason.AutonomousCommunityDoesNotExist.ToString());
-
             RuleFor(candidate => candidate.TblProvince_UID)
                 .NotEmpty()
                 .WithErrorCode(UserFailureReason.ProvinceIsEmpty.ToString());
@@ -69,18 +56,6 @@ namespace OV.MainDb.User.Create
             RuleFor(candidate => candidate.PhoneNumber)
                 .NotEmpty()
                 .WithErrorCode(UserFailureReason.PhoneNumberIsEmpty.ToString());
-
-            //TODO: Check if TblAutonomousCommunity_UID exist in DB
-
-            //TODO: Check if TblProvince_UID exist in DB
-            //RuleFor(candidate => candidate.TblProvince_UID)
-            //    .MustAsync(async (candidate, tblProvince_UID, cancellationToken) =>
-            //    {
-            //        var existingProvince = await findProvinceDataService
-            //                        .FindAsync(ProvinceFilter.ById(candidate.TblProvince_UID), cancellationToken);
-            //        return existingProvince.Any();
-            //    })
-            //    .WithErrorCode(UserFailureReason.ProvinceDoesNotExist.ToString());
         }
     }
 }

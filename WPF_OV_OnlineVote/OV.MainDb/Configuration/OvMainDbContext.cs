@@ -24,14 +24,14 @@ namespace OV.MainDb.Configuration
         {
         }
 
-        public DbSet<PersistedProvince> Provinces { get; set; } = default!;
-        public DbSet<PersistedAutonomousCommunity> AutonomousCommunities { get; set; } = default!;
-        public DbSet<PersistedUser> Users { get; set; } = default!;
+        public DbSet<PersistedProvince> Provinces { get; set; }
+        public DbSet<PersistedAutonomousCommunity> AutonomousCommunities { get; set; }
+        public DbSet<PersistedUser> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new AutonomousCommunityConfiguration());
             modelBuilder.ApplyConfiguration(new ProvinceConfiguration());
+            modelBuilder.ApplyConfiguration(new AutonomousCommunityConfiguration());
             modelBuilder.ApplyConfiguration(new UserConfiguration());
         }
     }
