@@ -16,9 +16,13 @@ build/
 bld/
 [Bb]in/
 [Oo]bj/
+.v2/
 
 # Roslyn cache directories
 *.ide/
+.dtbcache
+.dtbcache.*
+*.dtbcache.*
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
