@@ -24,7 +24,7 @@ namespace OV.MainDb.Habitant.Find
         public async Task<IEnumerable<OV.Models.MainDb.Habitant.Habitant>> FindAsync(HabitantFilter filter, CancellationToken cancellationToken)
         {
             var habitants = await _findHabitantDataService.FindAsync(filter, cancellationToken);
-            return habitants.Select( h => h.ToHabitant());
+            return habitants.Select(h => h.ToHabitant());
         }
     }
 }
