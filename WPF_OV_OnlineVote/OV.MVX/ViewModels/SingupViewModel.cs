@@ -306,7 +306,8 @@ namespace OV.MVX.ViewModels
                 DOB = DateOfBirth,
                 TblProvince_UID = Province.Id,
                 Email = Email,
-                PhoneNumber = PhoneNumber
+                PhoneNumber = PhoneNumber,
+                DNI_NIE = DNI_NIE
             };
         }
 

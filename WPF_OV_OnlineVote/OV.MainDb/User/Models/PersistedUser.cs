@@ -22,6 +22,8 @@ namespace OV.MainDb.User.Models
         [Column("TblProvinces_UID")] public int TblProvince_UID { get; set; }
         [Column("Email")] public string Email { get; set; }
         [Column("PhoneNumber")] public string PhoneNumber { get; set; }
+        [Column("IsAutorized")] public bool IsAutorized { get; set; }
+        [Column("DNI_NIE")] public string DNI_NIE { get; set; }
 
         public PersistedProvince? Province { get; set; }
 

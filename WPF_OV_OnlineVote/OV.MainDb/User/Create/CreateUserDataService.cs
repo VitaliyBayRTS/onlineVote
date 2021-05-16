@@ -35,6 +35,7 @@ namespace OV.MainDb.User.Create
                 TblProvince_UID = candidate.TblProvince_UID,
                 Email = candidate.Email,
                 PhoneNumber = candidate.PhoneNumber,
+                DNI_NIE = candidate.DNI_NIE
             };
 
             var newUser = _ovMainDbContext.Users.Add(user);

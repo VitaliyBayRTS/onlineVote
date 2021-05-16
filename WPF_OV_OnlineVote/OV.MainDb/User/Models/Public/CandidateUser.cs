@@ -14,6 +14,8 @@ namespace OV.MainDb.User.Models.Public
         public int TblProvince_UID { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
+        public bool IsAutorized { get; set; }
+        public string DNI_NIE { get; set; }
 
         public CandidateUser(OV.Models.MainDb.User.User user)
         {
@@ -27,6 +29,8 @@ namespace OV.MainDb.User.Models.Public
             TblProvince_UID = user.TblProvince_UID;
             Email = user.Email;
             PhoneNumber = user.PhoneNumber;
+            IsAutorized = user.IsAutorized;
+            DNI_NIE = user.DNI_NIE;
         }
 
         public CandidateUser()

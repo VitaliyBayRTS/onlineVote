@@ -17,5 +17,7 @@ namespace OV.Models.MainDb.User
         public int TblProvince_UID { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
+        public bool IsAutorized { get; set; }
+        public string DNI_NIE { get; set; }
     }
 }
