@@ -11,6 +11,7 @@ namespace OV.MainDb.Organizer.Models
         [Column("Id")] public int Id { get; set; }
         [Column("tblUser_UID")] public int tblUser_UID { get; set; }
         [Column("tblElection_UID")] public int tblElection_UID { get; set; }
+        [Column("ReferenceNumber")] public string ReferenceNumber { get; set; }
 
         public PersistedUser? User { get; set; }
 
@@ -21,6 +22,7 @@ namespace OV.MainDb.Organizer.Models
                 Id = this.Id,
                 tblUser_UID = this.tblUser_UID,
                 tblElection_UID = this.tblElection_UID,
+                ReferenceNumber = this.ReferenceNumber,
                 User = this.User?.ToUser()
             };
         }
