@@ -19,7 +19,7 @@ namespace OV.MainDb.Habitant.Models
             {
                 Id = this.Id,
                 tblUser_UID = this.tblUser_UID,
-                User = this.User.ToUser()
+                User = this.User?.ToUser()
                 };
             }
 

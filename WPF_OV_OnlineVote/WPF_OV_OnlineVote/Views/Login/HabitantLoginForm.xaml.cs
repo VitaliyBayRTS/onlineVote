@@ -14,5 +14,11 @@ namespace WPF_OV_OnlineVote.Views.Login
             InitializeComponent();
             DataContext = new HabitantLoginViewModel(text);
         }
+
+        private void PasswordBox_PasswordChanged(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (this.DataContext != null)
+            { ((dynamic)this.DataContext).Password = ((PasswordBox)sender).SecurePassword; }
+        }
     }
 }

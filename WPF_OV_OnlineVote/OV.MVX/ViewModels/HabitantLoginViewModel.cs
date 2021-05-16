@@ -1,84 +1,185 @@
-﻿using MvvmCross.ViewModels;
-using System.Collections.ObjectModel;
+﻿using GalaSoft.MvvmLight.Messaging;
+using MvvmCross.Commands;
+using MvvmCross.ViewModels;
+using OV.MainDb.Habitant.Find.Models.Public;
+using OV.MVX.Helpers;
+using OV.MVX.Services.Habitant;
+using OV.Services.AES_Operation;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Configuration;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Security;
+using System.Threading;
+using System.Windows;
+using static WPF_OV_OnlineVote.Helper.MessageHelper;
 
 namespace OV.MVX.ViewModels
 {
-    public class HabitantLoginViewModel : MvxViewModel
+    public class HabitantLoginViewModel : MvxViewModel, INotifyDataErrorInfo
     {
-        private string _dni = "dniTest";
-        private string _password = "PasswordTest"; 
-        private ObservableCollection<string> _comunities = new ObservableCollection<string>(); 
-        private string _selectedComunity; 
-        private ObservableCollection<string> _allProvinces = new ObservableCollection<string>(); 
-        private ObservableCollection<string> _provinces = new ObservableCollection<string>(); 
-        private string _selectedProvince; 
+
+        public IMvxCommand LogInHabitantCommand { get; set; }
+
+        private string _dni_nie;
+        private SecureString _password;
+        private IHabitantService _habitantService;
 
         public HabitantLoginViewModel(string text)
         {
-            _dni += text;
-            _comunities.Add("A");
-            _comunities.Add("B");
-            _comunities.Add("C");
-            _comunities.Add("D");
-            _allProvinces.Add("A1");
-            _allProvinces.Add("A2");
-            _allProvinces.Add("B1");
-            _allProvinces.Add("B2");
-            _allProvinces.Add("C1");
-            _allProvinces.Add("C2");
-            _allProvinces.Add("D1");
-            _allProvinces.Add("C2");
+            _habitantService = new HabitantService();
+            LogInHabitantCommand = new MvxCommand(LogInHabitant);
         }
 
-        public string DNI
+        private async void LogInHabitant()
         {
-            get { return _dni; }
-            set { SetProperty(ref _dni, value); }
+            var errors = ValidateData();
+            bool isAnyError = errors.Count > 0 || HasErrors;
+            if (isAnyError)
+            {
+                VisualizeError(errors);
+            } 
+            else
+            {
+                var encryptedPassword = EncrypedPassword();
+                var habitant = await _habitantService.FindAsync(HabitantFilter.ByDNI_NIEAndPassword(DNI_NIE, encryptedPassword), new CancellationToken());
+                if(habitant.Count() > 0)
+                {
+                    MessageBox.Show("Ok", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    Messenger.Default.Send(new NotificationMessage(MessageTypes.SingUpSuccess.ToString() + "=>" + habitant.FirstOrDefault().Id));
+                } else
+                {
+                    MessageBox.Show("DNI/NIE o Contraseña es incorecta", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+            }
         }
 
-        public string Password
+        public string DNI_NIE
+        {
+            get { return _dni_nie; }
+            set 
+            {
+                SetProperty(ref _dni_nie, value);
+                ClearError(nameof(DNI_NIE));
+                if (!DocumentValidation.isValidDocument(_dni_nie))
+                {
+                    AddError(nameof(DNI_NIE), "Incorrect DNI/NIE");
+                }
+                RaisePropertyChanged(() => DNI_NIE);
+            }
+        }
+
+        public SecureString Password
         {
             get { return _password; }
-            set { SetProperty(ref _password, value); }
-        }
-
-        public ObservableCollection<string> Comunities {
-            get { return _comunities; }
             set
             {
-                SetProperty(ref _comunities, value);
+                SetProperty(ref _password, value);
+                ClearError(nameof(Password));
+                if (Password.Length < 9)
+                {
+                    AddError(nameof(Password), "La longitud minima de la contraseña es: 9 caracteres");
+                }
+                RaisePropertyChanged(() => Password);
             }
         }
 
-        public string SelectedComunity 
+
+
+        static String SecureStringToString(SecureString value)
         {
-            get { return _selectedComunity; } 
-            set
+            IntPtr bstr = Marshal.SecureStringToBSTR(value);
+
+            try
             {
-                SetProperty(ref _selectedComunity, value);
-                RaisePropertyChanged(() => SelectedComunity);
-                _provinces = new ObservableCollection<string>(_allProvinces.Where(p => p.StartsWith(value ?? "_")));
-                RaisePropertyChanged(() => Provinces);
-            } 
-        }
-        public ObservableCollection<string> Provinces {
-            get { return _provinces; }
-            set
+                return Marshal.PtrToStringBSTR(bstr);
+            }
+            finally
             {
-                SetProperty(ref _provinces, value);
+                Marshal.FreeBSTR(bstr);
             }
         }
 
-        public string SelectedProvince 
+        private readonly Dictionary<string, List<string>> _propertyError = new Dictionary<string, List<string>>();
+
+        public bool HasErrors => _propertyError.Any();
+
+        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+
+        public System.Collections.IEnumerable GetErrors(string propertyName)
         {
-            get { return _selectedProvince; } 
-            set
-            {
-                SetProperty(ref _selectedProvince, value);
-                RaisePropertyChanged(() => SelectedProvince);
-            } 
+            return _propertyError.GetValueOrDefault(propertyName ?? "", null);
         }
 
+        public void AddError(string propertyName, string errorMessage)
+        {
+            if (!_propertyError.ContainsKey(propertyName))
+            {
+                _propertyError.Add(propertyName, new List<string>());
+            }
+
+            _propertyError[propertyName].Add(errorMessage);
+            OnErrorChange(propertyName);
+        }
+
+        private void OnErrorChange(string propertyName)
+        {
+            ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+        }
+        private void ClearError(string propertyName)
+        {
+            if (_propertyError.Remove(propertyName))
+            {
+                OnErrorChange(propertyName);
+            }
+        }
+
+
+        private Dictionary<string, string> ValidateData()
+        {
+            Dictionary<string, string> errors = new Dictionary<string, string>();
+           
+            if (string.IsNullOrEmpty(DNI_NIE?.Trim()))
+            {
+                errors.Add("DNI/NIE", "DNI/NIE de usuario es obligatorio");
+            }
+            if (Password == null)
+            {
+                errors.Add("Contraseña", "Contraseña de usuario es obligatoria");
+            }
+
+            return errors;
+        }
+
+        private void VisualizeError(Dictionary<string, string> errors)
+        {
+            var errorText = "";
+            foreach (var error in errors.OrderBy(_ => _.Key))
+            {
+                errorText += "- " + error.Key + " : " + error.Value + "\r\n\r\n";
+            }
+
+            foreach (var error in _propertyError.OrderBy(_ => _.Key))
+            {
+                var errorItemText = "";
+                foreach (var errorItem in error.Value)
+                {
+                    errorItemText += "- " + errorItem + "\r\n\r\n";
+                }
+                errorText += "- " + error.Key + " : " + errorItemText + "\r\n\r\n";
+            }
+            MessageBox.Show(errorText, "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private string EncrypedPassword()
+        {
+            var password = SecureStringToString(Password);
+            var aesKey = ConfigurationManager.AppSettings.Get("AesKey");
+            return AES.EncryptString(aesKey, password);
+        }
     }
 }

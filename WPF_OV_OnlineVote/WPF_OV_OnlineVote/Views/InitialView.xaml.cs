@@ -3,10 +3,10 @@ using MvvmCross.Platforms.Wpf.Views;
 using OV.MainDb.AutonomousCommunity.Find;
 using OV.MainDb.Configuration;
 using System;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using WPF_OV_OnlineVote.Views.Habitant;
 using WPF_OV_OnlineVote.Views.Login;
 using static WPF_OV_OnlineVote.Helper.MessageHelper;
 
@@ -47,6 +47,16 @@ namespace WPF_OV_OnlineVote.Views
                 newHabitantOption.Foreground = Brushes.White;
                 initialViewContent.Children.Clear();
                 initialViewContent.Children.Add(new HabitantLoginForm("Test"));
+            }
+            else if(obj.Notification.Contains(MessageTypes.SingUpSuccess.ToString()))
+            {
+                var splitedNotification = obj.Notification.Split("=>");
+                var habitant_UID = splitedNotification[1];
+
+                HabitantMainViewWindow habitantMainView = new HabitantMainViewWindow();
+                habitantMainView.LoadDataContext(Int32.Parse(habitant_UID));
+                Application.Current.Windows[0].Close();
+                habitantMainView.ShowDialog();
             }
         }
 
