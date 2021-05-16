@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Organizer\Find\Models\Public\" />
     <Folder Include="Province\Find\" />
   </ItemGroup>
 

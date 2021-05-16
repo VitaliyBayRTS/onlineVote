@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using OV.MainDb.Configuration;
 using OV.MainDb.Habitant.Models;
+using OV.MainDb.Organizer.Models;
 using OV.MainDb.Province.Models;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -25,6 +26,7 @@ namespace OV.MainDb.User.Models
 
         public PersistedProvince? Province { get; set; }
         public PersistedHabitant? Habitant { get; set; }
+        public PersistedOrganizer? Organizer { get; set; }
 
         public OV.Models.MainDb.User.User ToUser()
         {
@@ -50,7 +52,8 @@ namespace OV.MainDb.User.Models
         {
             builder.HasKey(u => u.Id);
 
-            builder.HasOne(h => h.Habitant).WithOne(u => u.User).HasForeignKey<PersistedHabitant>(h => h.tblUser_UID);
+            builder.HasOne(u => u.Habitant).WithOne(h => h.User).HasForeignKey<PersistedHabitant>(h => h.tblUser_UID);
+            builder.HasOne(u => u.Organizer).WithOne(o => o.User).HasForeignKey<PersistedOrganizer>(o => o.tblUser_UID);
         }
     }
 }
