@@ -15,6 +15,8 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Configuration;
 using System.Linq;
+using System.Reflection;
+using System.Resources;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Threading;
@@ -267,47 +269,18 @@ namespace OV.MVX.ViewModels
         public async void createUser()
         {
             var errors = ValidateData();
-            if (errors.Count > 0 || HasErrors)
+            bool isAnyError = errors.Count > 0 || HasErrors;
+            if (isAnyError)
             {
-                var errorText = "";
-                foreach (var error in errors.OrderBy(_ => _.Key))
-                {
-                    errorText += "- " + error.Key + " : " + error.Value + "\r\n\r\n";
-                } 
-
-                foreach (var error in _propertyError.OrderBy(_ => _.Key))
-                {
-                    var errorItemText = "";
-                    foreach (var errorItem in error.Value)
-                    {
-                        errorItemText += "- " + errorItem + "\r\n\r\n";
-                    }
-                    errorText += "- " + error.Key + " : " + errorItemText + "\r\n\r\n";
-                }
-                MessageBox.Show(errorText, "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
-            } else
+                VisualizeError(errors);
+            }
+            else
             {
-                CandidateUser candidate = new CandidateUser()
-                {
-                    FirstName = FirstName,
-                    SecondName = SecondName,
-                    SurName = FirstSurName,
-                    SecondSurName = SecondSurName,
-                    Password = EncrypedPassword(),
-                    DOB = DateOfBirth,
-                    TblProvince_UID = Province.Id,
-                    Email = Email,
-                    PhoneNumber = PhoneNumber
-                };
+                CandidateUser candidate = GetCandidateUser();
                 var response = await _userService.CreateUserAsync(candidate, new CancellationToken());
                 if (response is CreateUserFailure failure)
                 {
-                    var failureText = "";
-                    foreach (var failureReason in failure.FailureReasons)
-                    {
-                        failureText += failureReason.PropertyName + "\r\n";
-                    }
-                    MessageBox.Show(failureText, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    VisualizeErrorFromCreateUserFailureResponse(failure);
                     return;
                 }
 
@@ -315,6 +288,53 @@ namespace OV.MVX.ViewModels
             }
 
 
+        }
+
+        private CandidateUser GetCandidateUser()
+        {
+            return new CandidateUser()
+            {
+                FirstName = FirstName,
+                SecondName = SecondName,
+                SurName = FirstSurName,
+                SecondSurName = SecondSurName,
+                Password = EncrypedPassword(),
+                DOB = DateOfBirth,
+                TblProvince_UID = Province.Id,
+                Email = Email,
+                PhoneNumber = PhoneNumber
+            };
+        }
+
+        private void VisualizeError(Dictionary<string, string> errors)
+        {
+            var errorText = "";
+            foreach (var error in errors.OrderBy(_ => _.Key))
+            {
+                errorText += "- " + error.Key + " : " + error.Value + "\r\n\r\n";
+            }
+
+            foreach (var error in _propertyError.OrderBy(_ => _.Key))
+            {
+                var errorItemText = "";
+                foreach (var errorItem in error.Value)
+                {
+                    errorItemText += "- " + errorItem + "\r\n\r\n";
+                }
+                errorText += "- " + error.Key + " : " + errorItemText + "\r\n\r\n";
+            }
+            MessageBox.Show(errorText, "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private static void VisualizeErrorFromCreateUserFailureResponse(CreateUserFailure failure)
+        {
+            ResourceManager rm = new ResourceManager("OV.MVX.Translation.Translation", Assembly.GetExecutingAssembly());
+            var failureText = "";
+            foreach (var failureReason in failure.FailureReasons)
+            {
+                failureText += " - " + rm.GetString(failureReason.Code.ToString()) + "\r\n\r\n";
+            }
+            MessageBox.Show(failureText, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private string EncrypedPassword()
