@@ -29,7 +29,7 @@ namespace OV.MainDb.Habitant.Find
 
             var habitants = ovMainDbContext.Habitants
                             .Include(h => h.User)
-                            .Where(h => true);
+                            .Where(h => h.User.IsAutorized);
 
 
             if(filter.Id != default(int))
@@ -37,7 +37,12 @@ namespace OV.MainDb.Habitant.Find
                 habitants = habitants.Where(h => h.Id == filter.Id);
             }
 
-            if(!string.IsNullOrEmpty(filter.DNI_NIE))
+            if(!string.IsNullOrEmpty(filter.DNI_NIE) && !string.IsNullOrEmpty(filter.Password))
+            {
+                habitants = habitants.Where(h => h.User.DNI_NIE.Equals(filter.DNI_NIE) && h.User.Password.Equals(filter.Password));
+            }
+
+            if(!string.IsNullOrEmpty(filter.DNI_NIE) && string.IsNullOrEmpty(filter.Password))
             {
                 habitants = habitants.Where(h => h.User.DNI_NIE.Equals(filter.DNI_NIE));
             }

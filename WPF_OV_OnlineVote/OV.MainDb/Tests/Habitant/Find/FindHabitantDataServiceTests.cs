@@ -186,6 +186,51 @@ namespace OV.MainDb.Tests.Habitant.Find
                 result.Should().HaveCount(arrayOfHabitants.Count);
                 result.All(h => h.User != null).Should().BeTrue();
             }
+
+            [Fact]
+            public async void ShoudlFindHabitantByDNI_NIEAndPassword()
+            {
+                //Arrange
+                var arrayOfHabitants = new List<PersistedHabitant>();
+                arrayOfHabitants.Add(_dummyHabitant1);
+                arrayOfHabitants.Add(_dummyHabitant2);
+                _inMemoryOvMainDbContext.Habitants.AddRange(arrayOfHabitants);
+                await _inMemoryOvMainDbContext.SaveChangesAsync(cancellationToken);
+
+                var habitantToFind = _dummyHabitant1;
+                var DNI_NIEToFind = habitantToFind.User.DNI_NIE;
+                var Password = habitantToFind.User.Password;
+
+                //Act
+                var result = await _findHabitantDataService.FindAsync(HabitantFilter.ByDNI_NIEAndPassword(DNI_NIEToFind, Password), cancellationToken);
+
+                //Assert
+                result.Should().HaveCount(1);
+                result.FirstOrDefault().Id.Should().Be(habitantToFind.Id);
+                result.FirstOrDefault().User.Should().BeNull();
+            }
+
+
+            [Fact]
+            public async void ShoudlNotFindHabitantByDNI_NIEAndPasswordIfPasswordIsIncorrect()
+            {
+                //Arrange
+                var arrayOfHabitants = new List<PersistedHabitant>();
+                arrayOfHabitants.Add(_dummyHabitant1);
+                arrayOfHabitants.Add(_dummyHabitant2);
+                _inMemoryOvMainDbContext.Habitants.AddRange(arrayOfHabitants);
+                await _inMemoryOvMainDbContext.SaveChangesAsync(cancellationToken);
+
+                var habitantToFind = _dummyHabitant1;
+                var DNI_NIEToFind = habitantToFind.User.DNI_NIE;
+                var Password = habitantToFind.User.Password.ToUpper();
+
+                //Act
+                var result = await _findHabitantDataService.FindAsync(HabitantFilter.ByDNI_NIEAndPassword(DNI_NIEToFind, Password), cancellationToken);
+
+                //Assert
+                result.Should().HaveCount(0);
+            }
         }
     }
 }
