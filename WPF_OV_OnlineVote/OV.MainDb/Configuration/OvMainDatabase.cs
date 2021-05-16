@@ -1,9 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
-using System.Text;
 
 namespace OV.MainDb.Configuration
 {
@@ -13,9 +9,7 @@ namespace OV.MainDb.Configuration
     }
     public class OvMainDatabase : IDbConnectionFactory
     {
-        private string _connectionString { get; set; } = "Data Source=DESKTOP-O2K81VH;Initial Catalog=OV_MainDb;Integrated Security=True";
-        private int _environmentId;
-        private DbContextOptions<OvMainDbContext> options;
+        private string _connectionString { get; set; }
 
         public OvMainDatabase()
         {

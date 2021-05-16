@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using OV.MainDb.Configuration;
 using OV.MainDb.Province.Models;
+using OV.MainDb.User.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -15,7 +16,7 @@ namespace OV.MainDb.AutonomousCommunity.Models
         [Column("Id")] public int Id { get; set; }
         [Column("Name")] public string Name { get; set; }
 
-        public IEnumerable<PersistedProvince>? Provinces { get; set; }
+        public ICollection<PersistedProvince>? Provinces { get; set; }
 
         public OV.Models.MainDb.AutonomousCommunity.AutonomousCommunity ToAutonomousCommunity()
         {
@@ -34,6 +35,7 @@ namespace OV.MainDb.AutonomousCommunity.Models
         public override void Configure(EntityTypeBuilder<PersistedAutonomousCommunity> builder)
         {
             builder.HasKey(ac => ac.Id);
+            builder.HasMany(p => p.Provinces).WithOne(u => u.AutonomousCommunity).HasForeignKey(p => p.tblAutonomousCommunity_UID);
         }
     }
 }

@@ -1,12 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using OV.MainDb.AutonomousCommunity.Find;
 using OV.MainDb.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using OV.MainDb.Habitant.Find;
+using OV.MainDb.Province.Find;
+using OV.MainDb.User.Create;
 
 namespace OV.MainDb
 {
@@ -29,24 +27,45 @@ namespace OV.MainDb
             return serviceCollection;
         }
 
-        private static object TryAddMainDbDependencies(this IServiceCollection serviceCollection, IConfiguration configuration)
+        public static object TryAddMainDbDependencies(this IServiceCollection serviceCollection)
         {
-            serviceCollection.Configure<ConnectionStringConfig>(configuration.GetSection("ConnectionStrings"));
+            //serviceCollection.Configure<ConnectionStringConfig>(configuration.GetSection("ConnectionStrings"));
 
             serviceCollection.TryAddOvMainDbQueryExecutor();
 
-            serviceCollection.AddDbContext<IOvMainDbContext, OvMainDbContext>(
-                builder =>
-                    builder.UseSqlServer(
-                        configuration.GetSection("ConnectionsStrings").Get<ConnectionStringConfig>().OvMainDb)
-                //.Get<ConnectionStringConfig>()
-                //.OvMainDb;
-                ,
-                ServiceLifetime.Transient
-             );
+            //serviceCollection.AddDbContext<IOvMainDbContext, OvMainDbContext>(
+            //    builder =>
+            //        builder.UseSqlServer(
+            //            configuration.GetSection("ConnectionsStrings").Get<ConnectionStringConfig>().OvMainDb)
+            //    //.Get<ConnectionStringConfig>()
+            //    //.OvMainDb;
+            //    ,
+            //    ServiceLifetime.Transient
+            // );
 
             serviceCollection.TryAddScoped<IOvMainDbContextFactory, OvMainDbContextFactory>();
+
+            //AutonomousCommunity
+            //-Find
+            serviceCollection.TryAddScoped<IFindAutonomousCommunityDataService, FindAutonomousCommunityDataService>();
             serviceCollection.TryAddScoped<IFindAutonomousCommunityService, FindAutonomousCommunityService>();
+
+            //Province
+            //-Find
+            serviceCollection.TryAddScoped<IFindProvinceDataService, FindProvinceDataService>();
+            serviceCollection.TryAddScoped<IFindProvinceService, FindProvinceService>();
+
+            //User
+            //-Create
+            serviceCollection.TryAddScoped<ICandidateUserValidator, CandidateUserValidator>();
+            serviceCollection.TryAddScoped<ICreateUserDataService, CreateUserDataService>();
+            serviceCollection.TryAddScoped<ICreateUserService, CreateUserService>();
+
+            //Habitant
+            //-Find
+            serviceCollection.TryAddScoped<IFindHabitantDataService, FindHabitantDataService>();
+            serviceCollection.TryAddScoped<IFindHabitantService, FindHabitantService>();
+
 
             return serviceCollection;
         }

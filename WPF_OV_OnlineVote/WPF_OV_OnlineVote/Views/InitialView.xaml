@@ -45,31 +45,19 @@
                 Grid.Column="2" Grid.Row="1" 
                 Margin="5" Click="Button_Click"
                 Content="Habitante">
-            <Button.Background>
-                <ImageBrush Stretch="Fill" ImageSource="..\img\habitantBg.jpg"/>
-            </Button.Background>
         </Button>
         <Button x:Name="organizerOption"
                 Grid.Column="3" Grid.Row="1"
                 Margin="5" Click="Button_Click_1" Content="Organizador">
-            <Button.Background>
-                <ImageBrush Stretch="Fill" ImageSource="C:\Git\onlineVote\WPF_OV_OnlineVote\WPF_OV_OnlineVote\img\organizerBg.jpg"/>
-            </Button.Background>    
         </Button>
         <Button x:Name="superAdminOption"
                 Grid.Column="4" Grid.Row="1"
                 Margin="5" Content="SuperAdmin" Click="Button_Click_2">
-            <Button.Background>
-                <ImageBrush Stretch="Fill" ImageSource="..\img\superAdminBg.jpg"/>
-            </Button.Background>
         </Button>
         <Button x:Name="newHabitantOption"
                 Grid.Column="5" Grid.Row="1"
                 Margin="5" Click="newHabitantOption_Click"
                 Content="Nuevo Usuario">
-            <Button.Background>
-                <ImageBrush Stretch="Fill" ImageSource="..\img\newUserBg.jpg"/>
-            </Button.Background>
         </Button>
 
         <Grid x:Name="initialViewContent" Grid.Column="1" Grid.Row="2" 

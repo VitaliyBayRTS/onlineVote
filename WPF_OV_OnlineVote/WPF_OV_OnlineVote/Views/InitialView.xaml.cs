@@ -1,10 +1,14 @@
-﻿using MvvmCross.Platforms.Wpf.Views;
+﻿using GalaSoft.MvvmLight.Messaging;
+using MvvmCross.Platforms.Wpf.Views;
+using OV.MainDb.AutonomousCommunity.Find;
 using OV.MainDb.Configuration;
 using System;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using WPF_OV_OnlineVote.Views.Login;
+using static WPF_OV_OnlineVote.Helper.MessageHelper;
 
 namespace WPF_OV_OnlineVote.Views
 {
@@ -14,12 +18,36 @@ namespace WPF_OV_OnlineVote.Views
     public partial class InitialView : MvxWpfView
     {
         private OvMainDbContext _ovMainDbContext;
+        private IFindAutonomousCommunityDataService _findAutonomousCommunityService;
         //OvMainDbContext ovMainDbContext
         public InitialView()
         {
-            //_ovMainDbContext = ovMainDbContext ?? throw new ArgumentNullException(nameof(ovMainDbContext));
+            //_findAutonomousCommunityService = findAutonomousCommunityService ?? throw new ArgumentNullException(nameof(findAutonomousCommunityService));
+            //var test = _findAutonomousCommunityService.Find();
             //var test = _ovMainDbContext.AutonomousCommunities.ToList();
             InitializeComponent();
+            Messenger.Default.Register<NotificationMessage>(this, NotificationMessageReceived);
+        }
+
+        private void NotificationMessageReceived(NotificationMessage obj)
+        {
+            if (obj.Notification == MessageTypes.SingUpSuccess.ToString())
+            {
+                habitantOption.Background = Brushes.White;
+                organizerOption.Background = Brushes.Transparent;
+                superAdminOption.Background = Brushes.Transparent;
+                newHabitantOption.Background = Brushes.Transparent;
+                habitantOption.Opacity = 0.4;
+                organizerOption.Opacity = 1;
+                superAdminOption.Opacity = 1;
+                newHabitantOption.Opacity = 1;
+                habitantOption.Foreground = Brushes.DeepSkyBlue;
+                organizerOption.Foreground = Brushes.White;
+                superAdminOption.Foreground = Brushes.White;
+                newHabitantOption.Foreground = Brushes.White;
+                initialViewContent.Children.Clear();
+                initialViewContent.Children.Add(new HabitantLoginForm("Test"));
+            }
         }
 
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -96,7 +124,13 @@ namespace WPF_OV_OnlineVote.Views
             superAdminOption.Foreground = Brushes.White;
             newHabitantOption.Foreground = Brushes.DeepSkyBlue;
             initialViewContent.Children.Clear();
-            initialViewContent.Children.Add(new SingIn());
+            var loadingText = new TextBlock();
+            loadingText.Text = "Loading";
+            initialViewContent.Children.Add(loadingText);
+            var singInGrid = new SingIn();
+            singInGrid.LoadDataContext();
+            initialViewContent.Children.Clear();
+            initialViewContent.Children.Add(singInGrid);
         }
     }
 }

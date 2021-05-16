@@ -1,14 +1,17 @@
 ﻿using OV.MainDb.AutonomousCommunity.Find;
+using OV.MainDb.AutonomousCommunity.Find.Models.Public;
 using OV.MainDb.Configuration;
 using OV.MVX.Helpers;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace OV.MVX.Services.AutonomousCommunity
 {
     public interface IAutonomousCommunityService
     {
-        IEnumerable<OV.Models.MainDb.AutonomousCommunity.AutonomousCommunity> Find();
+       Task<IEnumerable<OV.Models.MainDb.AutonomousCommunity.AutonomousCommunity>> FindAsync(AutonomousCommunityFilter filter,
+                                                                                            CancellationToken cancellationToken);
 
     }
     public class AutonomousCommunityService : IAutonomousCommunityService
@@ -18,12 +21,13 @@ namespace OV.MVX.Services.AutonomousCommunity
         public AutonomousCommunityService()
         {
             dbContext = new CreateDbContext().getOvMainDbContext();
-            _findAutonomousCommunityService = new FindAutonomousCommunityService(dbContext);
+            _findAutonomousCommunityService = new FindAutonomousCommunityService(new FindAutonomousCommunityDataService(dbContext));
         }
 
-        public IEnumerable<OV.Models.MainDb.AutonomousCommunity.AutonomousCommunity> Find()
+        public async Task<IEnumerable<OV.Models.MainDb.AutonomousCommunity.AutonomousCommunity>> FindAsync(
+                AutonomousCommunityFilter filter, CancellationToken cancellationToken)
         {
-            return _findAutonomousCommunityService.Find();
+            return await _findAutonomousCommunityService.FindAsync(filter, cancellationToken);
         }
     }
 }

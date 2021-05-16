@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OV.MainDb", "OV.MainDb\OV.M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OV.MVX", "OV.MVX\OV.MVX.csproj", "{7977EECB-13C5-42A7-BA34-126536BD48E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OV.Models", "OV.Models\OV.Models.csproj", "{C7C8438F-1228-4A8E-A4E5-CE484B890CD9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OV.Models", "OV.Models\OV.Models.csproj", "{C7C8438F-1228-4A8E-A4E5-CE484B890CD9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OV.Services", "OV.Services\OV.Services.csproj", "{BEA5618F-18AC-4250-84B9-6A266EBC2D25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{C7C8438F-1228-4A8E-A4E5-CE484B890CD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7C8438F-1228-4A8E-A4E5-CE484B890CD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7C8438F-1228-4A8E-A4E5-CE484B890CD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEA5618F-18AC-4250-84B9-6A266EBC2D25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEA5618F-18AC-4250-84B9-6A266EBC2D25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEA5618F-18AC-4250-84B9-6A266EBC2D25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEA5618F-18AC-4250-84B9-6A266EBC2D25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

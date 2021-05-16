@@ -11,10 +11,16 @@ namespace WPF_OV_OnlineVote.Views.Login
     /// </summary>
     public partial class SingIn : MvxWpfView
     {
+        private SingupViewModel singupViewModel;
         public SingIn()
         {
             InitializeComponent();
-            DataContext = new SingupViewModel();
+        }
+
+        public void LoadDataContext()
+        {
+            singupViewModel = new SingupViewModel();
+            DataContext = singupViewModel;
         }
 
         private void PasswordBox_PasswordChanged(object sender, System.Windows.RoutedEventArgs e)
