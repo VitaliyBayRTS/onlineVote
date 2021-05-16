@@ -24,7 +24,7 @@
             <RowDefinition Height="0.2*"/>
         </Grid.RowDefinitions>
 
-        
+
         <!-- Column 1-->
         <Label Grid.Column="0" FontFamily="Helvetica"
                          FontWeight="SemiBold"
@@ -36,12 +36,19 @@
         </Label>
         <StackPanel x:Name="organizador" Grid.Row="1" HorizontalAlignment="Center">
 
-                <TextBlock FontFamily="Helvetica"
+            <TextBlock FontFamily="Helvetica"
                    FontWeight="Light"
                    FontSize="20"
                    Foreground="White">
-                Primer Nombre
+                    <iconPacks:PackIconMaterial Kind="Information"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Center"
+                                 Foreground="#FF0069CA"/>
+                    Primer Nombre
                 <TextBlock BaselineOffset="20" Foreground="RED" Text="*"/>
+                <TextBlock.ToolTip>
+                    No puede contener los caracteres númericos
+                </TextBlock.ToolTip>
             </TextBlock>
             <StackPanel Orientation="Horizontal">
                 <TextBox FontFamily="Helvetica"
@@ -93,8 +100,15 @@
                    FontWeight="Light"
                    FontSize="20"
                    Foreground="White">
+                    <iconPacks:PackIconMaterial Kind="Information"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Center"
+                                 Foreground="#FF0069CA"/>
                     Primer Apellido
-                    <TextBlock BaselineOffset="20" Foreground="RED" Text="*"/>
+                <TextBlock BaselineOffset="20" Foreground="RED" Text="*"/>
+                <TextBlock.ToolTip>
+                    No puede contener los caracteres númericos
+                </TextBlock.ToolTip>
                 </TextBlock>
                 <StackPanel Orientation="Horizontal">
                     <TextBox FontFamily="Helvetica"
@@ -221,8 +235,19 @@
                    FontWeight="Light"
                    FontSize="20"
                    Foreground="White">
+                    <iconPacks:PackIconMaterial Kind="Information"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Center"
+                                 Foreground="#FF0069CA"/>
                     Correo electronico
-                    <TextBlock BaselineOffset="20" Foreground="RED" Text="*"/>
+                <TextBlock BaselineOffset="20" Foreground="RED" Text="*"/>
+                <TextBlock.ToolTip>
+                     <TextBlock>
+                        El caracter obligatorio es: @
+                        <LineBreak /> 
+                        Ejemplo: test@test
+                     </TextBlock>
+                </TextBlock.ToolTip>
                 </TextBlock>
                 <StackPanel Orientation="Horizontal">
                     <TextBox FontFamily="Helvetica"
@@ -248,8 +273,15 @@
                    FontWeight="Light"
                    FontSize="20"
                    Foreground="White">
+                    <iconPacks:PackIconMaterial Kind="Information"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Center"
+                                 Foreground="#FF0069CA"/>
                     Número de telefono
-                    <TextBlock BaselineOffset="20" Foreground="RED" Text="*"/>
+                <TextBlock BaselineOffset="20" Foreground="RED" Text="*"/>
+                <TextBlock.ToolTip>
+                    Admite solo caracteres númericos
+                </TextBlock.ToolTip>
                 </TextBlock>
                 <StackPanel Orientation="Horizontal">
                     <TextBox FontFamily="Helvetica"
@@ -321,8 +353,21 @@
                    FontWeight="Light"
                    FontSize="20"
                    Foreground="White">
-                    DNI
-                    <TextBlock BaselineOffset="20" Foreground="RED" Text="*"/>
+                    <iconPacks:PackIconMaterial Kind="Information"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Center"
+                                 Foreground="#FF0069CA"/>
+                    DNI/NIE
+                <TextBlock BaselineOffset="20" Foreground="RED" Text="*"/>
+                <TextBlock.ToolTip>
+                     <TextBlock>
+                         Ejemplos
+                         <LineBreak />
+                        DNI: 12345678Z
+                        <LineBreak /> 
+                        NIE: X1234567-L
+                     </TextBlock>
+                </TextBlock.ToolTip>
                 </TextBlock>
                 <StackPanel Orientation="Horizontal">
                     <TextBox FontFamily="Helvetica"
@@ -346,9 +391,15 @@
                 <TextBlock FontFamily="Helvetica"
                    FontWeight="Light"
                    FontSize="20"
-                   Foreground="White">
+                   Foreground="White"> <iconPacks:PackIconMaterial Kind="Information"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Center"
+                                 Foreground="#FF0069CA"/>
                     Contraseña
-                    <TextBlock BaselineOffset="20" Foreground="RED" Text="*"/>
+                <TextBlock BaselineOffset="20" Foreground="RED" Text="*"/>
+                <TextBlock.ToolTip>
+                    Contraseña tiene que tener como mínimo 9 caracteres
+                </TextBlock.ToolTip>
                 </TextBlock>
                 <StackPanel Orientation="Horizontal">
                     <PasswordBox FontFamily="Helvetica"

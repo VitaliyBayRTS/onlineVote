@@ -1,4 +1,5 @@
-﻿using MvvmCross.Commands;
+﻿using GalaSoft.MvvmLight.Messaging;
+using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using OV.MainDb.AutonomousCommunity.Find.Models.Public;
 using OV.MainDb.User.Create.Models.Public;
@@ -21,6 +22,7 @@ using System.Runtime.InteropServices;
 using System.Security;
 using System.Threading;
 using System.Windows;
+using static WPF_OV_OnlineVote.Helper.MessageHelper;
 
 namespace OV.MVX.ViewModels
 {
@@ -285,6 +287,8 @@ namespace OV.MVX.ViewModels
                 }
 
                 MessageBox.Show("Ok", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                Messenger.Default.Send(new NotificationMessage(MessageTypes.SingUpSuccess.ToString()));
             }
 
 
