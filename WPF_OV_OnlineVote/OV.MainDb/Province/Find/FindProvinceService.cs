@@ -25,8 +25,8 @@ namespace OV.MainDb.Province.Find
 
         public async Task<IEnumerable<OV.Models.MainDb.Province.Province>> FindAsync(ProvinceFilter filter, CancellationToken cancellationToken)
         {
-            var autonomousCommunity = await _findProvinceDataService.FindAsync(filter, cancellationToken);
-            return autonomousCommunity.Select(ac => ac.ToProvince()).ToList();
+            var provinces = await _findProvinceDataService.FindAsync(filter, cancellationToken);
+            return provinces.Select(ac => ac.ToProvince()).ToList();
         }
     }
 }

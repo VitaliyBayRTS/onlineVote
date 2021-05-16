@@ -1,12 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using OV.MainDb.AutonomousCommunity.Find.Models.Public;
 using OV.MainDb.Configuration;
 using OV.MainDb.Province.Find.Models.Public;
 using OV.MainDb.Province.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 

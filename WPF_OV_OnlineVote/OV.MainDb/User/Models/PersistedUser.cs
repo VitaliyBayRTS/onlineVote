@@ -1,11 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using OV.MainDb.AutonomousCommunity.Models;
 using OV.MainDb.Configuration;
+using OV.MainDb.Habitant.Models;
 using OV.MainDb.Province.Models;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace OV.MainDb.User.Models
 {
@@ -26,6 +24,7 @@ namespace OV.MainDb.User.Models
         [Column("DNI_NIE")] public string DNI_NIE { get; set; }
 
         public PersistedProvince? Province { get; set; }
+        public PersistedHabitant? Habitant { get; set; }
 
         public OV.Models.MainDb.User.User ToUser()
         {
@@ -50,6 +49,8 @@ namespace OV.MainDb.User.Models
         public override void Configure(EntityTypeBuilder<PersistedUser> builder)
         {
             builder.HasKey(u => u.Id);
+
+            builder.HasOne(h => h.Habitant).WithOne(u => u.User).HasForeignKey<PersistedHabitant>(h => h.tblUser_UID);
         }
     }
 }

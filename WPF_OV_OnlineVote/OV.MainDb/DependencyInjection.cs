@@ -1,14 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using OV.MainDb.AutonomousCommunity.Find;
 using OV.MainDb.Configuration;
+using OV.MainDb.Habitant.Find;
 using OV.MainDb.Province.Find;
 using OV.MainDb.User.Create;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OV.MainDb
 {
@@ -64,6 +60,12 @@ namespace OV.MainDb
             serviceCollection.TryAddScoped<ICandidateUserValidator, CandidateUserValidator>();
             serviceCollection.TryAddScoped<ICreateUserDataService, CreateUserDataService>();
             serviceCollection.TryAddScoped<ICreateUserService, CreateUserService>();
+
+            //Habitant
+            //-Find
+            serviceCollection.TryAddScoped<IFindHabitantDataService, FindHabitantDataService>();
+            serviceCollection.TryAddScoped<IFindHabitantService, FindHabitantService>();
+
 
             return serviceCollection;
         }
