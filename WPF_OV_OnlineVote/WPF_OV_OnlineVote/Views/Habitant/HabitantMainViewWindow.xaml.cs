@@ -1,5 +1,5 @@
 ﻿using MvvmCross.Platforms.Wpf.Views;
-using OV.MVX.ViewModels.HabitantViewMode;
+using OV.MVX.ViewModels.HabitantViewModel;
 using System;
 using System.Collections.Generic;
 using System.Text;

@@ -1,11 +1,6 @@
 ﻿using MvvmCross.ViewModels;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
 
-namespace OV.MVX.ViewModels.HabitantViewMode
+namespace OV.MVX.ViewModels.HabitantViewModel
 {
     public class MainHabitantViewModel : MvxViewModel
     {

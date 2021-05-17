@@ -9,7 +9,8 @@ namespace WPF_OV_OnlineVote.Helper
         public enum MessageTypes
         {
             SingUpSuccess,
-            HabitantLoginSuccess
+            HabitantLoginSuccess,
+            OrganiserLoginSuccess
         }
     }
 }
