@@ -3,6 +3,7 @@ using OV.MainDb.AutonomousCommunity.Models;
 using OV.MainDb.Habitant.Models;
 using OV.MainDb.Organizer.Models;
 using OV.MainDb.Province.Models;
+using OV.MainDb.SuperAdmin.Models;
 using OV.MainDb.User.Models;
 using System;
 using System.Threading;
@@ -17,6 +18,7 @@ namespace OV.MainDb.Configuration
         DbSet<PersistedUser> Users { get; set; }
         DbSet<PersistedHabitant> Habitants { get; set; }
         DbSet<PersistedOrganizer> Organizers { get; set; }
+        DbSet<PersistedSuperAdmin> SuperAdmin { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
@@ -31,6 +33,7 @@ namespace OV.MainDb.Configuration
         public DbSet<PersistedUser> Users { get; set; }
         public DbSet<PersistedHabitant> Habitants { get; set; }
         public DbSet<PersistedOrganizer> Organizers { get; set; }
+        public DbSet<PersistedSuperAdmin> SuperAdmin { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -39,6 +42,7 @@ namespace OV.MainDb.Configuration
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new HabitantConfiguration());
             modelBuilder.ApplyConfiguration(new OrganizerConfiguration());
+            modelBuilder.ApplyConfiguration(new SuperAdminConfiguration());
         }
     }
 }
