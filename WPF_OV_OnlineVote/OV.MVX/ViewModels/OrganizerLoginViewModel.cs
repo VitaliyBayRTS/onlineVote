@@ -1,9 +1,9 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
 using MvvmCross.Commands;
 using MvvmCross.ViewModels;
-using OV.MainDb.Habitant.Find.Models.Public;
+using OV.MainDb.Organizer.Find.Models.Public;
 using OV.MVX.Helpers;
-using OV.MVX.Services.Habitant;
+using OV.MVX.Services.Organizer;
 using OV.Services.AES_Operation;
 using System;
 using System.Collections.Generic;
@@ -18,39 +18,41 @@ using static WPF_OV_OnlineVote.Helper.MessageHelper;
 
 namespace OV.MVX.ViewModels
 {
-    public class HabitantLoginViewModel : MvxViewModel, INotifyDataErrorInfo
+    public class OrganizerLoginViewModel : MvxViewModel, INotifyDataErrorInfo
     {
-
-        public IMvxCommand LogInHabitantCommand { get; set; }
+        public IMvxCommand LogInOrganizerCommand { get; set; }
 
         private string _dni_nie;
+        private string _referenceNumber;
         private SecureString _password;
-        private IHabitantService _habitantService;
+        private IOrganizerService _organizerService;
 
-        public HabitantLoginViewModel()
+        public OrganizerLoginViewModel()
         {
-            _habitantService = new HabitantService();
-            LogInHabitantCommand = new MvxCommand(LogInHabitant);
+            _organizerService = new OrganizerService();
+            LogInOrganizerCommand = new MvxCommand(LogInOrganizer);
         }
 
-        private async void LogInHabitant()
+        private async void LogInOrganizer()
         {
             var errors = ValidateData();
             bool isAnyError = errors.Count > 0 || HasErrors;
             if (isAnyError)
             {
                 VisualizeError(errors);
-            } 
+            }
             else
             {
                 var encryptedPassword = EncrypedPassword();
-                var habitant = await _habitantService.FindAsync(HabitantFilter.ByDNI_NIEAndPassword(DNI_NIE, encryptedPassword), new CancellationToken());
-                if(habitant.Count() > 0)
+                var habitant = await _organizerService.FindAsync(OrganizerFilter.ByDNI_NIE_Password_ReferenceNumber(DNI_NIE, encryptedPassword, ReferenceNumber),
+                                                                new CancellationToken());
+                if (habitant.Count() > 0)
                 {
                     MessageBox.Show("Ok", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                    Messenger.Default.Send(new NotificationMessage(MessageTypes.HabitantLoginSuccess.ToString() + "=>" + habitant.FirstOrDefault().Id));
-                } else
+                    Messenger.Default.Send(new NotificationMessage(MessageTypes.OrganiserLoginSuccess.ToString() + "=>" + habitant.FirstOrDefault().Id));
+                }
+                else
                 {
                     MessageBox.Show("DNI/NIE o Contraseña es incorecta", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
@@ -61,7 +63,7 @@ namespace OV.MVX.ViewModels
         public string DNI_NIE
         {
             get { return _dni_nie; }
-            set 
+            set
             {
                 SetProperty(ref _dni_nie, value);
                 ClearError(nameof(DNI_NIE));
@@ -70,6 +72,20 @@ namespace OV.MVX.ViewModels
                     AddError(nameof(DNI_NIE), "Incorrect DNI/NIE");
                 }
                 RaisePropertyChanged(() => DNI_NIE);
+            }
+        }
+        public string ReferenceNumber
+        {
+            get { return _referenceNumber; }
+            set
+            {
+                SetProperty(ref _referenceNumber, value);
+                ClearError(nameof(ReferenceNumber));
+                if (string.IsNullOrEmpty(ReferenceNumber))
+                {
+                    AddError(nameof(ReferenceNumber), "Número de referencía es obligatorio");
+                }
+                RaisePropertyChanged(() => ReferenceNumber);
             }
         }
 
@@ -142,7 +158,7 @@ namespace OV.MVX.ViewModels
         private Dictionary<string, string> ValidateData()
         {
             Dictionary<string, string> errors = new Dictionary<string, string>();
-           
+
             if (string.IsNullOrEmpty(DNI_NIE?.Trim()))
             {
                 errors.Add("DNI/NIE", "DNI/NIE de usuario es obligatorio");

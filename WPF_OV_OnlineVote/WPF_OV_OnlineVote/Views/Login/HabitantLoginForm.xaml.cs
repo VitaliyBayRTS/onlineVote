@@ -9,10 +9,10 @@ namespace WPF_OV_OnlineVote.Views.Login
     /// </summary>
     public partial class HabitantLoginForm : MvxWpfView
     {
-        public HabitantLoginForm(string text)
+        public HabitantLoginForm()
         {
             InitializeComponent();
-            DataContext = new HabitantLoginViewModel(text);
+            DataContext = new HabitantLoginViewModel();
         }
 
         private void PasswordBox_PasswordChanged(object sender, System.Windows.RoutedEventArgs e)
