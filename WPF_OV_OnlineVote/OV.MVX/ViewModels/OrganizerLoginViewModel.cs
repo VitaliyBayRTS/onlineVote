@@ -44,17 +44,17 @@ namespace OV.MVX.ViewModels
             else
             {
                 var encryptedPassword = EncrypedPassword();
-                var habitant = await _organizerService.FindAsync(OrganizerFilter.ByDNI_NIE_Password_ReferenceNumber(DNI_NIE, encryptedPassword, ReferenceNumber),
+                var organizers = await _organizerService.FindAsync(OrganizerFilter.ByDNI_NIE_Password_ReferenceNumber(DNI_NIE, encryptedPassword, ReferenceNumber),
                                                                 new CancellationToken());
-                if (habitant.Count() > 0)
+                if (organizers.Count() > 0)
                 {
                     MessageBox.Show("Ok", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                    Messenger.Default.Send(new NotificationMessage(MessageTypes.OrganiserLoginSuccess.ToString() + "=>" + habitant.FirstOrDefault().Id));
+                    Messenger.Default.Send(new NotificationMessage(MessageTypes.OrganiserLoginSuccess.ToString() + "=>" + organizers.FirstOrDefault().Id));
                 }
                 else
                 {
-                    MessageBox.Show("DNI/NIE o Contraseña es incorecta", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("DNI/NIE, Contraseña o Número de referencía es incorecto", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
 
             }

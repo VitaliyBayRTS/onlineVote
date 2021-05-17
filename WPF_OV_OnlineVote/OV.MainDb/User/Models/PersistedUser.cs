@@ -3,6 +3,7 @@ using OV.MainDb.Configuration;
 using OV.MainDb.Habitant.Models;
 using OV.MainDb.Organizer.Models;
 using OV.MainDb.Province.Models;
+using OV.MainDb.SuperAdmin.Models;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -27,6 +28,7 @@ namespace OV.MainDb.User.Models
         public PersistedProvince? Province { get; set; }
         public PersistedHabitant? Habitant { get; set; }
         public PersistedOrganizer? Organizer { get; set; }
+        public PersistedSuperAdmin? SuperAdmin { get; set; }
 
         public OV.Models.MainDb.User.User ToUser()
         {
@@ -54,6 +56,7 @@ namespace OV.MainDb.User.Models
 
             builder.HasOne(u => u.Habitant).WithOne(h => h.User).HasForeignKey<PersistedHabitant>(h => h.tblUser_UID);
             builder.HasOne(u => u.Organizer).WithOne(o => o.User).HasForeignKey<PersistedOrganizer>(o => o.tblUser_UID);
+            builder.HasOne(u => u.SuperAdmin).WithOne(sa => sa.User).HasForeignKey<PersistedSuperAdmin>(o => o.tblUser_UID);
         }
     }
 }
