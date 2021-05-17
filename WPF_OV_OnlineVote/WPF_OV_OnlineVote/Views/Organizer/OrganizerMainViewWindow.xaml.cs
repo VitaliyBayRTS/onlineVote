@@ -16,7 +16,7 @@ namespace WPF_OV_OnlineVote.Views.Organizer
         public void LoadDataContext(int Habitant_UID)
         {
             _mainOrganizerViewModel = new MainOrganizerViewModel();
-            _mainOrganizerViewModel.Habitant_UID = Habitant_UID;
+            _mainOrganizerViewModel.Organizer_UID = Habitant_UID;
             DataContext = _mainOrganizerViewModel;
         }
     }

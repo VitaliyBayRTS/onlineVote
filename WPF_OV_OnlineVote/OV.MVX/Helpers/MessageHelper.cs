@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace WPF_OV_OnlineVote.Helper
+﻿namespace WPF_OV_OnlineVote.Helper
 {
     public class MessageHelper
     {
@@ -10,7 +6,8 @@ namespace WPF_OV_OnlineVote.Helper
         {
             SingUpSuccess,
             HabitantLoginSuccess,
-            OrganiserLoginSuccess
+            OrganiserLoginSuccess,
+            SuperAdminLoginSuccess
         }
     }
 }
