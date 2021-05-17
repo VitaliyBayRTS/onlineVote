@@ -1,9 +1,9 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
 using MvvmCross.Commands;
 using MvvmCross.ViewModels;
-using OV.MainDb.Organizer.Find.Models.Public;
+using OV.MainDb.SuperAdmin.Find.Models.Public;
 using OV.MVX.Helpers;
-using OV.MVX.Services.Organizer;
+using OV.MVX.Services.SuperAdmin;
 using OV.Services.AES_Operation;
 using System;
 using System.Collections.Generic;
@@ -18,22 +18,22 @@ using static WPF_OV_OnlineVote.Helper.MessageHelper;
 
 namespace OV.MVX.ViewModels
 {
-    public class OrganizerLoginViewModel : MvxViewModel, INotifyDataErrorInfo
+    public class SuperAdminLoginViewModel : MvxViewModel, INotifyDataErrorInfo
     {
-        public IMvxCommand LogInOrganizerCommand { get; set; }
+        public IMvxCommand LogInSuperAdminCommand { get; set; }
 
         private string _dni_nie;
         private string _referenceNumber;
         private SecureString _password;
-        private IOrganizerService _organizerService;
+        private ISuperAdminService _superAdminService;
 
-        public OrganizerLoginViewModel()
+        public SuperAdminLoginViewModel()
         {
-            _organizerService = new OrganizerService();
-            LogInOrganizerCommand = new MvxCommand(LogInOrganizer);
+            _superAdminService = new SuperAdminService();
+            LogInSuperAdminCommand = new MvxCommand(LogInSuperAdmin);
         }
 
-        private async void LogInOrganizer()
+        private async void LogInSuperAdmin()
         {
             var errors = ValidateData();
             bool isAnyError = errors.Count > 0 || HasErrors;
@@ -44,13 +44,13 @@ namespace OV.MVX.ViewModels
             else
             {
                 var encryptedPassword = EncrypedPassword();
-                var organizers = await _organizerService.FindAsync(OrganizerFilter.ByDNI_NIE_Password_ReferenceNumber(DNI_NIE, encryptedPassword, ReferenceNumber),
+                var superAdmin = await _superAdminService.FindAsync(SuperAdminFilter.ByDNI_NIE_Password_ReferenceNumber(DNI_NIE, encryptedPassword, ReferenceNumber),
                                                                 new CancellationToken());
-                if (organizers.Count() > 0)
+                if (superAdmin.Count() > 0)
                 {
                     MessageBox.Show("Ok", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                    Messenger.Default.Send(new NotificationMessage(MessageTypes.OrganiserLoginSuccess.ToString() + "=>" + organizers.FirstOrDefault().Id));
+                    Messenger.Default.Send(new NotificationMessage(MessageTypes.SuperAdminLoginSuccess.ToString() + "=>" + superAdmin.FirstOrDefault().Id));
                 }
                 else
                 {
