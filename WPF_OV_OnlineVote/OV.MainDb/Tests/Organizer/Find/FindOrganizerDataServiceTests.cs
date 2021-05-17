@@ -97,15 +97,15 @@ namespace OV.MainDb.Tests.Organizer.Find
                 _inMemoryOvMainDbContext.Organizers.AddRange(arrayOfOrganizers);
                 await _inMemoryOvMainDbContext.SaveChangesAsync(cancellationToken);
 
-                var habitantToFind = _dummyOrganizer1;
-                var IdToFind = habitantToFind.Id;
+                var organizerToFind = _dummyOrganizer1;
+                var IdToFind = organizerToFind.Id;
 
                 //Act
                 var result = await _findOrganizerDataService.FindAsync(OrganizerFilter.ById(IdToFind), cancellationToken);
 
                 //Assert
                 result.Should().HaveCount(1);
-                result.FirstOrDefault().Id.Should().Be(habitantToFind.Id);
+                result.FirstOrDefault().Id.Should().Be(organizerToFind.Id);
                 result.FirstOrDefault().User.Should().BeNull();
             }
 
@@ -139,15 +139,15 @@ namespace OV.MainDb.Tests.Organizer.Find
                 _inMemoryOvMainDbContext.Organizers.AddRange(arrayOfOrganizers);
                 await _inMemoryOvMainDbContext.SaveChangesAsync(cancellationToken);
 
-                var habitantToFind = _dummyOrganizer1;
-                var DNI_NIEToFind = habitantToFind.User.DNI_NIE;
+                var organizerToFind = _dummyOrganizer1;
+                var DNI_NIEToFind = organizerToFind.User.DNI_NIE;
 
                 //Act
                 var result = await _findOrganizerDataService.FindAsync(OrganizerFilter.ByDNI_NIE(DNI_NIEToFind), cancellationToken);
 
                 //Assert
                 result.Should().HaveCount(1);
-                result.FirstOrDefault().Id.Should().Be(habitantToFind.Id);
+                result.FirstOrDefault().Id.Should().Be(organizerToFind.Id);
                 result.FirstOrDefault().User.Should().BeNull();
             }
 
@@ -199,18 +199,18 @@ namespace OV.MainDb.Tests.Organizer.Find
                 _inMemoryOvMainDbContext.Organizers.AddRange(arrayOfOrganizers);
                 await _inMemoryOvMainDbContext.SaveChangesAsync(cancellationToken);
 
-                var habitantToFind = _dummyOrganizer1;
-                var DNI_NIEToFind = habitantToFind.User.DNI_NIE;
-                var Password = habitantToFind.User.Password;
-                var ReferenceNumber = habitantToFind.ReferenceNumber;
+                var organizerToFind = _dummyOrganizer1;
+                var DNI_NIEToFind = organizerToFind.User.DNI_NIE;
+                var Password = organizerToFind.User.Password;
+                var ReferenceNumber = organizerToFind.ReferenceNumber;
 
                 //Act
                 var result = await _findOrganizerDataService.FindAsync(OrganizerFilter.ByDNI_NIE_Password_ReferenceNumber(DNI_NIEToFind, Password, ReferenceNumber), cancellationToken);
 
                 //Assert
                 result.Should().HaveCount(1);
-                result.FirstOrDefault().Id.Should().Be(habitantToFind.Id);
-                result.FirstOrDefault().ReferenceNumber.Should().Be(habitantToFind.ReferenceNumber);
+                result.FirstOrDefault().Id.Should().Be(organizerToFind.Id);
+                result.FirstOrDefault().ReferenceNumber.Should().Be(organizerToFind.ReferenceNumber);
                 result.FirstOrDefault().User.Should().BeNull();
             }
 
@@ -225,10 +225,10 @@ namespace OV.MainDb.Tests.Organizer.Find
                 _inMemoryOvMainDbContext.Organizers.AddRange(arrayOfOrganizers);
                 await _inMemoryOvMainDbContext.SaveChangesAsync(cancellationToken);
 
-                var habitantToFind = _dummyOrganizer1;
-                var DNI_NIEToFind = habitantToFind.User.DNI_NIE;
-                var ReferenceNumber = habitantToFind.ReferenceNumber;
-                var Password = habitantToFind.User.Password.ToUpper();
+                var organizerToFind = _dummyOrganizer1;
+                var DNI_NIEToFind = organizerToFind.User.DNI_NIE;
+                var ReferenceNumber = organizerToFind.ReferenceNumber;
+                var Password = organizerToFind.User.Password.ToUpper();
 
                 //Act
                 var result = await _findOrganizerDataService.FindAsync(OrganizerFilter.ByDNI_NIE_Password_ReferenceNumber(DNI_NIEToFind, Password, ReferenceNumber), 
@@ -248,10 +248,10 @@ namespace OV.MainDb.Tests.Organizer.Find
                 _inMemoryOvMainDbContext.Organizers.AddRange(arrayOfOrganizers);
                 await _inMemoryOvMainDbContext.SaveChangesAsync(cancellationToken);
 
-                var habitantToFind = _dummyOrganizer1;
-                var DNI_NIEToFind = habitantToFind.User.DNI_NIE;
+                var organizerToFind = _dummyOrganizer1;
+                var DNI_NIEToFind = organizerToFind.User.DNI_NIE;
                 var ReferenceNumber = "WrongReferenceNumber";
-                var Password = habitantToFind.User.Password;
+                var Password = organizerToFind.User.Password;
 
                 //Act
                 var result = await _findOrganizerDataService.FindAsync(OrganizerFilter.ByDNI_NIE_Password_ReferenceNumber(DNI_NIEToFind, Password, ReferenceNumber), 

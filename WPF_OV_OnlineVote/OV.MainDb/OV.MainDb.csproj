@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <Folder Include="Province\Find\" />
-    <Folder Include="SuperAdmin\Find\Models\Public\" />
   </ItemGroup>
 
   <ItemGroup>
