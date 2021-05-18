@@ -286,7 +286,7 @@ namespace OV.MVX.ViewModels
                     return;
                 }
 
-                MessageBox.Show("Ok", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Los datos se han guardado correctamente \r\n Usted va a recibir el correo con la confirmación/denegación de autorización", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 Messenger.Default.Send(new NotificationMessage(MessageTypes.SingUpSuccess.ToString()));
             }

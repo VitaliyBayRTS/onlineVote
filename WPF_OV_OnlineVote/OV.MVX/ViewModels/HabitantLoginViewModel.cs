@@ -47,8 +47,6 @@ namespace OV.MVX.ViewModels
                 var habitant = await _habitantService.FindAsync(HabitantFilter.ByDNI_NIEAndPassword(DNI_NIE, encryptedPassword), new CancellationToken());
                 if(habitant.Count() > 0)
                 {
-                    MessageBox.Show("Ok", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-
                     Messenger.Default.Send(new NotificationMessage(MessageTypes.HabitantLoginSuccess.ToString() + "=>" + habitant.FirstOrDefault().Id));
                 } else
                 {

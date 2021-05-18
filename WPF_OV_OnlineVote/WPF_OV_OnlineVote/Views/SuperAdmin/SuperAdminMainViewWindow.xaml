@@ -15,84 +15,63 @@
     <Grid>
 
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15"/>
+            <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="15"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="15"/>
         </Grid.RowDefinitions>
 
-        <StackPanel x:Name="habitante" Grid.Row="1" HorizontalAlignment="Center" Margin="20">
-            <TextBlock FontFamily="Helvetica"
-                   FontWeight="Light"
-                   FontSize="20"
-                   Foreground="White">
-                    <iconPacks:PackIconMaterial Kind="Information"
-                                 VerticalAlignment="Center"
-                                 HorizontalAlignment="Center"
-                                 Foreground="#FF0069CA"/>
-                    DNI/NIE
-                    <TextBlock BaselineOffset="20" Foreground="RED" Text=""/>
-                    <TextBlock.ToolTip>
-                        <TextBlock>
-                             Ejemplos
-                             <LineBreak />
-                            DNI: 12345678Z
-                            <LineBreak /> 
-                            NIE: X1234567-L
-                        </TextBlock>
-                    </TextBlock.ToolTip>
-                </TextBlock>
-            <StackPanel Orientation="Horizontal">
-                <TextBox FontFamily="Helvetica"
-                         FontWeight="SemiBold"
-                         Text="{Binding Path=SuperAdmin_UID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         FontSize="20"
-                         HorizontalAlignment="Center"
-                         Foreground="#FF0069C0"
-                         Width="235"
-                         HorizontalContentAlignment="Left"
-                         Height="25"/>
-                <iconPacks:PackIconMaterial Kind="Account"
-                                 VerticalAlignment="Center"
-                                 HorizontalAlignment="Center"
-                                 Margin="5 0 0 0"
-                                 Foreground="#FF0069C0"/>
-            </StackPanel>
+        <StackPanel x:Name="habitante"
+                    Width="250"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Stretch"
+                         Background="#FF0069C0">
+        </StackPanel>
 
-
-            <StackPanel Grid.Row="1" Margin="0 5" >
-                <TextBlock FontFamily="Helvetica"
-                   FontWeight="Light"
-                   FontSize="20"
-                   Foreground="White"> <iconPacks:PackIconMaterial Kind="Information"
-                                 VerticalAlignment="Center"
-                                 HorizontalAlignment="Center"
-                                 Foreground="#FF0069CA"/>
-                    Contraseña
-                <TextBlock BaselineOffset="20" Foreground="RED" Text=""/>
-                <TextBlock.ToolTip>
-                    Contraseña tiene que tener como mínimo 9 caracteres
-                </TextBlock.ToolTip>
-                </TextBlock>
-                <StackPanel Orientation="Horizontal">
-                    <PasswordBox FontFamily="Helvetica"
-                         FontWeight="SemiBold"
-                         FontSize="20"
-                         HorizontalAlignment="Center"
-                         Foreground="#FF0069C0"
-                         Width="235"
-                         HorizontalContentAlignment="Left"
-                         Height="25"/>
-                    <iconPacks:PackIconMaterial Kind="FormTextboxPassword"
-                                 VerticalAlignment="Center"
-                                 HorizontalAlignment="Center"
-                                 Margin="5 0 0 0"
-                                 Foreground="#FF0069C0"/>
-                </StackPanel>
-            </StackPanel>
-
-            <Button mvx:Bi.nd="Command LogInHabitantCommand" Margin="0 15 0 0" Width="120" Height="35" FontWeight="SemiBold" Content="Login"/>
-
+        <StackPanel
+                    Width="250"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Stretch"
+                         Background="#FF0069C0">
+        </StackPanel>
+        <StackPanel
+                    Width="250"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Stretch"
+                         Background="#FF0069C0">
+        </StackPanel>
+        <StackPanel
+                    Width="250"
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Stretch"
+                         Background="#FF0069C0">
+        </StackPanel>
+        <StackPanel
+                    Width="1000"
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Grid.ColumnSpan="2"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Stretch"
+                         Background="#FF0069C0">
         </StackPanel>
 
     </Grid>

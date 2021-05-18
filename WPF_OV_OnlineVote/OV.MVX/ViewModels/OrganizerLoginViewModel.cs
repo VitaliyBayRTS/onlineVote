@@ -48,8 +48,6 @@ namespace OV.MVX.ViewModels
                                                                 new CancellationToken());
                 if (organizers.Count() > 0)
                 {
-                    MessageBox.Show("Ok", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-
                     Messenger.Default.Send(new NotificationMessage(MessageTypes.OrganiserLoginSuccess.ToString() + "=>" + organizers.FirstOrDefault().Id));
                 }
                 else
