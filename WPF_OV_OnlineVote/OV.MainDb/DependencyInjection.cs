@@ -5,6 +5,7 @@ using OV.MainDb.Configuration;
 using OV.MainDb.Habitant.Find;
 using OV.MainDb.Province.Find;
 using OV.MainDb.User.Create;
+using OV.MainDb.User.Find;
 
 namespace OV.MainDb
 {
@@ -60,6 +61,9 @@ namespace OV.MainDb
             serviceCollection.TryAddScoped<ICandidateUserValidator, CandidateUserValidator>();
             serviceCollection.TryAddScoped<ICreateUserDataService, CreateUserDataService>();
             serviceCollection.TryAddScoped<ICreateUserService, CreateUserService>();
+            //-Find
+            serviceCollection.TryAddScoped<IFindUserDataService, FindUserDataService>();
+            serviceCollection.TryAddScoped<IFindUserService, FindUserService>();
 
             //Habitant
             //-Find
