@@ -1,12 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using OV.MainDb.Configuration;
+using OV.MainDb.Election.Models;
 using OV.MainDb.Province.Models;
-using OV.MainDb.User.Models;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Text;
 
 namespace OV.MainDb.AutonomousCommunity.Models
 {
@@ -17,6 +15,7 @@ namespace OV.MainDb.AutonomousCommunity.Models
         [Column("Name")] public string Name { get; set; }
 
         public ICollection<PersistedProvince>? Provinces { get; set; }
+        public ICollection<PersistedElection>? Elections { get; set; }
 
         public OV.Models.MainDb.AutonomousCommunity.AutonomousCommunity ToAutonomousCommunity()
         {
@@ -24,7 +23,8 @@ namespace OV.MainDb.AutonomousCommunity.Models
             {
                 Id = this.Id,
                 Name = this.Name,
-                Provinces = this.Provinces?.Select(p => p.ToProvince())
+                Provinces = this.Provinces?.Select(p => p.ToProvince()),
+                Election = this.Elections?.Select(e => e.ToElection())
             };
         }
 

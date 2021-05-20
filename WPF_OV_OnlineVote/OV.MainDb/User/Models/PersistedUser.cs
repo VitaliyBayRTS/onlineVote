@@ -57,6 +57,7 @@ namespace OV.MainDb.User.Models
             builder.HasOne(u => u.Habitant).WithOne(h => h.User).HasForeignKey<PersistedHabitant>(h => h.tblUser_UID);
             builder.HasOne(u => u.Organizer).WithOne(o => o.User).HasForeignKey<PersistedOrganizer>(o => o.tblUser_UID);
             builder.HasOne(u => u.SuperAdmin).WithOne(sa => sa.User).HasForeignKey<PersistedSuperAdmin>(o => o.tblUser_UID);
+            builder.HasOne(u => u.Province).WithMany(p => p.Users).HasForeignKey(u => u.TblProvince_UID);
         }
     }
 }
