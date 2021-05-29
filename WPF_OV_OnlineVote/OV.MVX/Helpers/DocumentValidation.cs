@@ -1,13 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace OV.MVX.Helpers
 {
     public static class DocumentValidation
     {
         private const string allowedLettersForDocument = "TRWAGMYFPDXBNJZSQVHLCKET";
+
+        public static string GetDocumentType(string documentCode)
+        {
+            if(documentCode.Length == 9 && isValidDNI(documentCode))
+            {
+                return "DNI";
+            } else if (documentCode.Length == 10 && isValidNIE(documentCode))
+            {
+                return "NIE";
+            }
+            return "Unknow";
+        }
+
         public static bool isValidDocument(string documentCode)
         {
             bool isValid = false;

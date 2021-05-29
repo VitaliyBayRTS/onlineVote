@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace OV.Models.MainDb.AutonomousCommunity
 {
@@ -10,5 +8,6 @@ namespace OV.Models.MainDb.AutonomousCommunity
         public string Name { get; set; }
 
         public IEnumerable<Province.Province>? Provinces { get; set; } = default!;
+        public IEnumerable<Election.Election>? Election { get; set; } = default!;
     }
 }

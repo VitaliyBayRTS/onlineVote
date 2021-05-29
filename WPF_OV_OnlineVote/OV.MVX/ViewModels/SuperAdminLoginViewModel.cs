@@ -14,6 +14,7 @@ using System.Runtime.InteropServices;
 using System.Security;
 using System.Threading;
 using System.Windows;
+using System.Windows.Controls;
 using static WPF_OV_OnlineVote.Helper.MessageHelper;
 
 namespace OV.MVX.ViewModels
@@ -22,13 +23,15 @@ namespace OV.MVX.ViewModels
     {
         public IMvxCommand LogInSuperAdminCommand { get; set; }
 
+        private PasswordBox _pwdBox;
         private string _dni_nie;
         private string _referenceNumber;
         private SecureString _password;
         private ISuperAdminService _superAdminService;
 
-        public SuperAdminLoginViewModel()
+        public SuperAdminLoginViewModel(PasswordBox pwdBox)
         {
+            _pwdBox = pwdBox;
             _superAdminService = new SuperAdminService();
             LogInSuperAdminCommand = new MvxCommand(LogInSuperAdmin);
         }
@@ -49,6 +52,14 @@ namespace OV.MVX.ViewModels
                 if (superAdmin.Count() > 0)
                 {
                     Messenger.Default.Send(new NotificationMessage(MessageTypes.SuperAdminLoginSuccess.ToString() + "=>" + superAdmin.FirstOrDefault().Id));
+                    DNI_NIE = "";
+                    ClearError(nameof(DNI_NIE));
+                    ReferenceNumber = "";
+                    ClearError(nameof(ReferenceNumber));
+                    Password.Clear();
+                    await RaisePropertyChanged(() => Password);
+                    ClearError(nameof(Password));
+                    _pwdBox.Clear();
                 }
                 else
                 {

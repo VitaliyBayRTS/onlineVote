@@ -31,9 +31,19 @@ namespace OV.MainDb.Organizer.Find
                             .Where(h => h.User.IsAutorized);
 
 
-            if (filter.Id != default(int))
+            if (filter.Id.HasValue)
             {
                 organizers = organizers.Where(h => h.Id == filter.Id);
+            }
+
+            if(filter.ElectionId.HasValue)
+            {
+                organizers = organizers.Where(h => h.tblElection_UID == filter.ElectionId);
+            }
+
+            if(!string.IsNullOrEmpty(filter.ReferenceNumber))
+            {
+                organizers = organizers.Where(h => h.ReferenceNumber.Equals(filter.ReferenceNumber));
             }
 
             if (!string.IsNullOrEmpty(filter.DNI_NIE) && !string.IsNullOrEmpty(filter.Password) && !string.IsNullOrEmpty(filter.ReferenceNumber))

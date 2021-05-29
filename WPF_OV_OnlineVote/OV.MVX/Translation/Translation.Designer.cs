@@ -70,11 +70,29 @@ namespace OV.MVX.Translation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Descripción no puede ser vacio.
+        /// </summary>
+        internal static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Campo &apos;Correo&apos; es obligatorio.
         /// </summary>
         internal static string EmailIsEmpty {
             get {
                 return ResourceManager.GetString("EmailIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fecha de fin de elección es obligatoria.
+        /// </summary>
+        internal static string FinishDateIsEmpty {
+            get {
+                return ResourceManager.GetString("FinishDateIsEmpty", resourceCulture);
             }
         }
         
@@ -93,6 +111,24 @@ namespace OV.MVX.Translation {
         internal static string FirstSurNameIsEmpty {
             get {
                 return ResourceManager.GetString("FirstSurNameIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fecha de inicio es obligatoria.
+        /// </summary>
+        internal static string InitDateIsEmpty {
+            get {
+                return ResourceManager.GetString("InitDateIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nombre no puede ser vacio.
+        /// </summary>
+        internal static string NameIsEmpty {
+            get {
+                return ResourceManager.GetString("NameIsEmpty", resourceCulture);
             }
         }
         
@@ -129,6 +165,15 @@ namespace OV.MVX.Translation {
         internal static string ProvinceIsEmpty {
             get {
                 return ResourceManager.GetString("ProvinceIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hay que indicar el tipo de elección.
+        /// </summary>
+        internal static string TypeIsEmpty {
+            get {
+                return ResourceManager.GetString("TypeIsEmpty", resourceCulture);
             }
         }
     }
