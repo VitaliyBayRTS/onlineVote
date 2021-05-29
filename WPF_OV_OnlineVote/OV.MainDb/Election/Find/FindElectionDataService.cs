@@ -34,6 +34,11 @@ namespace OV.MainDb.Election.Find
                                 .Include(e => e.Organizers)
                                 .Where(e => e.Type != null);
 
+            if(filter.Id.HasValue)
+            {
+                elections = elections.Where(e => e.Id == filter.Id);
+            }
+
             var electionToReturn = await elections.ToListAsync(cancellationToken);
 
             if (!filter.TypeIncluded)

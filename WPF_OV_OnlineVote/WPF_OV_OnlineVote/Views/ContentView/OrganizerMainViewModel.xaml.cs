@@ -1,5 +1,5 @@
 ﻿using MvvmCross.Platforms.Wpf.Views;
-using OV.MVX.ViewModels.OrganizerViewModel;
+using OV.MVX.ViewModels.ContentViewModel;
 using System.Windows;
 using System.Windows.Input;
 
@@ -17,8 +17,9 @@ namespace WPF_OV_OnlineVote.Views.ContentView
         }
         public async void LoadDataContext(int Organizer_UID)
         {
-            _mainOrganizerViewModel = new MainOrganizerViewModel();
+            _mainOrganizerViewModel = new MainOrganizerViewModel(Organizer_UID);
             _mainOrganizerViewModel.Organizer_UID = Organizer_UID;
+            await _mainOrganizerViewModel.ElectionManagementVM.LoadData();
             //await _mainOrganizerViewModel.ElectionManagementVM.LoadData();
             //await _mainSuperAdminViewModel.AllElectionVM.LoadData();
             DataContext = _mainOrganizerViewModel;

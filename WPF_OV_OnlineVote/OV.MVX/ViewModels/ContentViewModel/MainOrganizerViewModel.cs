@@ -20,13 +20,14 @@ namespace OV.MVX.ViewModels.ContentViewModel
                 RaisePropertyChanged(() => CurrentView);
             }
         }
-        public ElectionManagementViewModel ElectionManagementVM { get; set; }
+        public EditElectionViewModel ElectionManagementVM { get; set; }
         public int Organizer_UID { get; set; }
 
 
-        public MainOrganizerViewModel()
+        public MainOrganizerViewModel(int tblOrganizer_UID)
         {
-            ElectionManagementVM = new ElectionManagementViewModel();
+            Organizer_UID = tblOrganizer_UID;
+            ElectionManagementVM = new EditElectionViewModel(Organizer_UID);
 
             CurrentView = ElectionManagementVM;
 
