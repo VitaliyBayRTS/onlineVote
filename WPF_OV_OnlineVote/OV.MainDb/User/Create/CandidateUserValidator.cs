@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using OV.MainDb.AutonomousCommunity.Find;
-using OV.MainDb.AutonomousCommunity.Find.Models.Public;
 using OV.MainDb.Province.Find;
 using OV.MainDb.Province.Find.Models.Public;
 using System;

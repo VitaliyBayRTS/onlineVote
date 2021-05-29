@@ -8,8 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using WPF_OV_OnlineVote.Views.Habitant;
 using WPF_OV_OnlineVote.Views.Login;
-using WPF_OV_OnlineVote.Views.Organizer;
-using WPF_OV_OnlineVote.Views.SuperAdmin;
+using WPF_OV_OnlineVote.Views.ContentView;
 using static WPF_OV_OnlineVote.Helper.MessageHelper;
 
 namespace WPF_OV_OnlineVote.Views
@@ -65,9 +64,9 @@ namespace WPF_OV_OnlineVote.Views
                 var splitedNotification = obj.Notification.Split("=>");
                 var organizer_UID = splitedNotification[1];
 
-                OrganizerMainViewWindow organizedMainView = new OrganizerMainViewWindow();
+                OrganizerMainViewModel organizedMainView = new OrganizerMainViewModel();
                 organizedMainView.LoadDataContext(Int32.Parse(organizer_UID));
-                Application.Current.Windows[0].Close();
+                Application.Current.Windows[0].Hide();
                 organizedMainView.ShowDialog();
             }
             else if(obj.Notification.Contains(MessageTypes.SuperAdminLoginSuccess.ToString()))
@@ -77,7 +76,7 @@ namespace WPF_OV_OnlineVote.Views
 
                 SuperAdminMainViewWindow superadminMainView = new SuperAdminMainViewWindow();
                 superadminMainView.LoadDataContext(Int32.Parse(superAdmin_UID));
-                Application.Current.Windows[0].Close();
+                Application.Current.Windows[0].Hide();
                 superadminMainView.ShowDialog();
             }
         }

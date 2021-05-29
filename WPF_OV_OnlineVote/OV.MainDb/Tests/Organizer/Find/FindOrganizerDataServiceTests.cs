@@ -101,7 +101,7 @@ namespace OV.MainDb.Tests.Organizer.Find
                 var IdToFind = organizerToFind.Id;
 
                 //Act
-                var result = await _findOrganizerDataService.FindAsync(OrganizerFilter.ById(IdToFind), cancellationToken);
+                var result = await _findOrganizerDataService.FindAsync(OrganizerFilter.ById(IdToFind.Value), cancellationToken);
 
                 //Assert
                 result.Should().HaveCount(1);
@@ -256,6 +256,90 @@ namespace OV.MainDb.Tests.Organizer.Find
                 //Act
                 var result = await _findOrganizerDataService.FindAsync(OrganizerFilter.ByDNI_NIE_Password_ReferenceNumber(DNI_NIEToFind, Password, ReferenceNumber), 
                                                                         cancellationToken);
+
+                //Assert
+                result.Should().HaveCount(0);
+            }
+
+            [Fact]
+            public async void ShoudlFindHabitantByElectionId()
+            {
+                //Arrange
+                var arrayOfOrganizers = new List<PersistedOrganizer>();
+                arrayOfOrganizers.Add(_dummyOrganizer1);
+                arrayOfOrganizers.Add(_dummyOrganizer2);
+                _inMemoryOvMainDbContext.Organizers.AddRange(arrayOfOrganizers);
+                await _inMemoryOvMainDbContext.SaveChangesAsync(cancellationToken);
+
+                var organizerToFind = _dummyOrganizer1;
+                var tblElection_UID = organizerToFind.tblElection_UID;
+                var countOfOrganizersWithTheSameElectionId = arrayOfOrganizers.Select(o => o.tblElection_UID == tblElection_UID).ToList().Count;
+
+                //Act
+                var result = await _findOrganizerDataService.FindAsync(OrganizerFilter.ByElectionId(tblElection_UID), cancellationToken);
+
+                //Assert
+                result.Should().HaveCount(countOfOrganizersWithTheSameElectionId);
+                result.Where(u => u.Id == organizerToFind.Id).Should().HaveCount(1);
+                result.All(u => u.User == null).Should().BeTrue();
+            }
+
+            [Fact]
+            public async void ShoudlNotFindHabitantByElectionIdIfElectionIdIsWrong()
+            {
+                //Arrange
+                var arrayOfOrganizers = new List<PersistedOrganizer>();
+                arrayOfOrganizers.Add(_dummyOrganizer1);
+                arrayOfOrganizers.Add(_dummyOrganizer2);
+                _inMemoryOvMainDbContext.Organizers.AddRange(arrayOfOrganizers);
+                await _inMemoryOvMainDbContext.SaveChangesAsync(cancellationToken);
+
+                var unexistingElectionId = 12245;
+
+                //Act
+                var result = await _findOrganizerDataService.FindAsync(OrganizerFilter.ByElectionId(unexistingElectionId), cancellationToken);
+
+                //Assert
+                result.Should().HaveCount(0);
+            }
+
+            [Fact]
+            public async void ShoudlFindHabitantByReferenceNumber()
+            {
+                //Arrange
+                var arrayOfOrganizers = new List<PersistedOrganizer>();
+                arrayOfOrganizers.Add(_dummyOrganizer1);
+                arrayOfOrganizers.Add(_dummyOrganizer2);
+                _inMemoryOvMainDbContext.Organizers.AddRange(arrayOfOrganizers);
+                await _inMemoryOvMainDbContext.SaveChangesAsync(cancellationToken);
+
+                var organizerToFind = _dummyOrganizer1;
+                var referenceNumber = organizerToFind.ReferenceNumber;
+                var countOfOrganizersWithTheSamereferenceNumber = arrayOfOrganizers.Where(o => string.Equals(o.ReferenceNumber, referenceNumber, StringComparison.Ordinal)).ToList().Count;
+
+                //Act
+                var result = await _findOrganizerDataService.FindAsync(OrganizerFilter.ByReferenceNumber(referenceNumber), cancellationToken);
+
+                //Assert
+                result.Should().HaveCount(countOfOrganizersWithTheSamereferenceNumber);
+                result.Where(u => u.Id == organizerToFind.Id).Should().HaveCount(1);
+                result.All(u => u.User == null).Should().BeTrue();
+            }
+
+            [Fact]
+            public async void ShoudlNotFindHabitantByReferenceNumberIfReferenceNumberIsWrong()
+            {
+                //Arrange
+                var arrayOfOrganizers = new List<PersistedOrganizer>();
+                arrayOfOrganizers.Add(_dummyOrganizer1);
+                arrayOfOrganizers.Add(_dummyOrganizer2);
+                _inMemoryOvMainDbContext.Organizers.AddRange(arrayOfOrganizers);
+                await _inMemoryOvMainDbContext.SaveChangesAsync(cancellationToken);
+
+                var unexistingReferenceNumber = "unexistingReferenceNumber";
+
+                //Act
+                var result = await _findOrganizerDataService.FindAsync(OrganizerFilter.ByReferenceNumber(unexistingReferenceNumber), cancellationToken);
 
                 //Assert
                 result.Should().HaveCount(0);

@@ -7,7 +7,6 @@ using OV.MainDb.Province.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using Xunit;
 
@@ -82,6 +81,27 @@ namespace OV.MainDb.Tests.AutonomousCommunity.Find
                 _inMemoryOvMainDbContext = _inMemoryOvMainDbContextFactory.Create();
                 _findAutonomousCommunityDataService = new FindAutonomousCommunityDataService(_inMemoryOvMainDbContext);
 
+            }
+
+            [Fact]
+            public async void ShoudlReturnAllObjects()
+            {
+                //Arrange
+                List<PersistedAutonomousCommunity> acs = new List<PersistedAutonomousCommunity>();
+                acs.Add(_dummyAutonomousCommunity1);
+                acs.Add(_dummyAutonomousCommunity2);
+                acs.Add(_dummyAutonomousCommunity3);
+                _inMemoryOvMainDbContext.AutonomousCommunities.AddRange(acs);
+                await _inMemoryOvMainDbContext.SaveChangesAsync(cancellationToken);
+
+
+
+                //Act
+                var result = await _findAutonomousCommunityDataService.FindAsync(AutonomousCommunityFilter.All, cancellationToken);
+
+                //Assert
+                result.Should().HaveCount(acs.Count);
+                result.All(ac => ac.Provinces == null).Should().BeTrue();
             }
 
             [Fact]

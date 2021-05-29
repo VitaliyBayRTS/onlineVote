@@ -47,5 +47,24 @@ namespace OV.MVX.Tests.Unit_Tests
             //Assert
             result.Should().Be(isCorrectNIE);
         }
+
+        [Theory]
+        [InlineData("X1234567-L", "NIE")]
+        [InlineData("Y7654321-G", "NIE")]
+        [InlineData("12345678Z", "DNI")]
+        [InlineData("87654321X", "DNI")]
+        [InlineData("X1234567L", "Unknow")]
+        [InlineData("1234567L", "Unknow")]
+        [InlineData("G1234567L", "Unknow")]
+        public void ShouldReturnTypeOfDocument(string documentNumber, string expectedDocumentType)
+        {
+            //Arrange
+            
+            //Act
+            var result = DocumentValidation.GetDocumentType(documentNumber);
+            
+            //Assert
+            result.Should().Be(expectedDocumentType);
+        }
     }
 }

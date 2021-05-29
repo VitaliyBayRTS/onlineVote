@@ -43,7 +43,10 @@ namespace OV.MainDb.User.Models
                 DOB = DOB,
                 TblProvince_UID = TblProvince_UID,
                 Email = Email,
-                PhoneNumber = PhoneNumber
+                PhoneNumber = PhoneNumber,
+                DNI_NIE = DNI_NIE,
+                IsAutorized = IsAutorized,
+                Province = Province?.ToProvince()
             };
         }
 

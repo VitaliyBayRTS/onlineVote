@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using OV.MainDb.Configuration;
 using OV.MainDb.Election.Models;
+using OV.Models.MainDb.Type;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OV.MainDb.Type.Models
@@ -11,17 +12,19 @@ namespace OV.MainDb.Type.Models
         [Column("Id")] public int Id { get; set; }
         [Column("Name")] public string Name { get; set; }
         [Column("Description")] public string Description { get; set; }
+        [Column("Code")] public string Code { get; set; }
 
         public PersistedElection Election { get; set; }
 
-        public OV.Models.MainDb.Type.Type ToType()
+        public TypeObject ToType()
         {
-            return new OV.Models.MainDb.Type.Type()
+            return new TypeObject()
             {
                 Id = Id,
                 Name = Name,
                 Description = Description,
-                Election = Election.ToElection()
+                Code = Code,
+                Election = Election?.ToElection()
             };
         }
 

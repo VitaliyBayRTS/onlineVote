@@ -26,7 +26,7 @@ namespace OV.MainDb.Province.Models
             {
                 Id = this.Id,
                 Name = this.Name,
-                AutonomousCommunity = this.AutonomousCommunity.ToAutonomousCommunity(),
+                AutonomousCommunity = this.AutonomousCommunity?.ToAutonomousCommunity(),
                 Elections = Elections != null ? Elections.Select(e => e.ToElection()).ToList() : null,
                 Users = Users != null ? Users.Select(u => u.ToUser()).ToList() : null
             };

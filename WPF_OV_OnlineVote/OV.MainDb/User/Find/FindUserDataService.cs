@@ -26,6 +26,8 @@ namespace OV.MainDb.User.Find
         {
             var ovMainDbContext = _ovMainDbContextFactory.Create();
             var users = ovMainDbContext.Users
+                        .Include(u => u.Province)
+                        .ThenInclude(p => p.AutonomousCommunity)
                         .Where(u => true);
 
             if(filter.Id != default(int))
@@ -38,7 +40,28 @@ namespace OV.MainDb.User.Find
                 users = users.Where(u => !u.IsAutorized);
             }
 
-            return await users.ToListAsync(cancellationToken);
+            if(filter.Autorized)
+            {
+                users = users.Where(u => u.IsAutorized);
+            }
+
+            var usersToReturn = await users.ToListAsync(cancellationToken);
+
+            if(!filter.IncludeAC)
+            {
+                usersToReturn.ForEach(u => u.Province.AutonomousCommunity = null);
+            }
+
+            if (!filter.IncludeProvince)
+            {
+                usersToReturn.ForEach(u => u.Province = null);
+            } else
+            {
+                usersToReturn.ForEach(u => u.Province.Users = null);
+            }
+
+
+            return usersToReturn;
 
         }
     }
