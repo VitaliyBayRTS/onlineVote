@@ -107,6 +107,7 @@
                 </TextBlock>
                 <StackPanel Orientation="Horizontal">
                     <PasswordBox FontFamily="Helvetica"
+                                 x:Name="organizerSecureCode"
                          FontWeight="SemiBold"
                          FontSize="20"
                                  PasswordChanged="PasswordBox_PasswordChanged"

@@ -21,7 +21,7 @@ namespace OV.MainDb.Election.Create
 
         public async Task<PersistedElection> CreateAsync(CandidateElection candidate, CancellationToken cancellationToken)
         {
-            var _ovmainDbContext = _ovMainDbContextFactory.Create();
+            var ovMainDbContext = _ovMainDbContextFactory.Create();
 
             PersistedElection election = new PersistedElection()
             {
@@ -34,9 +34,9 @@ namespace OV.MainDb.Election.Create
                 tblType_UID = candidate.tblType_UID
             };
 
-            var newElection = _ovmainDbContext.Elections.Add(election);
+            var newElection = ovMainDbContext.Elections.Add(election);
 
-            await _ovmainDbContext.SaveChangesAsync(cancellationToken);
+            await ovMainDbContext.SaveChangesAsync(cancellationToken);
 
             return newElection.Entity;
         }

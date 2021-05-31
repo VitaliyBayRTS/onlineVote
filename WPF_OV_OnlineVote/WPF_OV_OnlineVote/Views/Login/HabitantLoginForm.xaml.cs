@@ -12,7 +12,7 @@ namespace WPF_OV_OnlineVote.Views.Login
         public HabitantLoginForm()
         {
             InitializeComponent();
-            DataContext = new HabitantLoginViewModel();
+            DataContext = new HabitantLoginViewModel(passwordBox);
         }
 
         private void PasswordBox_PasswordChanged(object sender, System.Windows.RoutedEventArgs e)

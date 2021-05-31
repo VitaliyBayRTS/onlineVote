@@ -15,10 +15,9 @@ namespace WPF_OV_OnlineVote.Views.ContentView
         {
             InitializeComponent();
         }
-        public async void LoadDataContext(int Organizer_UID)
+        public async void LoadDataContext(int organizer_UID, int election_UID)
         {
-            _mainOrganizerViewModel = new MainOrganizerViewModel(Organizer_UID);
-            _mainOrganizerViewModel.Organizer_UID = Organizer_UID;
+            _mainOrganizerViewModel = new MainOrganizerViewModel(organizer_UID, election_UID);
             await _mainOrganizerViewModel.ElectionManagementVM.LoadData();
             //await _mainOrganizerViewModel.ElectionManagementVM.LoadData();
             //await _mainSuperAdminViewModel.AllElectionVM.LoadData();

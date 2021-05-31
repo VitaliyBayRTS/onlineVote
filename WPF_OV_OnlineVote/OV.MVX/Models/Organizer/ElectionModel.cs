@@ -8,6 +8,7 @@ namespace OV.MVX.Models.Organizer
         public string TypeName { get; set; }
         public int? tblResult_UID { get; set; }
         public DateTime InitDate { get; set; }
+        public DateTime FinilizeDate { get; set; }
         public string InitDateString { get; set; }
         public string FinalizeDateString { get; set; }
         public string Description { get; set; }
@@ -22,6 +23,7 @@ namespace OV.MVX.Models.Organizer
             TypeName = election?.Type?.Name;
             tblResult_UID = election.tblResult_UID;
             InitDate = election.InitDate;
+            FinilizeDate = election.FinalizeDate;
             InitDateString = election.InitDate.ToString("yyyy/MM/dd");
             FinalizeDateString = election.FinalizeDate.ToString("yyyy/MM/dd");
             Description = election.Description;

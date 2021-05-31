@@ -2,6 +2,7 @@
 {
     public enum ElectionFailureReason
     {
+        IdIsEmpty,
         NameIsEmpty,
         InitDateIsEmpty,
         FinishDateIsEmpty,

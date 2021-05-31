@@ -35,11 +35,11 @@ namespace OV.MainDb.Organizer.Create
                     return new CreateOrganizerFailure(validatorResult.Errors.ParseFailures<OrganizerFailureReason>());
                 }
 
-                var insertedorganizer = await _createOrganizerDataService.CreateAsync(candidate, cancellationToken);
+                var insertedOrganizer = await _createOrganizerDataService.CreateAsync(candidate, cancellationToken);
 
-                if (insertedorganizer != null)
+                if (insertedOrganizer != null)
                 {
-                    return new CreateOrganizerSuccess(insertedorganizer.ToOrganizer());
+                    return new CreateOrganizerSuccess(insertedOrganizer.ToOrganizer());
                 }
                 return new CreateOrganizerFailure(new FailureReason<OrganizerFailureReason>(OrganizerFailureReason.FailureInsertingIntoDataBase));
             }

@@ -6,7 +6,6 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using WPF_OV_OnlineVote.Views.Habitant;
 using WPF_OV_OnlineVote.Views.Login;
 using WPF_OV_OnlineVote.Views.ContentView;
 using static WPF_OV_OnlineVote.Helper.MessageHelper;
@@ -54,18 +53,20 @@ namespace WPF_OV_OnlineVote.Views
                 var splitedNotification = obj.Notification.Split("=>");
                 var habitant_UID = splitedNotification[1];
 
-                HabitantMainViewWindow habitantMainView = new HabitantMainViewWindow();
-                habitantMainView.LoadDataContext(Int32.Parse(habitant_UID));
-                Application.Current.Windows[0].Close();
+                HabitantMainViewWindow habitantMainView = new HabitantMainViewWindow(Int32.Parse(habitant_UID));
+                //habitantMainView.LoadDataContext(Int32.Parse(habitant_UID));
+                Application.Current.Windows[0].Hide();
                 habitantMainView.ShowDialog();
             }
             else if(obj.Notification.Contains(MessageTypes.OrganiserLoginSuccess.ToString()))
             {
                 var splitedNotification = obj.Notification.Split("=>");
-                var organizer_UID = splitedNotification[1];
+                var message = splitedNotification[1];
+                var organizer_UID = message.Split("|")[0];
+                var election_UID = message.Split("|")[1];
 
                 OrganizerMainViewModel organizedMainView = new OrganizerMainViewModel();
-                organizedMainView.LoadDataContext(Int32.Parse(organizer_UID));
+                organizedMainView.LoadDataContext(Int32.Parse(organizer_UID), Int32.Parse(election_UID));
                 Application.Current.Windows[0].Hide();
                 organizedMainView.ShowDialog();
             }

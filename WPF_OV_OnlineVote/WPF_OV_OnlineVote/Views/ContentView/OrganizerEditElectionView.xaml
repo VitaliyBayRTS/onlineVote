@@ -14,9 +14,11 @@
              d:DesignHeight="450" d:DesignWidth="700">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="0.9*" />
             <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
+            <RowDefinition Height="0.2*" />
         </Grid.RowDefinitions>
+        
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
@@ -26,14 +28,12 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.5*"/>
                 <RowDefinition Height="0.4*"/>
-                <RowDefinition Height="0.4*"/>
-                <RowDefinition Height="0.4*"/>
-                <RowDefinition Height="0.2*"/>
             </Grid.RowDefinitions>
 
 
-            <StackPanel x:Name="organizador" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center">
+            <StackPanel Grid.Row="1" Grid.Column="0" Margin="0 5">
 
                 <TextBlock FontFamily="Helvetica"
                    FontWeight="Light"
@@ -41,26 +41,35 @@
                    Foreground="White">
                     Nombre
                 </TextBlock>
-                <StackPanel Orientation="Horizontal">
-                    <Label FontFamily="Helvetica"
+                <Grid HorizontalAlignment="Left">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" FontFamily="Helvetica"
+                           Name="nameLabel"
                          FontWeight="SemiBold"
-                         Content="{Binding Path=Election.Name, Mode=OneWay}"
+                         Content="{Binding Path=Election.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          FontSize="14"
-                         HorizontalAlignment="Center"
+                         HorizontalAlignment="Left"
                          Foreground="#FF0069C0"
-                         Width="235"
+                         Width="170"
                          HorizontalContentAlignment="Left"
-                         Height="25"/>
-                    <TextBlock FontFamily="Helvetica"
+                         Height="27"/>
+                    <TextBox Grid.Row="0" Grid.Column="0" 
+                         FontFamily="Helvetica"
                          FontWeight="SemiBold"
-                         Text="{Binding Path=Election.Name, Mode=OneWay}"
+                         Name="nameTB"
+                         Text="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          FontSize="14"
-                         HorizontalAlignment="Center"
+                         HorizontalAlignment="Left"
                          Foreground="#FF0069C0"
-                         Width="235"
-                         Height="25"
-                               Visibility="Hidden"/>
-                </StackPanel>
+                         Visibility="Hidden"
+                         Width="170"
+                         Height="27"/>
+                </Grid>
             </StackPanel>
 
 
@@ -72,17 +81,44 @@
                    Foreground="White">
                     Descripción
                 </TextBlock>
-                <StackPanel Orientation="Horizontal">
-                    <Label FontFamily="Helvetica"
+                <Grid HorizontalAlignment="Left">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*"/>
+                    </Grid.RowDefinitions>
+                    <ScrollViewer Grid.Row="0" Grid.Column="0" MaxHeight="77" 
+                                    Width="170" 
+                                  HorizontalScrollBarVisibility="Disabled"
+                                  VerticalScrollBarVisibility="Auto">
+                        <TextBlock     
+                            Padding="0 0 5 0"
+                         x:Name="descriptionLabel"
+                         FontFamily="Helvetica"
                          FontWeight="SemiBold"
                          FontSize="14"
-                             Content="{Binding Path=Election.Description, Mode=OneWay}"
-                         HorizontalAlignment="Center"
+                         Text="{Binding Path=Election.Description, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                         HorizontalAlignment="Left"
                          Foreground="#FF0069C0"
-                         Width="235"
-                         HorizontalContentAlignment="Left"
-                         Height="25"/>
-                </StackPanel>
+                            TextWrapping="Wrap"/>
+
+
+                    </ScrollViewer>
+                    <TextBox Grid.Row="0" Grid.Column="0"
+                         FontFamily="Helvetica"
+                         FontWeight="SemiBold"
+                         Name="descriptionTB"
+                         Text="{Binding Path=Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         FontSize="14"
+                         TextWrapping="Wrap"
+                         AcceptsReturn="True"
+                         HorizontalAlignment="Left"
+                         Foreground="#FF0069C0"
+                         Visibility="Hidden"
+                         Width="170"
+                         Height="77"/>
+                </Grid>
             </StackPanel>
 
             <StackPanel Grid.Row="1" Grid.Column="2" Margin="0 5">
@@ -93,17 +129,37 @@
                    Foreground="White">
                     Fecha de inicio
                 </TextBlock>
-                <StackPanel Orientation="Horizontal">
-                    <Label FontFamily="Helvetica"
+                <Grid HorizontalAlignment="Left">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0"
+                           Name="initDateLabel"
+                           FontFamily="Helvetica"
                          FontWeight="SemiBold"
                          FontSize="14"
-                             Content="{Binding Path=Election.InitDateString, Mode=OneWay}"
-                         HorizontalAlignment="Center"
+                             Content="{Binding Path=Election.InitDateString, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                         HorizontalAlignment="Left"
                          Foreground="#FF0069C0"
-                         Width="235"
+                         Width="170"
+                         HorizontalContentAlignment="Left"
+                         Height="27"/>
+                    <DatePicker Name="initDateDT" FontFamily="Helvetica"
+                         Visibility="Hidden"
+                         SelectedDate="{Binding Path=InitDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Text="{Binding InitDateString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         DisplayDateStart="{Binding StartDateTime}"
+                         FontWeight="Light"
+                         FontSize="15"
+                         HorizontalAlignment="Left"
+                         Foreground="#FF0069C0"
+                         Width="170"
                          HorizontalContentAlignment="Left"
                          Height="25"/>
-                </StackPanel>
+                </Grid>
             </StackPanel>
 
 
@@ -115,17 +171,37 @@
                    Foreground="White">
                     Fecha de fin
                 </TextBlock>
-                <StackPanel Orientation="Horizontal">
-                    <Label FontFamily="Helvetica"
+                <Grid HorizontalAlignment="Left">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0"
+                           Name="finishDateLabel"
+                           FontFamily="Helvetica"
                          FontWeight="SemiBold"
                          FontSize="14"
-                             Content="{Binding Path=Election.FinalizeDateString, Mode=OneWay}"
-                         HorizontalAlignment="Center"
+                             Content="{Binding Path=Election.FinalizeDateString, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                         HorizontalAlignment="Left"
                          Foreground="#FF0069C0"
-                         Width="235"
+                         Width="170"
+                         HorizontalContentAlignment="Left"
+                         Height="27"/>
+                    <DatePicker Name="finishDateDP" FontFamily="Helvetica"
+                         Visibility="Hidden"
+                         FontWeight="Light"
+                         Text="{Binding FinishDateString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         SelectedDate="{Binding Path=FinishDate, Mode=TwoWay}"
+                         DisplayDateStart="{Binding InitDate}"
+                         FontSize="15"
+                         HorizontalAlignment="Left"
+                         Foreground="#FF0069C0"
+                         Width="170"
                          HorizontalContentAlignment="Left"
                          Height="25"/>
-                </StackPanel>
+                </Grid>
             </StackPanel>
 
             <StackPanel Grid.Row="2" Grid.Column="0" Margin="0 5">
@@ -136,17 +212,24 @@
                    Foreground="White">
                     Provincia
                 </TextBlock>
-                <StackPanel Orientation="Horizontal">
-                    <Label FontFamily="Helvetica"
+                <Grid HorizontalAlignment="Left">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0"
+                           FontFamily="Helvetica"
                          FontWeight="SemiBold"
                          FontSize="14"
-                             Content="{Binding Path=Election.ProvinceName, Mode=OneWay}"
-                         HorizontalAlignment="Center"
+                             Content="{Binding Path=Election.ProvinceName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                         HorizontalAlignment="Left"
                          Foreground="#FF0069C0"
-                         Width="235"
+                         Width="170"
                          HorizontalContentAlignment="Left"
-                         Height="30"/>
-                </StackPanel>
+                         Height="27"/>
+                </Grid>
             </StackPanel>
 
 
@@ -158,20 +241,29 @@
                    Foreground="White">
                     Tipo de votación
                 </TextBlock>
-                <StackPanel Orientation="Horizontal">
-                    <Label Name="dateOfBirth" FontFamily="Helvetica"
-                         Content="{Binding Path=Election.TypeName, Mode=OneWay}"
-                         FontWeight="Light"
+                <Grid HorizontalAlignment="Left">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*"/>
+                    </Grid.RowDefinitions>
+                    <Label Name="dateOfBirth" 
+                           Grid.Row="0"
+                           Grid.Column="0"
+                           FontFamily="Helvetica"
+                         Content="{Binding Path=Election.TypeName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                         FontWeight="SemiBold"
                          FontSize="14"
-                         HorizontalAlignment="Center"
+                         HorizontalAlignment="Left"
                          Foreground="#FF0069C0"
-                         Width="235"
+                         Width="170"
                          HorizontalContentAlignment="Left"
-                         Height="25"/>
-                </StackPanel>
+                         Height="27"/>
+                </Grid>
             </StackPanel>
 
-            <StackPanel Grid.Row="2" Grid.Column="1">
+            <StackPanel Grid.Row="2" Grid.Column="1" Margin="0 5">
 
                 <TextBlock FontFamily="Helvetica"
                    FontWeight="Light"
@@ -179,20 +271,27 @@
                    Foreground="White">
                     Comunidad Autonoma
                 </TextBlock>
-                <StackPanel Orientation="Horizontal">
-                    <Label FontFamily="Helvetica"
+                <Grid HorizontalAlignment="Left">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0"
+                           FontFamily="Helvetica"
                          FontWeight="SemiBold"
                          FontSize="14"
-                             Content="{Binding Path=Election.AutonomousCommunityName, Mode=OneWay}"
-                         HorizontalAlignment="Center"
+                             Content="{Binding Path=Election.AutonomousCommunityName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                         HorizontalAlignment="Left"
                          Foreground="#FF0069C0"
-                         Width="235"
+                         Width="170"
                          HorizontalContentAlignment="Left"
-                         Height="25"/>
-                </StackPanel>
+                         Height="27"/>
+                </Grid>
             </StackPanel>
 
-            <StackPanel Grid.Row="2" Grid.Column="3">
+            <StackPanel Grid.Row="2" Grid.Column="3" Margin="0 5">
 
                 <TextBlock FontFamily="Helvetica"
                    FontWeight="Light"
@@ -200,50 +299,66 @@
                    Foreground="White">
                     Estado
                 </TextBlock>
-                <StackPanel Orientation="Horizontal">
-                    <Label FontFamily="Helvetica"
+                <Grid HorizontalAlignment="Left">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*"/>
+                    </Grid.RowDefinitions>
+                    <Label 
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        FontFamily="Helvetica"
                          FontWeight="SemiBold"
                          FontSize="14"
-                             Content="{Binding Path=Election.CurrentState, Mode=OneWay}"
-                         HorizontalAlignment="Center"
+                             Content="{Binding Path=Election.CurrentState, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                         HorizontalAlignment="Left"
                          Foreground="#FF0069C0"
-                         Width="235"
+                         Width="170"
                          HorizontalContentAlignment="Left"
-                         Height="25"/>
-                </StackPanel>
+                         Height="27"/>
+                </Grid>
             </StackPanel>
 
-            <ListBox Name="availableUser" 
-                     Grid.Row="3"
+        </Grid>
+
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            
+            <ListBox Name="options" 
+                     Grid.Row="0"
                      Grid.Column="0"
-                     Grid.ColumnSpan="4"
                      Background="Transparent"
-                     SelectedItem=""
+                     ItemsSource="{Binding Options}"
+                     SelectedItem="{Binding SelectedOption}"
                      BorderBrush="{x:Null}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" />
+                        <StackPanel Orientation="Vertical" />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="1" Padding="5 0 5 0" Width="170">
+                        <Border BorderBrush="Black" 
+                                BorderThickness="1" 
+                                Padding="5 0 5 0"
+                                Width="198">
                             <Grid Margin="0,2">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="1*"/>
                                     <RowDefinition Height="1*"/>
                                     <RowDefinition Height="1*"/>
                                 </Grid.RowDefinitions>
 
                                 <TextBlock Grid.Row="0" 
-                                       Text="{Binding User.FirstName}"
+                                       Text="{Binding Index}"
                                        Foreground="White"/>
-
                                 <TextBlock Grid.Row="1" 
-                                       Text="{Binding User.DNI_NIE}"
-                                       Foreground="White"/>
-                                <TextBlock Grid.Row="2" 
-                                       Text="{Binding ReferenceNumber}"
+                                       Text="{Binding Name}"
                                        Foreground="White"/>
                             </Grid>
                         </Border>
@@ -251,23 +366,246 @@
                 </ListBox.ItemTemplate>
             </ListBox>
 
-            <StackPanel Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Grid Grid.Row="0" Grid.Column="1" Margin="20 0 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.4*"/>
+                    <RowDefinition Height="0.4*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.3*"/>
+                        <ColumnDefinition Width="0.3*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Row="0" Grid.Column="0 " Margin="0 5">
+
+                        <TextBlock FontFamily="Helvetica"
+                   FontWeight="Light"
+                   FontSize="14"
+                   Foreground="White">
+                    Index
+                        </TextBlock>
+                        <Grid HorizontalAlignment="Left">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.1*"/>
+                            </Grid.RowDefinitions>
+                            <Label 
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        FontFamily="Helvetica"
+                         FontWeight="SemiBold"
+                         FontSize="14"
+                         Content="{Binding Path=SelectedOption.Index, Mode=OneWay}"
+                         HorizontalAlignment="Left"
+                         Foreground="#FF0069C0"
+                         Width="170"
+                         HorizontalContentAlignment="Left"
+                         Height="27"/>
+                        </Grid>
+                    </StackPanel>
+                    <StackPanel Grid.Row="0" Grid.Column="1" Margin="0 5">
+
+                        <TextBlock FontFamily="Helvetica"
+                   FontWeight="Light"
+                   FontSize="14"
+                   Foreground="White">
+                    Id
+                        </TextBlock>
+                        <Grid HorizontalAlignment="Left">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.1*"/>
+                            </Grid.RowDefinitions>
+                            <Label 
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        FontFamily="Helvetica"
+                         FontWeight="SemiBold"
+                         FontSize="14"
+                         Content="{Binding Path=SelectedOption.Id, Mode=OneWay}"
+                         HorizontalAlignment="Left"
+                         Foreground="#FF0069C0"
+                         Width="170"
+                         HorizontalContentAlignment="Left"
+                         Height="27"/>
+                        </Grid>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Right">
+                        <Button 
+                            x:Name="deleteOptionBtn"
+                            mvx:Bi.nd="Command DeleteOptionCommand"
+                            VerticalAlignment="Top"
+                            Width="150" Height="25" FontSize="12" 
+                            FontWeight="SemiBold" Margin="10 0 10 0">
+                            <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Center">
+                                <iconPacks:PackIconMaterial Kind="Cancel"
+                                     VerticalAlignment="Center"
+                                     HorizontalAlignment="Center"
+                                       FontSize="12"
+                                     Margin="0 0 10 0"
+                                     Foreground="#FF0069C0"/>
+                                <TextBlock Text="Eliminar opción"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+
+                </Grid>
+
+
+                <StackPanel Grid.Row="1" Grid.Column="0" Margin="0 5">
+
+                    <TextBlock FontFamily="Helvetica"
+                   FontWeight="Light"
+                   FontSize="14"
+                   Foreground="White">
+                    Nombre
+                    </TextBlock>
+                    <Grid HorizontalAlignment="Left">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.1*"/>
+                        </Grid.RowDefinitions>
+                        <Label 
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        FontFamily="Helvetica"
+                         FontWeight="SemiBold"
+                         FontSize="14"
+                         Content="{Binding Path=SelectedOption.Name, Mode=OneWay}"
+                         HorizontalAlignment="Left"
+                         Foreground="#FF0069C0"
+                         Width="460"
+                         HorizontalContentAlignment="Left"
+                         Height="27"/>
+                    </Grid>
+                </StackPanel>
+                
+                <StackPanel Grid.Row="2" Grid.Column="0" Margin="0 5">
+
+                   
+                    <TextBlock FontFamily="Helvetica"
+                   FontWeight="Light"
+                   FontSize="14"
+                   Foreground="White">
+                    Descripción
+                    </TextBlock>
+                    <Grid HorizontalAlignment="Left">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.1*"/>
+                        </Grid.RowDefinitions>
+                        <ScrollViewer Grid.Row="0" Grid.Column="0" 
+                                    Height="90"
+                                    Width="460" 
+                                  HorizontalScrollBarVisibility="Disabled"
+                                  VerticalScrollBarVisibility="Auto">
+                            <TextBlock     
+                            Padding="5 0 5 0"
+                         x:Name="descriptionOptionLabel"
+                         FontFamily="Helvetica"
+                         FontWeight="SemiBold"
+                         FontSize="14"
+                         Text="{Binding Path=SelectedOption.Description, Mode=OneWay}"
+                         HorizontalAlignment="Left"
+                         Foreground="#FF0069C0"
+                            TextWrapping="Wrap"/>
+
+
+                        </ScrollViewer>
+                    </Grid>
+                </StackPanel>
+
+
+            </Grid>
+            
+        </Grid>
+
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0"
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Left">
                 <Button
-                mvx:Bi.nd="Command DeleteElectionDataCommand"
-                VerticalAlignment="Top"
+                    Click="editBtn_Click"
+                    x:Name="editBtn"
+                    IsEnabled="{Binding IsInPendingState, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                 Width="120" Height="30" FontSize="16" 
                     FontWeight="SemiBold" Margin="10 0 0 0">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <iconPacks:PackIconMaterial Kind="CommentEdit"
                                      VerticalAlignment="Center"
                                      HorizontalAlignment="Center"
-                                     Margin="10 0 10 0"
+                                     Margin="0 0 10 0"
                                      Foreground="#FF0069C0"/>
                         <TextBlock Text="Editar"/>
                     </StackPanel>
                 </Button>
             </StackPanel>
 
+            <StackPanel Grid.Column="0" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Left">
+                <Button
+                Click="saveBtn_Click"
+                x:Name="saveBtn"
+                mvx:Bi.nd="Command EditElectionDataCommand"
+                Width="120" Height="30" FontSize="16" 
+                FontWeight="SemiBold" Margin="10 0 0 0">
+                    <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Center">
+                        <iconPacks:PackIconMaterial Kind="ContentSaveEdit"
+                                     VerticalAlignment="Center"
+                                     HorizontalAlignment="Center"
+                                     Margin="0 0 10 0"
+                                     Foreground="#FF0069C0"/>
+                        <TextBlock Text="Guardar"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Left">
+                <Button 
+                Click="cancelEditModeBtn_Click"
+                x:Name="cancelEditModeBtn"
+                mvx:Bi.nd="Command CancelEditDataCommand"
+                Width="120" Height="30" FontSize="16" 
+                FontWeight="SemiBold" Margin="10 0 0 0">
+                    <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Center">
+                        <iconPacks:PackIconMaterial Kind="Cancel"
+                                     VerticalAlignment="Center"
+                                     HorizontalAlignment="Center"
+                                     Margin="0 0 10 0"
+                                     Foreground="#FF0069C0"/>
+                        <TextBlock Text="Cancelar"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
         </Grid>
     </Grid>
 </views:MvxWpfView>

@@ -21,13 +21,13 @@ namespace OV.MainDb.User.Delete
         public async Task<bool> DeleteAsync(int userId, CancellationToken cancellationToken)
         {
 
-            var _ovMainDbContext = _ovMainDbContextFactory.Create();
+            var ovMainDbContext = _ovMainDbContextFactory.Create();
 
-            var user = _ovMainDbContext.Users.First(u => u.Id == userId);
+            var user = ovMainDbContext.Users.First(u => u.Id == userId);
 
-            _ovMainDbContext.Users.Remove(user);
+            ovMainDbContext.Users.Remove(user);
 
-            await _ovMainDbContext.SaveChangesAsync(cancellationToken);
+            await ovMainDbContext.SaveChangesAsync(cancellationToken);
 
             return true;
         }

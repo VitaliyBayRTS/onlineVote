@@ -23,20 +23,20 @@ namespace OV.MainDb.Organizer.Create
 
         public async Task<PersistedOrganizer> CreateAsync(CandidateOrganizer candidate, CancellationToken cancellationToken)
         {
-            var _ovmainDbContext = _ovMainDbContextFactory.Create();
+            var ovmainDbContext = _ovMainDbContextFactory.Create();
 
             var organizer = new PersistedOrganizer(candidate);
 
-            var newOrganizer = _ovmainDbContext.Organizers.Add(organizer);
+            var newOrganizer = ovmainDbContext.Organizers.Add(organizer);
 
-            await _ovmainDbContext.SaveChangesAsync(cancellationToken);
+            await ovmainDbContext.SaveChangesAsync(cancellationToken);
 
             return newOrganizer.Entity;
         }
 
         public async Task<bool> CreateRangeAsync(List<CandidateOrganizer> candidates, CancellationToken cancellationToken)
         {
-            var _ovmainDbContext = _ovMainDbContextFactory.Create();
+            var ovmainDbContext = _ovMainDbContextFactory.Create();
 
             List<PersistedOrganizer> organizers = new List<PersistedOrganizer>();
             foreach (var candidate in candidates)
@@ -44,9 +44,9 @@ namespace OV.MainDb.Organizer.Create
                 organizers.Add(new PersistedOrganizer(candidate));
             }
 
-           _ovmainDbContext.Organizers.AddRange(organizers);
+           ovmainDbContext.Organizers.AddRange(organizers);
 
-            await _ovmainDbContext.SaveChangesAsync(cancellationToken);
+            await ovmainDbContext.SaveChangesAsync(cancellationToken);
 
             return true;
         }

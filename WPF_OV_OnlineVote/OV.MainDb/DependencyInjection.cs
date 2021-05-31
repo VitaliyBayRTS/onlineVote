@@ -3,6 +3,8 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using OV.MainDb.AutonomousCommunity.Find;
 using OV.MainDb.Configuration;
 using OV.MainDb.Habitant.Find;
+using OV.MainDb.Option.Delete;
+using OV.MainDb.Option.Find;
 using OV.MainDb.Province.Find;
 using OV.MainDb.User.Create;
 using OV.MainDb.User.Find;
@@ -69,6 +71,14 @@ namespace OV.MainDb
             //-Find
             serviceCollection.TryAddScoped<IFindHabitantDataService, FindHabitantDataService>();
             serviceCollection.TryAddScoped<IFindHabitantService, FindHabitantService>();
+
+            //Option
+            //-Find
+            serviceCollection.TryAddScoped<IFindOptionDataService, IFindOptionDataService>();
+            serviceCollection.TryAddScoped<IFindOptionService, IFindOptionService>();
+            //-Delete
+            serviceCollection.TryAddScoped<IDeleteOptionDataService, DeleteOptionDataService>();
+            serviceCollection.TryAddScoped<IDeleteOptionService, DeleteOptionService>();
 
 
             return serviceCollection;

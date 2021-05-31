@@ -26,6 +26,9 @@
             <DataTemplate DataType="{x:Type viewModel:EditElectionViewModel}">
                 <view:OrganizerEditElectionView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:AddOptionViewModel}">
+                <view:OrganizerAddOptionView/>
+            </DataTemplate>
             
         </ResourceDictionary>
     </Application.Resources>
