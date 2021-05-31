@@ -33,7 +33,7 @@
         <Border CornerRadius="10" Grid.RowSpan="5" Grid.ColumnSpan="8">
             <Border.Background>
                 <LinearGradientBrush>
-                    <GradientStop Color="Black" Offset="0.15"/>
+                    <GradientStop Color="#272537" Offset="0.15"/>
                 </LinearGradientBrush>
             </Border.Background>
         </Border>

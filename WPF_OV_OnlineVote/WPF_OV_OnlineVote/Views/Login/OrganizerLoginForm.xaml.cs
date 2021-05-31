@@ -13,7 +13,7 @@ namespace WPF_OV_OnlineVote.Views.Login
         public OrganizerLoginForm()
         {
             InitializeComponent();
-            DataContext = new OrganizerLoginViewModel();
+            DataContext = new OrganizerLoginViewModel(organizerSecureCode);
         }
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)

@@ -21,8 +21,10 @@ namespace OV.MVX.ViewModels
 {
     public class SuperAdminLoginViewModel : MvxViewModel, INotifyDataErrorInfo
     {
+        //!Commands
         public IMvxCommand LogInSuperAdminCommand { get; set; }
 
+        //!Properties
         private PasswordBox _pwdBox;
         private string _dni_nie;
         private string _referenceNumber;
@@ -36,6 +38,7 @@ namespace OV.MVX.ViewModels
             LogInSuperAdminCommand = new MvxCommand(LogInSuperAdmin);
         }
 
+        //!Methods
         private async void LogInSuperAdmin()
         {
             var errors = ValidateData();

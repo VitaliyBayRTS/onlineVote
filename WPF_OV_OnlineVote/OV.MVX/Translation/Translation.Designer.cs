@@ -115,6 +115,15 @@ namespace OV.MVX.Translation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Id no puede ser nulo.
+        /// </summary>
+        internal static string IdIsEmpty {
+            get {
+                return ResourceManager.GetString("IdIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fecha de inicio es obligatoria.
         /// </summary>
         internal static string InitDateIsEmpty {

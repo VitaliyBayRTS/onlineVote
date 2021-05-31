@@ -12,9 +12,9 @@ namespace OV.MainDb.Option.Models
         [Column("tblElection_UID")] public int tblElection_UID { get; set; }
         [Column("Name")] public string Name { get; set; }
         [Column("Description")] public string Description { get; set; }
-        [Column("Votes")] public int Votes { get; set; }
+        [Column("Votes")] public int? Votes { get; set; }
 
-        public PersistedElection Election { get; set; }
+        public PersistedElection? Election { get; set; }
 
         public OV.Models.MainDb.Option.Option ToOption()
         {
@@ -25,7 +25,7 @@ namespace OV.MainDb.Option.Models
                 Name = Name,
                 Description = Description,
                 Votes = Votes,
-                Election = Election.ToElection()
+                Election = Election?.ToElection()
             };
         }
 

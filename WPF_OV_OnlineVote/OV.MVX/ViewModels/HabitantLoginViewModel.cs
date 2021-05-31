@@ -14,52 +14,30 @@ using System.Runtime.InteropServices;
 using System.Security;
 using System.Threading;
 using System.Windows;
+using System.Windows.Controls;
 using static WPF_OV_OnlineVote.Helper.MessageHelper;
 
 namespace OV.MVX.ViewModels
 {
     public class HabitantLoginViewModel : MvxViewModel, INotifyDataErrorInfo
     {
-
+        //!Commands
         public IMvxCommand LogInHabitantCommand { get; set; }
 
+        //!Private variables
+        private PasswordBox _pwdBox;
         private string _dni_nie;
         private SecureString _password;
         private IHabitantService _habitantService;
+        private readonly Dictionary<string, List<string>> _propertyError = new Dictionary<string, List<string>>();
+        public bool HasErrors => _propertyError.Any();
+        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
 
-        public HabitantLoginViewModel()
-        {
-            _habitantService = new HabitantService();
-            LogInHabitantCommand = new MvxCommand(LogInHabitant);
-        }
-
-        private async void LogInHabitant()
-        {
-            var errors = ValidateData();
-            bool isAnyError = errors.Count > 0 || HasErrors;
-            if (isAnyError)
-            {
-                VisualizeError(errors);
-            } 
-            else
-            {
-                var encryptedPassword = EncrypedPassword();
-                var habitant = await _habitantService.FindAsync(HabitantFilter.ByDNI_NIEAndPassword(DNI_NIE, encryptedPassword), new CancellationToken());
-                if(habitant.Count() > 0)
-                {
-                    Messenger.Default.Send(new NotificationMessage(MessageTypes.HabitantLoginSuccess.ToString() + "=>" + habitant.FirstOrDefault().Id));
-                } else
-                {
-                    MessageBox.Show("DNI/NIE o Contraseña es incorecta", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-
-            }
-        }
-
+        //!Properties
         public string DNI_NIE
         {
             get { return _dni_nie; }
-            set 
+            set
             {
                 SetProperty(ref _dni_nie, value);
                 ClearError(nameof(DNI_NIE));
@@ -70,7 +48,6 @@ namespace OV.MVX.ViewModels
                 RaisePropertyChanged(() => DNI_NIE);
             }
         }
-
         public SecureString Password
         {
             get { return _password; }
@@ -87,6 +64,39 @@ namespace OV.MVX.ViewModels
         }
 
 
+        public HabitantLoginViewModel(PasswordBox pwdBox)
+        {
+            _pwdBox = pwdBox;
+            _habitantService = new HabitantService();
+            LogInHabitantCommand = new MvxCommand(LogInHabitant);
+        }
+
+        //!Methods
+        private async void LogInHabitant()
+        {
+            var errors = ValidateData();
+            bool isAnyError = errors.Count > 0 || HasErrors;
+            if (isAnyError)
+            {
+                VisualizeError(errors);
+            } 
+            else
+            {
+                var encryptedPassword = EncrypedPassword();
+                var habitant = await _habitantService.FindAsync(HabitantFilter.ByDNI_NIEAndPassword(DNI_NIE, encryptedPassword), new CancellationToken());
+                if(habitant.Count() > 0)
+                {
+                    Messenger.Default.Send(new NotificationMessage(MessageTypes.HabitantLoginSuccess.ToString() + "=>" + habitant.FirstOrDefault().Id));
+                    DNI_NIE = "";
+                    ClearError(nameof(DNI_NIE));
+                    _pwdBox.Clear();
+                } else
+                {
+                    MessageBox.Show("DNI/NIE o Contraseña es incorecta", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+            }
+        }
 
         static String SecureStringToString(SecureString value)
         {
@@ -102,12 +112,30 @@ namespace OV.MVX.ViewModels
             }
         }
 
-        private readonly Dictionary<string, List<string>> _propertyError = new Dictionary<string, List<string>>();
+        private string EncrypedPassword()
+        {
+            var password = SecureStringToString(Password);
+            var aesKey = ConfigurationManager.AppSettings.Get("AesKey");
+            return AES.EncryptString(aesKey, password);
+        }
+        private Dictionary<string, string> ValidateData()
+        {
+            Dictionary<string, string> errors = new Dictionary<string, string>();
 
-        public bool HasErrors => _propertyError.Any();
+            if (string.IsNullOrEmpty(DNI_NIE?.Trim()))
+            {
+                errors.Add("DNI/NIE", "DNI/NIE de usuario es obligatorio");
+            }
+            if (Password == null)
+            {
+                errors.Add("Contraseña", "Contraseña de usuario es obligatoria");
+            }
 
-        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+            return errors;
+        }
 
+
+        //!Error handler
         public System.Collections.IEnumerable GetErrors(string propertyName)
         {
             return _propertyError.GetValueOrDefault(propertyName ?? "", null);
@@ -136,23 +164,6 @@ namespace OV.MVX.ViewModels
             }
         }
 
-
-        private Dictionary<string, string> ValidateData()
-        {
-            Dictionary<string, string> errors = new Dictionary<string, string>();
-           
-            if (string.IsNullOrEmpty(DNI_NIE?.Trim()))
-            {
-                errors.Add("DNI/NIE", "DNI/NIE de usuario es obligatorio");
-            }
-            if (Password == null)
-            {
-                errors.Add("Contraseña", "Contraseña de usuario es obligatoria");
-            }
-
-            return errors;
-        }
-
         private void VisualizeError(Dictionary<string, string> errors)
         {
             var errorText = "";
@@ -171,13 +182,6 @@ namespace OV.MVX.ViewModels
                 errorText += "- " + error.Key + " : " + errorItemText + "\r\n\r\n";
             }
             MessageBox.Show(errorText, "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-
-        private string EncrypedPassword()
-        {
-            var password = SecureStringToString(Password);
-            var aesKey = ConfigurationManager.AppSettings.Get("AesKey");
-            return AES.EncryptString(aesKey, password);
         }
     }
 }

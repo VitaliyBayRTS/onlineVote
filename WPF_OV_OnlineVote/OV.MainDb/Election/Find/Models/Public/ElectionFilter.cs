@@ -4,6 +4,7 @@ namespace OV.MainDb.Election.Find.Models.Public
 {
     public class ElectionFilter
     {
+        public int? Id{ get; }
         public bool TypeIncluded { get; } = false;
         public bool ACIncluded { get; } = false;
         public bool ProvinceIncluded { get; } = false;
@@ -11,8 +12,9 @@ namespace OV.MainDb.Election.Find.Models.Public
 
         public ElectionFilter() { }
 
-        public ElectionFilter(bool typeIncluded, bool aCIncluded, bool provinceIncluded, bool organizersIncluded)
+        public ElectionFilter(int? id, bool typeIncluded, bool aCIncluded, bool provinceIncluded, bool organizersIncluded)
         {
+            Id = id;
             TypeIncluded = typeIncluded;
             ACIncluded = aCIncluded;
             ProvinceIncluded = provinceIncluded;
@@ -22,32 +24,39 @@ namespace OV.MainDb.Election.Find.Models.Public
         // Do not filter
         public static ElectionFilter All = new ElectionFilter();
 
+        public static ElectionFilter ById(int id) => All.AndById(id);
         public static ElectionFilter IncludType() => All.AndTypeIncluded();
         public static ElectionFilter IncludAC() => All.AndACIncluded();
         public static ElectionFilter IncludProvince() => All.AndProvinceIncluded();
         public static ElectionFilter IncludOrganizers() => All.AndOrganizersIncluded();
 
 
+        public ElectionFilter AndById(int id)
+        {
+            if (id == default(int)) return this;
+            return new ElectionFilter(id, true, ACIncluded, ProvinceIncluded, OrganizersIncluded);
+        }
+
         public ElectionFilter AndTypeIncluded()
         {
-            return new ElectionFilter(true, ACIncluded, ProvinceIncluded, OrganizersIncluded);
+            return new ElectionFilter(Id, true, ACIncluded, ProvinceIncluded, OrganizersIncluded);
         }
         public ElectionFilter AndACIncluded()
         {
-            return new ElectionFilter(TypeIncluded, true, ProvinceIncluded, OrganizersIncluded);
+            return new ElectionFilter(Id, TypeIncluded, true, ProvinceIncluded, OrganizersIncluded);
         }
         public ElectionFilter AndProvinceIncluded()
         {
-            return new ElectionFilter(TypeIncluded, ACIncluded, true, OrganizersIncluded);
+            return new ElectionFilter(Id, TypeIncluded, ACIncluded, true, OrganizersIncluded);
         }
         public ElectionFilter AndOrganizersIncluded()
         {
-            return new ElectionFilter(TypeIncluded, ACIncluded, ProvinceIncluded, true);
+            return new ElectionFilter(Id, TypeIncluded, ACIncluded, ProvinceIncluded, true);
         }
 
         public bool Equals(ElectionFilter other)
         {
-            return TypeIncluded == other.TypeIncluded && ACIncluded == other.ACIncluded 
+            return Id == other.Id && TypeIncluded == other.TypeIncluded && ACIncluded == other.ACIncluded 
                 && ProvinceIncluded == other.ProvinceIncluded && OrganizersIncluded == other.OrganizersIncluded;
         }
 
@@ -61,7 +70,8 @@ namespace OV.MainDb.Election.Find.Models.Public
         {
             unchecked
             {
-                return HashCode.Combine(TypeIncluded.GetHashCode(), ACIncluded.GetHashCode(), ProvinceIncluded.GetHashCode(), OrganizersIncluded.GetHashCode());
+                return HashCode.Combine(Id.GetHashCode(), TypeIncluded.GetHashCode(), ACIncluded.GetHashCode(), 
+                    ProvinceIncluded.GetHashCode(), OrganizersIncluded.GetHashCode());
             }
         }
     }

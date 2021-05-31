@@ -77,6 +77,7 @@
                     <PasswordBox FontFamily="Helvetica"
                          FontWeight="SemiBold"
                          FontSize="20"
+                                 Name="passwordBox"
                                  PasswordChanged="PasswordBox_PasswordChanged"
                          HorizontalAlignment="Center"
                          Foreground="#FF0069C0"

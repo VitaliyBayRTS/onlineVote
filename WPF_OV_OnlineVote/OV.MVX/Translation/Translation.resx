@@ -135,6 +135,9 @@
   <data name="FirstSurNameIsEmpty" xml:space="preserve">
     <value>Campo 'Apellido' es obligatorio</value>
   </data>
+  <data name="IdIsEmpty" xml:space="preserve">
+    <value>Id no puede ser nulo</value>
+  </data>
   <data name="InitDateIsEmpty" xml:space="preserve">
     <value>Fecha de inicio es obligatoria</value>
   </data>

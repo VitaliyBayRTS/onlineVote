@@ -35,24 +35,25 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1">
-            <RadioButton Content="Usuario no autorizados" 
+            <RadioButton Content="Editar elección" 
                          Height="50"
                          Foreground="White"
                          FontSize="14"
                          Style="{StaticResource MenuButtonTheme}"
+                         Command="{Binding ElectionManagementViewCommand}"
                          IsChecked="true"/>
-            <RadioButton Content="Crear elección" 
+            <RadioButton Content="Añadir opción" 
                          Height="50"
                          Foreground="White"
                          FontSize="14"
                          Style="{StaticResource MenuButtonTheme}"
-                         Command="{Binding ElectionManagementViewCommand}"/>
-            <RadioButton Content="Todos elecciones" 
+                         Command="{Binding AddNewOptionViewCommand}"/>
+            <RadioButton Content="Información de votación" 
                          Height="50"
                          Foreground="White"
                          FontSize="14"
                          Style="{StaticResource MenuButtonTheme}"
-                         Command="{Binding AllElectionViewCommand}"/>
+                         Command="{Binding AddNewOptionViewCommand}"/>
             <RadioButton Content="Salir" 
                          Height="50"
                          Foreground="White"

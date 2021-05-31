@@ -14,50 +14,29 @@ using System.Runtime.InteropServices;
 using System.Security;
 using System.Threading;
 using System.Windows;
+using System.Windows.Controls;
 using static WPF_OV_OnlineVote.Helper.MessageHelper;
 
 namespace OV.MVX.ViewModels
 {
     public class OrganizerLoginViewModel : MvxViewModel, INotifyDataErrorInfo
     {
+        //!Commands
         public IMvxCommand LogInOrganizerCommand { get; set; }
 
+        //!Properties
+        private PasswordBox _pwdBox;
         private string _dni_nie;
         private string _referenceNumber;
         private SecureString _password;
         private IOrganizerService _organizerService;
+        private readonly Dictionary<string, List<string>> _propertyError = new Dictionary<string, List<string>>();
 
-        public OrganizerLoginViewModel()
-        {
-            _organizerService = new OrganizerService();
-            LogInOrganizerCommand = new MvxCommand(LogInOrganizer);
-        }
+        public bool HasErrors => _propertyError.Any();
 
-        private async void LogInOrganizer()
-        {
-            var errors = ValidateData();
-            bool isAnyError = errors.Count > 0 || HasErrors;
-            if (isAnyError)
-            {
-                VisualizeError(errors);
-            }
-            else
-            {
-                var encryptedPassword = EncrypedPassword();
-                var organizers = await _organizerService.FindAsync(OrganizerFilter.ByDNI_NIE_Password_ReferenceNumber(DNI_NIE, encryptedPassword, ReferenceNumber),
-                                                                new CancellationToken());
-                if (organizers.Count() > 0)
-                {
-                    Messenger.Default.Send(new NotificationMessage(MessageTypes.OrganiserLoginSuccess.ToString() + "=>" + organizers.FirstOrDefault().Id));
-                }
-                else
-                {
-                    MessageBox.Show("DNI/NIE, Contraseña o Número de referencía es incorecto", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
 
-            }
-        }
-
+        //!Properties
         public string DNI_NIE
         {
             get { return _dni_nie; }
@@ -86,7 +65,6 @@ namespace OV.MVX.ViewModels
                 RaisePropertyChanged(() => ReferenceNumber);
             }
         }
-
         public SecureString Password
         {
             get { return _password; }
@@ -103,7 +81,54 @@ namespace OV.MVX.ViewModels
         }
 
 
+        public OrganizerLoginViewModel(PasswordBox pwdBox)
+        {
+            _pwdBox = pwdBox;
+            _organizerService = new OrganizerService();
+            LogInOrganizerCommand = new MvxCommand(LogInOrganizer);
+        }
 
+
+        //!Methods
+        private async void LogInOrganizer()
+        {
+            var errors = ValidateData();
+            bool isAnyError = errors.Count > 0 || HasErrors;
+            if (isAnyError)
+            {
+                VisualizeError(errors);
+            }
+            else
+            {
+                var encryptedPassword = EncrypedPassword();
+                var organizers = await _organizerService.FindAsync(OrganizerFilter.ByDNI_NIE_Password_ReferenceNumber(DNI_NIE, encryptedPassword, ReferenceNumber),
+                                                                new CancellationToken());
+                if (organizers.Count() > 0)
+                {
+                    Messenger.Default.Send(new NotificationMessage(MessageTypes.OrganiserLoginSuccess.ToString() + "=>" + organizers.FirstOrDefault().Id + "|" + organizers.FirstOrDefault().tblElection_UID));
+                    DNI_NIE = "";
+                    ClearError(nameof(DNI_NIE));
+                    ReferenceNumber = "";
+                    ClearError(nameof(ReferenceNumber));
+                    Password.Clear();
+                    await RaisePropertyChanged(() => Password);
+                    ClearError(nameof(Password));
+                    _pwdBox.Clear();
+                }
+                else
+                {
+                    MessageBox.Show("DNI/NIE, Contraseña o Número de referencía es incorecto", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+            }
+        }
+
+        private string EncrypedPassword()
+        {
+            var password = SecureStringToString(Password);
+            var aesKey = ConfigurationManager.AppSettings.Get("AesKey");
+            return AES.EncryptString(aesKey, password);
+        }
         static String SecureStringToString(SecureString value)
         {
             IntPtr bstr = Marshal.SecureStringToBSTR(value);
@@ -118,12 +143,8 @@ namespace OV.MVX.ViewModels
             }
         }
 
-        private readonly Dictionary<string, List<string>> _propertyError = new Dictionary<string, List<string>>();
 
-        public bool HasErrors => _propertyError.Any();
-
-        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
-
+        //!Error handler
         public System.Collections.IEnumerable GetErrors(string propertyName)
         {
             return _propertyError.GetValueOrDefault(propertyName ?? "", null);
@@ -151,7 +172,6 @@ namespace OV.MVX.ViewModels
                 OnErrorChange(propertyName);
             }
         }
-
 
         private Dictionary<string, string> ValidateData()
         {
@@ -187,13 +207,6 @@ namespace OV.MVX.ViewModels
                 errorText += "- " + error.Key + " : " + errorItemText + "\r\n\r\n";
             }
             MessageBox.Show(errorText, "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-
-        private string EncrypedPassword()
-        {
-            var password = SecureStringToString(Password);
-            var aesKey = ConfigurationManager.AppSettings.Get("AesKey");
-            return AES.EncryptString(aesKey, password);
         }
     }
 }
