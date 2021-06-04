@@ -5,7 +5,11 @@
         IdIsEmpty,
         NameIsEmpty,
         DescriptionIsEmpty,
-        tblElection_UIDIsEmpty,
-        FailureInsertingIntoDataBase
+        TblElection_UIDIsEmpty,
+        TblUser_UIDIsEmpty,
+        TblOption_UIDIsEmpty,
+        RelationUserElectionAlreadyExists,
+        FailureInsertingIntoDataBase,
+        FailureIncreasingVotes
     }
 }

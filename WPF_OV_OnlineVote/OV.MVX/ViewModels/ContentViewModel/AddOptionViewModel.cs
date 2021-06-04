@@ -220,7 +220,7 @@ namespace OV.MVX.ViewModels.ContentViewModel
                 var errorText = "";
                 foreach (var error in failure.FailureReasons)
                 {
-                    errorText += "- " + Translation.Translation.ResourceManager.GetString(error.PropertyName.ToString()) + "\r\n\r\n";
+                    errorText += "- " + Translation.Translation.ResourceManager.GetString(error.Code.ToString()) + "\r\n\r\n";
                 }
                 MessageBox.Show(errorText, "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
             }

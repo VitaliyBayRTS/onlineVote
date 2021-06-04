@@ -4,6 +4,7 @@ using OV.MainDb.Election.Create.Models.Public;
 using OV.MainDb.Election.Delete;
 using OV.MainDb.Election.Find;
 using OV.MainDb.Election.Find.Models.Public;
+using OV.MainDb.Election.GetForVote;
 using OV.MainDb.Election.Models.Public;
 using OV.MainDb.Election.Modify;
 using OV.MainDb.Election.Modify.Models.Public;
@@ -20,6 +21,7 @@ namespace OV.MVX.Services.Election
         Task<IEnumerable<OV.Models.MainDb.Election.Election>> FindAsync(ElectionFilter filter, CancellationToken cancellationToken);
         Task<bool> DeleteAsync(int electionId, CancellationToken cancellationToken);
         Task<IModifyElectionResponse> ModifyAsync(ModifyElectionCandidate candidate, CancellationToken cancellationToken);
+        Task<IEnumerable<OV.Models.MainDb.Election.Election>> FindForVoteAsync(int tblUser_UID, CancellationToken cancellationToken);
     }
     public class ElectionService : IElectionService
     {
@@ -29,6 +31,7 @@ namespace OV.MVX.Services.Election
         private IFindElectionService _findElectionService;
         private IDeleteElectionService _deleteElectionService;
         private IModifyElectionService _modifyElectionService;
+        private IGetElectionForVoteDataService _getElectionForVoteDataService;
         public ElectionService()
         {
             var dbContextCreator = new CreateDbContext();
@@ -44,6 +47,8 @@ namespace OV.MVX.Services.Election
 
             var modifyElectionValidator = new ModifyElectionValidator();
             _modifyElectionService = new ModifyElectionService(new ModifyElectionDataService(_ovMainDbContextFactory), modifyElectionValidator);
+
+            _getElectionForVoteDataService = new GetElectionForVoteDataService(_ovMainDbContextFactory, new FindElectionDataService(_ovMainDbContextFactory));
         }
 
         public async Task<ICreateElectionResponse> CreateAsync(CandidateElection candidate, CancellationToken cancellationToken)
@@ -59,6 +64,11 @@ namespace OV.MVX.Services.Election
         public async Task<IEnumerable<OV.Models.MainDb.Election.Election>> FindAsync(ElectionFilter filter, CancellationToken cancellationToken)
         {
             return await _findElectionService.FindAsync(filter, cancellationToken);
+        }
+
+        public Task<IEnumerable<OV.Models.MainDb.Election.Election>> FindForVoteAsync(int tblUser_UID, CancellationToken cancellationToken)
+        {
+            return _getElectionForVoteDataService.FindForVoteAsync(tblUser_UID, cancellationToken);
         }
 
         public async Task<IModifyElectionResponse> ModifyAsync(ModifyElectionCandidate candidate, CancellationToken cancellationToken)

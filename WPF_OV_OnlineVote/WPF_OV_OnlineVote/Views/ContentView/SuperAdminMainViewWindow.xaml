@@ -48,7 +48,7 @@
                          FontSize="14"
                          Style="{StaticResource MenuButtonTheme}"
                          Command="{Binding ElectionManagementViewCommand}"/>
-            <RadioButton Content="Todos elecciones" 
+            <RadioButton Content="Todas elecciones" 
                          Height="50"
                          Foreground="White"
                          FontSize="14"

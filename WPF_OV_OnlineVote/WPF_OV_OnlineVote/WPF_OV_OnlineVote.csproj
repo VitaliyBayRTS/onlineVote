@@ -33,4 +33,11 @@
     <Resource Include="img\superAdminBg.jpg" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Page Update="Theme\MenuButtonThemeMarginNull.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
 </Project>

@@ -51,10 +51,12 @@ namespace WPF_OV_OnlineVote.Views
             else if(obj.Notification.Contains(MessageTypes.HabitantLoginSuccess.ToString()))
             {
                 var splitedNotification = obj.Notification.Split("=>");
-                var habitant_UID = splitedNotification[1];
+                var message = splitedNotification[1];
+                var habitant_UID = message.Split("|")[0];
+                var user_UID = message.Split("|")[1];
 
-                HabitantMainViewWindow habitantMainView = new HabitantMainViewWindow(Int32.Parse(habitant_UID));
-                //habitantMainView.LoadDataContext(Int32.Parse(habitant_UID));
+                HabitantMainViewWindow habitantMainView = new HabitantMainViewWindow();
+                habitantMainView.LoadDataContext(Int32.Parse(habitant_UID), Int32.Parse(user_UID));
                 Application.Current.Windows[0].Hide();
                 habitantMainView.ShowDialog();
             }
@@ -163,6 +165,11 @@ namespace WPF_OV_OnlineVote.Views
             singInGrid.LoadDataContext();
             initialViewContent.Children.Clear();
             initialViewContent.Children.Add(singInGrid);
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            //Application.Current.H;
         }
     }
 }

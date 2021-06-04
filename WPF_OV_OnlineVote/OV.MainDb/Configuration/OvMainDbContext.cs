@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using OV.MainDb.AutonomousCommunity.Models;
 using OV.MainDb.Election.Models;
 using OV.MainDb.Habitant.Models;
@@ -9,6 +10,7 @@ using OV.MainDb.Result.Models;
 using OV.MainDb.SuperAdmin.Models;
 using OV.MainDb.Type.Models;
 using OV.MainDb.User.Models;
+using OV.MainDb.UserElection.Models;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -28,8 +30,10 @@ namespace OV.MainDb.Configuration
         DbSet<PersistedType> Types { get; set; }
         DbSet<PersistedResult> Results { get; set; }
         DbSet<PersistedOption> Options { get; set; }
+        DbSet<PersistedUserElection> UserElections { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
+        DatabaseFacade Database { get; }
     }
     public class OvMainDbContext : DbContext, IOvMainDbContext
     {
@@ -47,6 +51,7 @@ namespace OV.MainDb.Configuration
         public DbSet<PersistedType> Types { get; set; }
         public DbSet<PersistedResult> Results { get; set; }
         public DbSet<PersistedOption> Options { get; set; }
+        public DbSet<PersistedUserElection> UserElections { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -60,6 +65,7 @@ namespace OV.MainDb.Configuration
             modelBuilder.ApplyConfiguration(new TypeConfiguration());
             modelBuilder.ApplyConfiguration(new ResultConfiguration());
             modelBuilder.ApplyConfiguration(new OptionConfiguration());
+            modelBuilder.ApplyConfiguration(new UserElectionConfiguration());
         }
     }
 }

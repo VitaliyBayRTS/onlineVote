@@ -7,6 +7,7 @@ namespace OV.MVX.ViewModels.ContentViewModel
     {
         //!Commands
         public IMvxCommand SeeAllElectionsViewCommand { get; set; }
+        public IMvxCommand RealizVotationViewCommand { get; set; }
 
         //!Private variables
         private object _currentView;
@@ -22,18 +23,22 @@ namespace OV.MVX.ViewModels.ContentViewModel
             }
         }
         public SeeAllElectionViewModel SeeAllElectionsVM { get; set; }
+        public RealizeVotationViewModel RealizeVotationVM { get; set; }
         public int Habitant_UID { get; set; }
+        public int User_UID { get; set; }
 
 
-        public MainHabitantViewModel(int tblHabitant_UID)
+        public MainHabitantViewModel(int tblHabitant_UID, int user_UID)
         {
             Habitant_UID = tblHabitant_UID;
+            User_UID = user_UID;
             SeeAllElectionsVM = new SeeAllElectionViewModel();
+            RealizeVotationVM = new RealizeVotationViewModel();
 
             CurrentView = SeeAllElectionsVM;
 
             SeeAllElectionsViewCommand = new MvxCommand(OpenSeeAllElectionsVM);
-            //AddNewOptionViewCommand = new MvxCommand(OpenAddNewOptionVM);
+            RealizVotationViewCommand = new MvxCommand(RealizeVotation);
         }
 
 
@@ -41,13 +46,14 @@ namespace OV.MVX.ViewModels.ContentViewModel
 
         private async void OpenSeeAllElectionsVM()
         {
-            //await ElectionManagementVM.LoadData();
+            await SeeAllElectionsVM.LoadData();
             CurrentView = SeeAllElectionsVM;
         }
-        //private async void OpenAddNewOptionVM()
-        //{
-        //    await AddNewOptionVC.LoadData();
-        //    CurrentView = AddNewOptionVC;
-        //}
+
+        private async void RealizeVotation()
+        {
+            await RealizeVotationVM.LoadData(Habitant_UID, User_UID);
+            CurrentView = RealizeVotationVM;
+        }
     }
 }

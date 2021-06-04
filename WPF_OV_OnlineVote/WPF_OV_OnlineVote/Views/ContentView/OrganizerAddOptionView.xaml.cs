@@ -48,5 +48,10 @@ namespace WPF_OV_OnlineVote.Views.ContentView
             nameOptionTB.Visibility = Visibility.Collapsed;
             descriptionOptionTB.Visibility = Visibility.Collapsed;
         }
+
+        private void modifyOptionBtn_Click(object sender, RoutedEventArgs e)
+        {
+            disableEditMode();
+        }
     }
 }

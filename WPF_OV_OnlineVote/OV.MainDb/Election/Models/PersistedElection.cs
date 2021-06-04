@@ -6,6 +6,7 @@ using OV.MainDb.Organizer.Models;
 using OV.MainDb.Province.Models;
 using OV.MainDb.Result.Models;
 using OV.MainDb.Type.Models;
+using OV.MainDb.UserElection.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -32,6 +33,7 @@ namespace OV.MainDb.Election.Models
         public PersistedResult? Result { get; set; }
         public ICollection<PersistedOption>? Options { get; set; }
         public ICollection<PersistedOrganizer> Organizers { get; set; }
+        public IEnumerable<PersistedUserElection>? UserElection { get; set; }
 
         public OV.Models.MainDb.Election.Election ToElection()
         {
@@ -64,6 +66,7 @@ namespace OV.MainDb.Election.Models
 
                 builder.HasOne(e => e.Type).WithOne(t => t.Election).HasForeignKey<PersistedElection>(e => e.tblType_UID);
                 builder.HasMany(e => e.Organizers).WithOne(o => o.Election).HasForeignKey(o => o.tblElection_UID);
+                builder.HasMany(e => e.UserElection).WithOne(ue => ue.Election).HasForeignKey(ue => ue.TblElection_UID);
                 builder.HasOne(e => e.Result).WithOne(t => t.Election).HasForeignKey<PersistedElection>(e => e.tblType_UID);
                 builder.HasOne(e => e.Province).WithMany(p => p.Elections).HasForeignKey(e => e.tblProvince_UID);
                 builder.HasOne(e => e.AutonomousCommunity).WithMany(ac => ac.Elections).HasForeignKey(e => e.tblAutonomousCommunity_UID);

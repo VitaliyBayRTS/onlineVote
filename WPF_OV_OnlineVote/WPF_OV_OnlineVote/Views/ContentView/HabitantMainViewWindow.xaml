@@ -40,14 +40,14 @@
                          Foreground="White"
                          FontSize="14"
                          Style="{StaticResource MenuButtonTheme}"
-                         Command="{Binding ElectionManagementViewCommand}"
+                         Command="{Binding SeeAllElectionsViewCommand}"
                          IsChecked="true"/>
             <RadioButton Content="Votar" 
                          Height="50"
                          Foreground="White"
                          FontSize="14"
                          Style="{StaticResource MenuButtonTheme}"
-                         Command="{Binding AddNewOptionViewCommand}"/>
+                         Command="{Binding RealizVotationViewCommand}"/>
             <RadioButton Content="Salir" 
                          Height="50"
                          Foreground="White"

@@ -24,9 +24,9 @@ namespace OV.MainDb.Election.Find
 
         public async Task<IEnumerable<PersistedElection>> FindAsync(ElectionFilter filter, CancellationToken cancellationToken)
         {
-            var _ovMainDbContext = _ovMainDbContextFactory.Create();
+            var ovMainDbContext = _ovMainDbContextFactory.Create();
 
-            var elections = _ovMainDbContext.Elections
+            var elections = ovMainDbContext.Elections
                                 .AsNoTracking()
                                 .Include(e => e.Type)
                                 .Include(e => e.Province)

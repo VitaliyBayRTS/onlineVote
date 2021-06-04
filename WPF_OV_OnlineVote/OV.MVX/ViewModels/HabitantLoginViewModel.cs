@@ -86,7 +86,7 @@ namespace OV.MVX.ViewModels
                 var habitant = await _habitantService.FindAsync(HabitantFilter.ByDNI_NIEAndPassword(DNI_NIE, encryptedPassword), new CancellationToken());
                 if(habitant.Count() > 0)
                 {
-                    Messenger.Default.Send(new NotificationMessage(MessageTypes.HabitantLoginSuccess.ToString() + "=>" + habitant.FirstOrDefault().Id));
+                    Messenger.Default.Send(new NotificationMessage(MessageTypes.HabitantLoginSuccess.ToString() + "=>" + habitant.FirstOrDefault().Id + "|" + habitant.FirstOrDefault().tblUser_UID));
                     DNI_NIE = "";
                     ClearError(nameof(DNI_NIE));
                     _pwdBox.Clear();

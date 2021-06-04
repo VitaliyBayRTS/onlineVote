@@ -4,7 +4,9 @@ using OV.MainDb.Habitant.Models;
 using OV.MainDb.Organizer.Models;
 using OV.MainDb.Province.Models;
 using OV.MainDb.SuperAdmin.Models;
+using OV.MainDb.UserElection.Models;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OV.MainDb.User.Models
@@ -29,6 +31,7 @@ namespace OV.MainDb.User.Models
         public PersistedHabitant? Habitant { get; set; }
         public PersistedOrganizer? Organizer { get; set; }
         public PersistedSuperAdmin? SuperAdmin { get; set; }
+        public IEnumerable<PersistedUserElection>? UserElection { get; set; }
 
         public OV.Models.MainDb.User.User ToUser()
         {
@@ -61,6 +64,7 @@ namespace OV.MainDb.User.Models
             builder.HasOne(u => u.Organizer).WithOne(o => o.User).HasForeignKey<PersistedOrganizer>(o => o.tblUser_UID);
             builder.HasOne(u => u.SuperAdmin).WithOne(sa => sa.User).HasForeignKey<PersistedSuperAdmin>(o => o.tblUser_UID);
             builder.HasOne(u => u.Province).WithMany(p => p.Users).HasForeignKey(u => u.TblProvince_UID);
+            builder.HasMany(u => u.UserElection).WithOne(ue => ue.User).HasForeignKey(ue => ue.TblUser_UID);
         }
     }
 }

@@ -21,8 +21,7 @@ namespace OV.MainDb.User.Create
 
         public async Task<PersistedUser> CreateAsync(CandidateUser candidate, CancellationToken cancellationToken)
         {
-
-            var _ovMainDbContext = _ovMainDbContextFactory.Create();
+            var ovMainDbContext = _ovMainDbContextFactory.Create();
 
             PersistedUser user = new PersistedUser()
             {
@@ -38,9 +37,9 @@ namespace OV.MainDb.User.Create
                 DNI_NIE = candidate.DNI_NIE
             };
 
-            var newUser = _ovMainDbContext.Users.Add(user);
+            var newUser = ovMainDbContext.Users.Add(user);
             
-            await _ovMainDbContext.SaveChangesAsync(cancellationToken);
+            await ovMainDbContext.SaveChangesAsync(cancellationToken);
 
             return newUser.Entity;
 

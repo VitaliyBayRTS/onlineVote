@@ -11,11 +11,15 @@ namespace WPF_OV_OnlineVote.Views.ContentView
     public partial class HabitantMainViewWindow : MvxWindow
     {
         private MainHabitantViewModel _mainHabitantViewModel;
-        public HabitantMainViewWindow(int tblhabitant_UID)
+        public HabitantMainViewWindow()
         {
-            _mainHabitantViewModel = new MainHabitantViewModel(tblhabitant_UID);
-            //await _mainHabitantViewModel.ElectionManagementVM.LoadData();
             InitializeComponent();
+        }
+        public async void LoadDataContext(int tblhabitant_UID, int user_UID)
+        {
+            _mainHabitantViewModel = new MainHabitantViewModel(tblhabitant_UID, user_UID);
+            await _mainHabitantViewModel.SeeAllElectionsVM.LoadData();
+            DataContext = _mainHabitantViewModel;
         }
 
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)

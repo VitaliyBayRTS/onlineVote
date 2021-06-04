@@ -16,7 +16,7 @@ namespace OV.MainDb.Option.Create
 
             RuleFor(candidate => candidate.tblElection_UID)
                 .NotEmpty()
-                .WithErrorCode(OptionFailureReason.tblElection_UIDIsEmpty.ToString());
+                .WithErrorCode(OptionFailureReason.TblElection_UIDIsEmpty.ToString());
 
             RuleFor(candidate => candidate.Description)
                 .NotEmpty()

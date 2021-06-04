@@ -21,7 +21,9 @@ namespace OV.MVX.Models
         public string Description { get; set; }
         public string Name { get; set; }
         public string AutonomousCommunityName { get; set; }
+        public int? AutonomousCommunityId { get; set; }
         public string ProvinceName { get; set; }
+        public int? ProvinceId { get; set; }
         public IEnumerable<OV.Models.MainDb.Organizer.Organizer> Organizers { get; set; }
         public int OrganizersCount { get; set; }
         public string CurrentState { get; set; }
@@ -37,7 +39,9 @@ namespace OV.MVX.Models
             Description = election.Description;
             Name = election.Name;
             AutonomousCommunityName = election?.AutonomousCommunity?.Name;
+            AutonomousCommunityId = election?.tblAutonomousCommunity_UID;
             ProvinceName = election?.Province?.Name;
+            ProvinceId = election?.tblProvince_UID;
             Organizers = election?.Organizers;
             OrganizersCount = election?.Organizers.ToList().Count ?? 0;
             SetElectionState(election.InitDate, election.FinalizeDate);

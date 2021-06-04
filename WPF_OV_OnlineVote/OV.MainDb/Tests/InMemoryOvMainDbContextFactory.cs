@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using OV.MainDb.Configuration;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace OV.MainDb.Tests
         {
             var optionsBuilder = new DbContextOptionsBuilder<OvMainDbContext>();
             optionsBuilder.UseInMemoryDatabase(_dbName);
+            optionsBuilder.ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning));
             return new OvMainDbContext(optionsBuilder.Options);
         }
     }

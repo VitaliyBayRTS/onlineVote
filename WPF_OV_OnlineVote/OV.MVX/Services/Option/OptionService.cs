@@ -4,9 +4,12 @@ using OV.MainDb.Option.Create.Models.Public;
 using OV.MainDb.Option.Delete;
 using OV.MainDb.Option.Find;
 using OV.MainDb.Option.Find.Models.Public;
+using OV.MainDb.Option.IncreaseVotes;
+using OV.MainDb.Option.IncreaseVotes.Models.Public;
 using OV.MainDb.Option.Models.Public;
 using OV.MainDb.Option.Modify;
 using OV.MainDb.Option.Modify.Models.Public;
+using OV.MainDb.UserElection.Find;
 using OV.MVX.Helpers;
 using System.Collections.Generic;
 using System.Threading;
@@ -20,6 +23,7 @@ namespace OV.MVX.Services.Option
         Task<bool> DeleteAsync(int optionId, CancellationToken cancellationToken);
         Task<ICreateOptionResponse> CreateAsync(CandidateOption candidate, CancellationToken cancellationToken);
         Task<IModifyOptionResponse> ModifyAsync(ModifyOptionCandidate candidate, CancellationToken cancellationToken);
+        Task<IIncreaseVotesResponse> IncreaseVote(IncreaseVotesRequest request, CancellationToken cancellationToken);
     }
 
     public class OptionService : IOptionService
@@ -29,6 +33,7 @@ namespace OV.MVX.Services.Option
         private IDeleteOptionService _deleteOrganizerService;
         private ICreateOptionService _createOrganizerService;
         private IModifyOptionService _modifyOrganizerService;
+        private IIncreaseVotesService _increaseVotesService;
 
         public OptionService()
         {
@@ -48,6 +53,10 @@ namespace OV.MVX.Services.Option
             var modifyOptionDataService = new ModifyOptionDataService(_ovMainDbContextFactory);
             var modifyOptionvalidator = new ModifyOptionValidator();
             _modifyOrganizerService = new ModifyOptionService(modifyOptionDataService, modifyOptionvalidator);
+
+            var increaseOvMainDbContext = _ovMainDbContextFactory.Create();
+            IIncreaseVotesValidator increaseVotesValidator = new IncreaseVotesValidator(new FindUserElectionDataService(_ovMainDbContextFactory));
+            _increaseVotesService = new IncreaseVotesService(new IncreaseVotesDataService(increaseOvMainDbContext), increaseVotesValidator);
         }
 
         public async Task<ICreateOptionResponse> CreateAsync(CandidateOption candidate, CancellationToken cancellationToken)
@@ -63,6 +72,11 @@ namespace OV.MVX.Services.Option
         public async Task<IEnumerable<OV.Models.MainDb.Option.Option>> FindAsync(OptionFilter filter, CancellationToken cancellationToken)
         {
             return await _findOrganizerService.FindAsync(filter, cancellationToken);
+        }
+
+        public async Task<IIncreaseVotesResponse> IncreaseVote(IncreaseVotesRequest request, CancellationToken cancellationToken)
+        {
+            return await _increaseVotesService.IncreaseVote(request, cancellationToken);
         }
 
         public async Task<IModifyOptionResponse> ModifyAsync(ModifyOptionCandidate candidate, CancellationToken cancellationToken)

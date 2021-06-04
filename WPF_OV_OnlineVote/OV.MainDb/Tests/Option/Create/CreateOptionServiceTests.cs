@@ -112,7 +112,7 @@ namespace OV.MainDb.Tests.Option.Create
                 //Assert
                 if (result is CreateOptionFailure failure)
                 {
-                    failure.FailureReasons[0].Code.ToString().Should().Be(OptionFailureReason.tblElection_UIDIsEmpty.ToString());
+                    failure.FailureReasons[0].Code.ToString().Should().Be(OptionFailureReason.TblElection_UIDIsEmpty.ToString());
                 }
             }
 

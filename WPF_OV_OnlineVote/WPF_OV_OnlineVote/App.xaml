@@ -12,6 +12,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="./Theme/ButtonTheme.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="./Theme/MenuButtonTheme.xaml"/>
+                <ResourceDictionary Source="./Theme/MenuButtonThemeMarginNull.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type viewModel:UnautorizedUsersViewModel}">
@@ -28,6 +29,21 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewModel:AddOptionViewModel}">
                 <view:OrganizerAddOptionView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:SeeAllElectionViewModel}">
+                <view:HabitantSeeAllElectionView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:VisualizeElectionDataViewModel}">
+                <view:VisualizeElectionDataView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:VisualizeOptionDataViewModel}">
+                <view:VisualizeOptionDataView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:RealizeVotationViewModel}">
+                <view:HabitantRealizeVotationView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:VoteByOptionViewModel}">
+                <view:VoteByOptionView/>
             </DataTemplate>
             
         </ResourceDictionary>
