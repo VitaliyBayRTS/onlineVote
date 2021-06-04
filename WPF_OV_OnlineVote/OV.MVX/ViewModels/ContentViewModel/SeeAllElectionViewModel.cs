@@ -115,15 +115,32 @@ namespace OV.MVX.ViewModels.ContentViewModel
             {
                 SetProperty(ref _selectedState, value);
                 RaisePropertyChanged(() => SelectedState);
-                if (value != null)
-                {
-                    Elections = new BindableCollection<SuperAdminAllElectionModel>(_allElections
-                        .Where(ae => ae.CurrentState == value && ae.AutonomousCommunityId == AutonomousCommunity?.Id
-                        && ae.ProvinceId == Province?.Id));
-                }
-                RaisePropertyChanged(() => Elections);
+                FilterElection();
             }
         }
+
+        private void FilterElection()
+        {
+            IEnumerable<SuperAdminAllElectionModel> electionsThatMatchFilter = _allElections;
+            if (AutonomousCommunity != null)
+            {
+                electionsThatMatchFilter = electionsThatMatchFilter.Where(ae => ae.AutonomousCommunityId == AutonomousCommunity?.Id);
+            }
+
+            if(Province != null)
+            {
+                electionsThatMatchFilter = electionsThatMatchFilter.Where(ae => ae.ProvinceId == Province.Id);
+            }
+
+            if(SelectedState != null)
+            {
+                electionsThatMatchFilter = electionsThatMatchFilter.Where(ae => ae.CurrentState == SelectedState.ToString());
+            }
+
+            Elections = new BindableCollection<SuperAdminAllElectionModel>(electionsThatMatchFilter);
+            RaisePropertyChanged(() => Elections);
+        }
+
         public ObservableCollection<AutonomousCommunity> AllAutonomousCommunities
         {
             get { return _allAutonomousCommunities; }
@@ -139,11 +156,9 @@ namespace OV.MVX.ViewModels.ContentViewModel
                 if (value != null)
                 {
                     _provincesOfCommunity = new ObservableCollection<Province>(value?.Provinces.OrderBy(p => p.Name));
-                    Elections = new BindableCollection<SuperAdminAllElectionModel>(_allElections
-                        .Where(ae => ae.AutonomousCommunityId == value.Id && ae.CurrentState == SelectedState));
                 }
                 RaisePropertyChanged(() => ProvincesOfCommunity);
-                RaisePropertyChanged(() => Elections);
+                FilterElection();
             }
         }
         public ObservableCollection<Province> ProvincesOfCommunity
@@ -160,12 +175,8 @@ namespace OV.MVX.ViewModels.ContentViewModel
             set
             {
                 SetProperty(ref _province, value);
-                if(value != null)
-                {
-                    Elections = new BindableCollection<SuperAdminAllElectionModel>(_allElections.Where(ae => ae.ProvinceId == value.Id && ae.CurrentState == SelectedState));
-                }
                 RaisePropertyChanged(() => Province);
-                RaisePropertyChanged(() => Elections);
+                FilterElection();
             }
         }
         public object CurrentDetailsView 
