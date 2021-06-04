@@ -14,10 +14,6 @@ namespace OV.MainDb.Election.Create
                 .NotEmpty()
                 .WithErrorCode(ElectionFailureReason.NameIsEmpty.ToString());
 
-            RuleFor(candidate => candidate.Description)
-                .NotEmpty()
-                .WithErrorCode(ElectionFailureReason.Description.ToString());
-
             RuleFor(candidate => candidate.InitDate)
                 .NotEmpty()
                 .WithErrorCode(ElectionFailureReason.InitDateIsEmpty.ToString());

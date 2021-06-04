@@ -66,6 +66,8 @@ namespace OV.MainDb.Tests.UserElection.Create
                 ICreateUserElectionResponse result = await _createUserElectionService.CreateAsync(candidate, cancellationToken);
 
                 //Assert
+                var isFailure = result is CreateUserElectionFailure;
+                isFailure.Should().BeTrue();
                 if (result is CreateUserElectionFailure failure)
                 {
                     failure.FailureReasons[0].Code.ToString().Should().Be(UserElectionFailureReason.tblUser_UIDIsEmpty.ToString());
@@ -85,6 +87,8 @@ namespace OV.MainDb.Tests.UserElection.Create
                 ICreateUserElectionResponse result = await _createUserElectionService.CreateAsync(candidate, cancellationToken);
 
                 //Assert
+                var isFailure = result is CreateUserElectionFailure;
+                isFailure.Should().BeTrue();
                 if (result is CreateUserElectionFailure failure)
                 {
                     failure.FailureReasons[0].Code.ToString().Should().Be(UserElectionFailureReason.tblElection_UIDIsEmpty.ToString());

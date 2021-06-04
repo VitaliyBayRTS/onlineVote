@@ -121,6 +121,8 @@ namespace OV.MainDb.Tests.User.Create
                 ICreateUserResponse result = await _createUserService.CreateAsync(candidate, cancellationToken);
 
                 //Assert
+                var isFailure = result is CreateUserFailure;
+                isFailure.Should().BeTrue();
                 if (result is CreateUserFailure failure)
                 {
                     failure.FailureReasons[0].Code.ToString().Should().Be(UserFailureReason.FirstNameIsEmpty.ToString());
@@ -160,6 +162,8 @@ namespace OV.MainDb.Tests.User.Create
                 ICreateUserResponse result = await _createUserService.CreateAsync(candidate, cancellationToken);
 
                 //Assert
+                var isFailure = result is CreateUserFailure;
+                isFailure.Should().BeTrue();
                 if (result is CreateUserFailure failure)
                 {
                     failure.FailureReasons[0].Code.ToString().Should().Be(UserFailureReason.FirstSurNameIsEmpty.ToString());
@@ -200,6 +204,8 @@ namespace OV.MainDb.Tests.User.Create
                 ICreateUserResponse result = await _createUserService.CreateAsync(candidate, cancellationToken);
 
                 //Assert
+                var isFailure = result is CreateUserFailure;
+                isFailure.Should().BeTrue();
                 if (result is CreateUserFailure failure)
                 {
                     failure.FailureReasons[0].Code.ToString().Should().Be(UserFailureReason.PasswordIsEmpty.ToString());
@@ -238,6 +244,8 @@ namespace OV.MainDb.Tests.User.Create
                 ICreateUserResponse result = await _createUserService.CreateAsync(candidate, cancellationToken);
 
                 //Assert
+                var isFailure = result is CreateUserFailure;
+                isFailure.Should().BeTrue();
                 if (result is CreateUserFailure failure)
                 {
                     failure.FailureReasons[0].Code.ToString().Should().Be(UserFailureReason.DateOfBirthIsEmpty.ToString());
@@ -270,6 +278,8 @@ namespace OV.MainDb.Tests.User.Create
                 ICreateUserResponse result = await _createUserService.CreateAsync(candidate, cancellationToken);
 
                 //Assert
+                var isFailure = result is CreateUserFailure;
+                isFailure.Should().BeTrue();
                 if (result is CreateUserFailure failure)
                 {
                     failure.FailureReasons[0].Code.ToString().Should().Be(UserFailureReason.ProvinceIsEmpty.ToString());
@@ -309,6 +319,8 @@ namespace OV.MainDb.Tests.User.Create
                 ICreateUserResponse result = await _createUserService.CreateAsync(candidate, cancellationToken);
 
                 //Assert
+                var isFailure = result is CreateUserFailure;
+                isFailure.Should().BeTrue();
                 if (result is CreateUserFailure failure)
                 {
                     failure.FailureReasons[0].Code.ToString().Should().Be(UserFailureReason.EmailIsEmpty.ToString());
@@ -348,6 +360,8 @@ namespace OV.MainDb.Tests.User.Create
                 ICreateUserResponse result = await _createUserService.CreateAsync(candidate, cancellationToken);
 
                 //Assert
+                var isFailure = result is CreateUserFailure;
+                isFailure.Should().BeTrue();
                 if (result is CreateUserFailure failure)
                 {
                     failure.FailureReasons[0].Code.ToString().Should().Be(UserFailureReason.PhoneNumberIsEmpty.ToString());
@@ -384,6 +398,8 @@ namespace OV.MainDb.Tests.User.Create
                 ICreateUserResponse result = await _createUserService.CreateAsync(candidate, cancellationToken);
 
                 //Assert
+                var isFailure = result is CreateUserFailure;
+                isFailure.Should().BeTrue();
                 if (result is CreateUserFailure failure)
                 {
                     failure.FailureReasons[0].Code.ToString().Should().Be(UserFailureReason.ProvinceDoesNotExist.ToString());

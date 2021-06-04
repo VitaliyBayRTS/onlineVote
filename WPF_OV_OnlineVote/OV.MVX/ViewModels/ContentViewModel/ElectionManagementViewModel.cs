@@ -12,6 +12,7 @@ using OV.Models.MainDb.AutonomousCommunity;
 using OV.Models.MainDb.Election;
 using OV.Models.MainDb.Province;
 using OV.Models.MainDb.Type;
+using OV.MVX.Helpers;
 using OV.MVX.Models;
 using OV.MVX.Services.AutonomousCommunity;
 using OV.MVX.Services.Election;
@@ -56,7 +57,7 @@ namespace OV.MVX.ViewModels.ContentViewModel
         private string _description;
         private ObservableCollection<AutonomousCommunity> _allAutonomousCommunities = new ObservableCollection<AutonomousCommunity>();
         private ObservableCollection<Province> _provincesOfCommunity = new ObservableCollection<Province>();
-        private DateTime _initDate = DateTime.Today.AddDays(1);
+        private DateTime _initDate = DateTime.Today.AddDays(7);
         private DateTime _finishDate = DateTime.Today.AddDays(1);
         private string _initDateString = DateTime.Today.ToString("dd/MM/yyyy");
         private string _finishDateString = DateTime.Today.ToString("dd/MM/yyyy");
@@ -245,7 +246,8 @@ namespace OV.MVX.ViewModels.ContentViewModel
         }
         public bool HasErrors => _propertyError.Any();
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
-        public DateTime CurrentDateTime { get; set; } = DateTime.Today;
+        public DateTime StartDateTime { get; set; } = DateTime.Today.AddDays(7);
+        public DateTime FinishElectionDateTime { get { return InitDate.AddDays(1); } }
         public DateTime InitDate
         {
             get { return _initDate; }
@@ -559,6 +561,7 @@ namespace OV.MVX.ViewModels.ContentViewModel
             var autonomousCommunities = await _autonomousCommunityService.FindAsync(AutonomousCommunityFilter.All.AndIncludeProvince(), new CancellationToken());
             AllAutonomousCommunities = new ObservableCollection<AutonomousCommunity>(autonomousCommunities);
             var result = await _userService.FindAsync(UserFilter.ByAutorized().AndByIncludeProvince().AndByIncludeAC(), new CancellationToken());
+            result = result.Where(u => DocumentValidation.GetDocumentType(u.DNI_NIE) == "DNI");
             var resultList = result.ToList();
             List<AutorizedUserModel> users = new List<AutorizedUserModel>();
             foreach (var item in resultList)

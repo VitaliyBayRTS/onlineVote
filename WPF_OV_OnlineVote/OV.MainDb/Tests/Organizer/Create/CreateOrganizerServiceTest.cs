@@ -66,6 +66,8 @@ namespace OV.MainDb.Tests.Organizer.Create
                 var result = await _createOrganizerService.CreateAsync(candidate, cancellationToken);
 
                 //Assert
+                var isFailure = result is CreateOrganizerFailure;
+                isFailure.Should().BeTrue();
                 if (result is CreateOrganizerFailure failure)
                 {
                     failure.FailureReasons[0].Code.ToString().Should().Be(OrganizerFailureReason.tblUser_UIDIsEmpty.ToString());
@@ -86,6 +88,8 @@ namespace OV.MainDb.Tests.Organizer.Create
                 var result = await _createOrganizerService.CreateAsync(candidate, cancellationToken);
 
                 //Assert
+                var isFailure = result is CreateOrganizerFailure;
+                isFailure.Should().BeTrue();
                 if (result is CreateOrganizerFailure failure)
                 {
                     failure.FailureReasons[0].Code.ToString().Should().Be(OrganizerFailureReason.tblElection_UIDIsEmpty.ToString());
@@ -106,6 +110,8 @@ namespace OV.MainDb.Tests.Organizer.Create
                 var result = await _createOrganizerService.CreateAsync(candidate, cancellationToken);
 
                 //Assert
+                var isFailure = result is CreateOrganizerFailure;
+                isFailure.Should().BeTrue();
                 if (result is CreateOrganizerFailure failure)
                 {
                     failure.FailureReasons[0].Code.ToString().Should().Be(OrganizerFailureReason.ReferenceNumberIsEmpty.ToString());

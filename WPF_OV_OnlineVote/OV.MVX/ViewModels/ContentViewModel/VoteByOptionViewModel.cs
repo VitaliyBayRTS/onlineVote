@@ -27,6 +27,7 @@ namespace OV.MVX.ViewModels.ContentViewModel
         private OptionModel _selectedOption;
         private static string _alreadyMade = "Usted ya ha votado";
         private static string _canVote = "Votar por esta opción";
+        private static string _zeroOption = "No hay opciones";
         private string _btnText = _canVote;
         private bool _isBtnEnable = true;
 
@@ -152,6 +153,11 @@ namespace OV.MVX.ViewModels.ContentViewModel
                 optionModels.Add(optionModel);
             }
             Options = new BindableCollection<OptionModel>(optionModels);
+            if(Options.Count == 0)
+            {
+                IsBtnEnable = false;
+                BtnText = _zeroOption;
+            }
         }
     }
 }

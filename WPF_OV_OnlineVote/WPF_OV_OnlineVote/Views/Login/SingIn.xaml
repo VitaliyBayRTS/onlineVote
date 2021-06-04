@@ -333,6 +333,7 @@
                     <DatePicker Name="dateOfBirth" FontFamily="Helvetica"
                          SelectedDate="{Binding Path=DateOfBirth, Mode=TwoWay}"  
                          Text="{Binding Path=DateOfBirthString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         DisplayDateEnd="{Binding EndDateTime}"
                          FontWeight="Light"
                          FontSize="17"
                          HorizontalAlignment="Center"

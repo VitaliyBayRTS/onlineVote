@@ -28,8 +28,10 @@ namespace OV.MVX.ViewModels
 {
     public class SingupViewModel : MvxViewModel, INotifyDataErrorInfo
     {
+        //!Commands
         public IMvxCommand CreateUserCommand { get; set; }
 
+        //!Private variables
         private string _firstName;
         private string _secondName;
         private string _firstSurName;
@@ -46,6 +48,8 @@ namespace OV.MVX.ViewModels
         private SecureString _password;
         private SecureString _confirmPassword;
 
+
+        //!Properties
         public string FirstName
         {
            
@@ -80,7 +84,6 @@ namespace OV.MVX.ViewModels
                 RaisePropertyChanged(() => SecondName);
             }
         }
-
         private void ClearError(string propertyName)
         {
             if (_propertyError.Remove(propertyName))
@@ -88,7 +91,7 @@ namespace OV.MVX.ViewModels
                 OnErrorChange(propertyName);
             }
         }
-
+        public DateTime EndDateTime { get; set; } = DateTime.Today;
         public string FirstSurName
         {
             get { return _firstSurName; }
@@ -262,6 +265,8 @@ namespace OV.MVX.ViewModels
             CreateUserCommand = new MvxCommand(createUser);
         }
 
+
+        //!Methods
         public async void LoadData()
         {
             var autonomousCommunities = await _autonomousCommunityService.FindAsync(AutonomousCommunityFilter.All.AndIncludeProvince(), new CancellationToken());

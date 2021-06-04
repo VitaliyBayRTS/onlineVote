@@ -47,7 +47,7 @@ namespace OV.MainDb.Tests.Election.Create
                     Code = "N",
                     Description = "Desc"
                 });
-                _inMemoryOvMainDbContext.SaveChangesAsync(cancellationToken);
+                await _inMemoryOvMainDbContext.SaveChangesAsync(cancellationToken);
                 CandidateElection candidateElection = new CandidateElection()
                 {
                     Name = "TestName",
@@ -75,7 +75,7 @@ namespace OV.MainDb.Tests.Election.Create
                     Code = "N",
                     Description = "Desc"
                 });
-                _inMemoryOvMainDbContext.SaveChangesAsync(cancellationToken);
+                await _inMemoryOvMainDbContext.SaveChangesAsync(cancellationToken);
                 CandidateElection candidateElection = new CandidateElection()
                 {
                     Description = "TestDesc",
@@ -88,38 +88,11 @@ namespace OV.MainDb.Tests.Election.Create
                 ICreateElectionResponse result = await _createElectionService.CreateAsync(candidateElection, cancellationToken);
 
                 //Assert
+                var isFailure = result is CreateElectionFailure;
+                isFailure.Should().BeTrue();
                 if (result is CreateElectionFailure failure)
                 {
                     failure.FailureReasons[0].Code.ToString().Should().Be(ElectionFailureReason.NameIsEmpty.ToString());
-                }
-            }
-
-            [Fact]
-            public async void ShouldReturnFailureResponseIfDescriptionIsEmpty()
-            {
-                //Arrange
-                var type = _inMemoryOvMainDbContext.Types.Add(new PersistedType()
-                {
-                    Name = "Name",
-                    Code = "N",
-                    Description = "Desc"
-                });
-                _inMemoryOvMainDbContext.SaveChangesAsync(cancellationToken);
-                CandidateElection candidateElection = new CandidateElection()
-                {
-                    Name = "TestName",
-                    InitDate = DateTime.Today,
-                    FinalizeDate = DateTime.Today.AddDays(1),
-                    tblType_UID = type.Entity.Id
-                };
-
-                //Act
-                ICreateElectionResponse result = await _createElectionService.CreateAsync(candidateElection, cancellationToken);
-
-                //Assert
-                if (result is CreateElectionFailure failure)
-                {
-                    failure.FailureReasons[0].Code.ToString().Should().Be(ElectionFailureReason.Description.ToString());
                 }
             }
 
@@ -133,7 +106,7 @@ namespace OV.MainDb.Tests.Election.Create
                     Code = "N",
                     Description = "Desc"
                 });
-                _inMemoryOvMainDbContext.SaveChangesAsync(cancellationToken);
+                await _inMemoryOvMainDbContext.SaveChangesAsync(cancellationToken);
                 CandidateElection candidateElection = new CandidateElection()
                 {
                     Name = "TestName",
@@ -146,6 +119,8 @@ namespace OV.MainDb.Tests.Election.Create
                 ICreateElectionResponse result = await _createElectionService.CreateAsync(candidateElection, cancellationToken);
 
                 //Assert
+                var isFailure = result is CreateElectionFailure;
+                isFailure.Should().BeTrue();
                 if (result is CreateElectionFailure failure)
                 {
                     failure.FailureReasons[0].Code.ToString().Should().Be(ElectionFailureReason.InitDateIsEmpty.ToString());
@@ -162,7 +137,7 @@ namespace OV.MainDb.Tests.Election.Create
                     Code = "N",
                     Description = "Desc"
                 });
-                _inMemoryOvMainDbContext.SaveChangesAsync(cancellationToken);
+                await _inMemoryOvMainDbContext.SaveChangesAsync(cancellationToken);
                 CandidateElection candidateElection = new CandidateElection()
                 {
                     Name = "TestName",
@@ -175,6 +150,8 @@ namespace OV.MainDb.Tests.Election.Create
                 ICreateElectionResponse result = await _createElectionService.CreateAsync(candidateElection, cancellationToken);
 
                 //Assert
+                var isFailure = result is CreateElectionFailure;
+                isFailure.Should().BeTrue();
                 if (result is CreateElectionFailure failure)
                 {
                     failure.FailureReasons[0].Code.ToString().Should().Be(ElectionFailureReason.FinishDateIsEmpty.ToString());
@@ -185,7 +162,7 @@ namespace OV.MainDb.Tests.Election.Create
             public async void ShouldReturnFailureResponseIfTypeIsEmpty()
             {
                 //Arrange
-                _inMemoryOvMainDbContext.SaveChangesAsync(cancellationToken);
+                await _inMemoryOvMainDbContext.SaveChangesAsync(cancellationToken);
                 CandidateElection candidateElection = new CandidateElection()
                 {
                     Name = "TestName",
@@ -198,6 +175,8 @@ namespace OV.MainDb.Tests.Election.Create
                 ICreateElectionResponse result = await _createElectionService.CreateAsync(candidateElection, cancellationToken);
 
                 //Assert
+                var isFailure = result is CreateElectionFailure;
+                isFailure.Should().BeTrue();
                 if (result is CreateElectionFailure failure)
                 {
                     failure.FailureReasons[0].Code.ToString().Should().Be(ElectionFailureReason.TypeIsEmpty.ToString());

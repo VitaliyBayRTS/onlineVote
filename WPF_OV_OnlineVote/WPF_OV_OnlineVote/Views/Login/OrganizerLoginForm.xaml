@@ -60,15 +60,13 @@
                                  VerticalAlignment="Center"
                                  HorizontalAlignment="Center"
                                  Foreground="#FF0069CA"/>
-                    DNI/NIE
+                    DNI
                     <TextBlock BaselineOffset="20" Foreground="RED" Text=""/>
                     <TextBlock.ToolTip>
                         <TextBlock>
                              Ejemplos
                              <LineBreak />
                             DNI: 12345678Z
-                            <LineBreak /> 
-                            NIE: X1234567-L
                         </TextBlock>
                     </TextBlock.ToolTip>
                 </TextBlock>

@@ -228,6 +228,7 @@ namespace OV.MVX.ViewModels.ContentViewModel
 
         public async void DeleteOption()
         {
+            if (SelectedOption == null) return;
             var result = MessageBox.Show("¿Estas seguro que quieres BORRAR la opción " + SelectedOption.Index + " ?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
