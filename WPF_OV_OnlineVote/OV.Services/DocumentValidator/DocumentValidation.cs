@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace OV.MVX.Helpers
+namespace OV.Services.DocumentValidator
 {
     public static class DocumentValidation
     {

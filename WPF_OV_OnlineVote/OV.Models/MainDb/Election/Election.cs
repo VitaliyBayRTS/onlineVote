@@ -14,6 +14,7 @@ namespace OV.Models.MainDb.Election
         public string Name { get; set; }
         public int? tblAutonomousCommunity_UID { get; set; }
         public int? tblProvince_UID { get; set; }
+        public bool? IsNotified { get; set; }
 
         public Type.TypeObject Type { get; set; }
         public Province.Province? Province { get; set; }

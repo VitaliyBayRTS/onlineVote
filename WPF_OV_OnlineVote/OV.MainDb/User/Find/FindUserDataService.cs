@@ -35,6 +35,16 @@ namespace OV.MainDb.User.Find
                 users = users.Where(u => u.Id == filter.Id);
             }
 
+            if(filter.Ac != default(int))
+            {
+                users = users.Where(u => u.Province.tblAutonomousCommunity_UID == filter.Ac);
+            }
+
+            if(filter.Province != default(int))
+            {
+                users = users.Where(u => u.TblProvince_UID == filter.Province);
+            }
+
             if(filter.Unautorized)
             {
                 users = users.Where(u => !u.IsAutorized);

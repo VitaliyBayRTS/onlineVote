@@ -53,7 +53,7 @@
                          Foreground="White"
                          FontSize="14"
                          Style="{StaticResource MenuButtonTheme}"
-                         Command="{Binding AddNewOptionViewCommand}"/>
+                         Command="{Binding ResultViewCommand}"/>
             <RadioButton Content="Salir" 
                          Height="50"
                          Foreground="White"

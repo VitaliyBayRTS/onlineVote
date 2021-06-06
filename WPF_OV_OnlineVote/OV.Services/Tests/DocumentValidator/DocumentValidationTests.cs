@@ -1,8 +1,8 @@
 ﻿using FluentAssertions;
-using OV.MVX.Helpers;
+using OV.Services.DocumentValidator;
 using Xunit;
 
-namespace OV.MVX.Tests.Unit_Tests
+namespace OV.Services.Tests.DocumentValidator
 {
     public class DocumentValidationTests
     {

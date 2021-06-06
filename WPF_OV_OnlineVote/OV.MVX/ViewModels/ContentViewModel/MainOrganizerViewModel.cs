@@ -8,6 +8,7 @@ namespace OV.MVX.ViewModels.ContentViewModel
         //!Commands
         public IMvxCommand ElectionManagementViewCommand { get; set; }
         public IMvxCommand AddNewOptionViewCommand { get; set; }
+        public IMvxCommand ResultViewCommand { get; set; }
 
         //!Private variables
         private object _currentView;
@@ -24,6 +25,7 @@ namespace OV.MVX.ViewModels.ContentViewModel
         }
         public EditElectionViewModel ElectionManagementVM { get; set; }
         public AddOptionViewModel AddNewOptionVC { get; set; }
+        public ResultViewModel VisualizeResultDataVM { get; set; }
         public int Organizer_UID { get; set; }
         public int Election_UID { get; set; }
 
@@ -34,11 +36,13 @@ namespace OV.MVX.ViewModels.ContentViewModel
             Election_UID = tblElection_UID;
             ElectionManagementVM = new EditElectionViewModel(Organizer_UID, Election_UID);
             AddNewOptionVC = new AddOptionViewModel(Organizer_UID, Election_UID);
+            VisualizeResultDataVM = new ResultViewModel();
 
             CurrentView = ElectionManagementVM;
 
             ElectionManagementViewCommand = new MvxCommand(OpenElectionVM);
             AddNewOptionViewCommand = new MvxCommand(OpenAddNewOptionVM);
+            ResultViewCommand = new MvxCommand(OpenResultVM);
         }
 
 
@@ -53,6 +57,11 @@ namespace OV.MVX.ViewModels.ContentViewModel
         {
             await AddNewOptionVC.LoadData();
             CurrentView = AddNewOptionVC;
+        }
+        private void OpenResultVM()
+        {
+            VisualizeResultDataVM.LoadData(Election_UID);
+            CurrentView = VisualizeResultDataVM;
         }
     }
 }

@@ -5,6 +5,8 @@ namespace OV.MainDb.User.Find.Models.Public
     public class UserFilter
     {
         public int Id { get; }
+        public int Ac { get; }
+        public int Province { get; }
         public bool Unautorized { get; } = false;
         public bool Autorized { get; } = false;
         public bool IncludeProvince { get; } = false;
@@ -12,9 +14,11 @@ namespace OV.MainDb.User.Find.Models.Public
 
         public UserFilter() { }
 
-        public UserFilter(int id, bool unautorized, bool includeProvince, bool includeAC, bool autorized)
+        public UserFilter(int id, int ac, int province, bool unautorized, bool includeProvince, bool includeAC, bool autorized)
         {
             Id = id;
+            Ac = ac;
+            Province = province;
             Unautorized = unautorized;
             IncludeProvince = includeProvince;
             IncludeAC = includeAC;
@@ -25,6 +29,8 @@ namespace OV.MainDb.User.Find.Models.Public
         public static UserFilter All = new UserFilter();
 
         public static UserFilter ById(int id) => All.AndById(id);
+        public static UserFilter ByAc(int tblAc_UID) => All.AndByAc(tblAc_UID);
+        public static UserFilter ByProvince(int tblProvince_UID) => All.AndByProvince(tblProvince_UID);
         public static UserFilter ByUnautorized() => All.AndByUnautorized();
         public static UserFilter ByAutorized() => All.AndByAutorized();
         public static UserFilter ByIncludeProvince() => All.AndByIncludeProvince();
@@ -33,29 +39,39 @@ namespace OV.MainDb.User.Find.Models.Public
         public UserFilter AndById(int id)
         {
             if (id == default(int)) return this;
-            return new UserFilter(id, Unautorized, IncludeProvince, IncludeAC, Autorized);
+            return new UserFilter(id, Ac, Province, Unautorized, IncludeProvince, IncludeAC, Autorized);
+        }
+        public UserFilter AndByAc(int tblAc_UID)
+        {
+            if (tblAc_UID == default(int)) return this;
+            return new UserFilter(Id, tblAc_UID, Province, Unautorized, IncludeProvince, IncludeAC, Autorized);
+        }
+        public UserFilter AndByProvince(int tblProvince_UID)
+        {
+            if (tblProvince_UID == default(int)) return this;
+            return new UserFilter(Id, Ac, tblProvince_UID, Unautorized, IncludeProvince, IncludeAC, Autorized);
         }
 
         public UserFilter AndByUnautorized()
         {
-            return new UserFilter(Id, true, IncludeProvince, IncludeAC, Autorized);
+            return new UserFilter(Id, Ac, Province, true, IncludeProvince, IncludeAC, Autorized);
         }
         public UserFilter AndByIncludeProvince()
         {
-            return new UserFilter(Id, Unautorized, true, IncludeAC, Autorized);
+            return new UserFilter(Id, Ac, Province, Unautorized, true, IncludeAC, Autorized);
         }
         public UserFilter AndByIncludeAC()
         {
-            return new UserFilter(Id, Unautorized, IncludeProvince, true, Autorized);
+            return new UserFilter(Id, Ac, Province, Unautorized, IncludeProvince, true, Autorized);
         }
         public UserFilter AndByAutorized()
         {
-            return new UserFilter(Id, Unautorized, IncludeProvince, IncludeAC, true);
+            return new UserFilter(Id, Ac, Province, Unautorized, IncludeProvince, IncludeAC, true);
         }
 
         public bool Equals(UserFilter other)
         {
-            return Id.Equals(other.Id) && Unautorized == other.Unautorized 
+            return Id.Equals(other.Id) && Ac.Equals(other.Ac) && Province.Equals(other.Province) && Unautorized == other.Unautorized 
                 && IncludeProvince == other.IncludeProvince && IncludeAC == other.IncludeAC
                 && Autorized == other.Autorized;
         }
@@ -70,7 +86,7 @@ namespace OV.MainDb.User.Find.Models.Public
         {
             unchecked
             {
-                return HashCode.Combine(Id.GetHashCode(), Unautorized.GetHashCode(), IncludeProvince.GetHashCode(), IncludeAC.GetHashCode(),
+                return HashCode.Combine(Id.GetHashCode(), Ac.GetHashCode(), Province.GetHashCode(), Unautorized.GetHashCode(), IncludeProvince.GetHashCode(), IncludeAC.GetHashCode(),
                     Autorized.GetHashCode());
             }
         }

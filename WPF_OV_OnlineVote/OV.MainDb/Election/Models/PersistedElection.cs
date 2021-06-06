@@ -26,6 +26,7 @@ namespace OV.MainDb.Election.Models
         [Column("tblAutonomousCommunity_UID")] public int? tblAutonomousCommunity_UID { get; set; }
         [Column("tblProvince_UID")] public int? tblProvince_UID { get; set; }
         [Column("Name")] public string Name { get; set; }
+        [Column("IsNotified")] public bool? IsNotified { get; set; }
 
         public PersistedProvince? Province { get; set; }
         public PersistedAutonomousCommunity? AutonomousCommunity { get; set; }

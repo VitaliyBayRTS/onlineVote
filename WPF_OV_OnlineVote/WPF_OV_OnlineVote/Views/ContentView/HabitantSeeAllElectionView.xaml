@@ -151,7 +151,8 @@
                          HorizontalContentAlignment="Left"
                          Foreground="White"
                          FontSize="11"
-                         Style="{StaticResource MenuButtonThemeMarginNull}"/>
+                         Style="{StaticResource MenuButtonThemeMarginNull}"
+                         Command="{Binding VisualizeResultDataViewCommand}"/>
             </StackPanel>
 
             <ContentControl Grid.Row="1" 

@@ -21,6 +21,7 @@ namespace OV.MVX.ViewModels.ContentViewModel
         //!Commands
         public IMvxCommand VisualizeElectionDataViewCommand { get; set; }
         public IMvxCommand VisualizeOptionDataViewCommand { get; set; }
+        public IMvxCommand VisualizeResultDataViewCommand { get; set; }
 
         //!Services
         private IElectionService _electionService;
@@ -193,6 +194,7 @@ namespace OV.MVX.ViewModels.ContentViewModel
         }
         public VisualizeElectionDataViewModel VisualizeElectionDataVM { get; set; }
         public VisualizeOptionDataViewModel VisualizeOptionDataVM { get; set; }
+        public ResultViewModel VisualizeResultDataVM { get; set; }
 
         public SeeAllElectionViewModel()
         {
@@ -201,10 +203,12 @@ namespace OV.MVX.ViewModels.ContentViewModel
             _allAutonomousCommunities = new ObservableCollection<AutonomousCommunity>();
             VisualizeElectionDataVM = new VisualizeElectionDataViewModel();
             VisualizeOptionDataVM = new VisualizeOptionDataViewModel();
+            VisualizeResultDataVM = new ResultViewModel();
 
 
             VisualizeElectionDataViewCommand = new MvxCommand(OpenElectionDataDetailsView);
             VisualizeOptionDataViewCommand = new MvxCommand(OpenOptionDataDetailsView);
+            VisualizeResultDataViewCommand = new MvxCommand(OpenResultDataDetailsView);
 
             List<string> states = new List<string>();
             states.Add(State.EnCurso.ToString());
@@ -244,6 +248,12 @@ namespace OV.MVX.ViewModels.ContentViewModel
             if(SelectedElection != null)
                 VisualizeOptionDataVM.LoadData(SelectedElection.Id.Value);
             CurrentDetailsView = VisualizeOptionDataVM;
+        }
+        private void OpenResultDataDetailsView()
+        {
+            if(SelectedElection != null)
+                VisualizeResultDataVM.LoadData(SelectedElection.Id.Value);
+            CurrentDetailsView = VisualizeResultDataVM;
         }
     }
 }

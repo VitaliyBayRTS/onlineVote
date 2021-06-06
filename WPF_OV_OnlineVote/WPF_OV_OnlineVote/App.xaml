@@ -45,6 +45,9 @@
             <DataTemplate DataType="{x:Type viewModel:VoteByOptionViewModel}">
                 <view:VoteByOptionView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:ResultViewModel}">
+                <view:HabitantResultView/>
+            </DataTemplate>
             
         </ResourceDictionary>
     </Application.Resources>

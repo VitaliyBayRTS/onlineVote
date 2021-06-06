@@ -36,7 +36,8 @@ namespace OV.MainDb.Tests.Election.Find
                     Name = "ACname"
                 }
             },
-            tblAutonomousCommunity_UID = 1
+            tblAutonomousCommunity_UID = 1,
+            IsNotified = false
         };
         
         public static PersistedElection _dummyPersistedElection2 = new PersistedElection()
@@ -66,7 +67,76 @@ namespace OV.MainDb.Tests.Election.Find
                     Name = "ACname"
                 }
             },
-            tblAutonomousCommunity_UID = 1
+            tblAutonomousCommunity_UID = 1,
+            IsNotified = true
+        };
+        //!Next object should have id index 5
+
+
+
+
+
+        //Models for GetUnnotified test
+        public static PersistedElection _dummyPersistedElection_Unnotified = new PersistedElection()
+        {
+            Id = 3,
+            Name = "name",
+            Description = "Desc",
+            InitDate = DateTime.Today.AddDays(-2),
+            FinalizeDate = DateTime.Today.AddDays(-1),
+            tblType_UID = 3,
+            Type = new PersistedType()
+            {
+                Id = 3,
+                Name = "TypeName",
+                Description = "TypeDesc",
+                Code = "TypeCode"
+            },
+            tblProvince_UID = 3,
+            Province = new PersistedProvince()
+            {
+                Id = 3,
+                Name = "ProvinceName",
+                tblAutonomousCommunity_UID = 3,
+                AutonomousCommunity = new PersistedAutonomousCommunity()
+                {
+                    Id = 3,
+                    Name = "ACname"
+                }
+            },
+            tblAutonomousCommunity_UID = 3,
+            IsNotified = false
+        };
+        
+        public static PersistedElection _dummyPersistedElection_Notified = new PersistedElection()
+        {
+            Id = 4,
+            Name = "name",
+            Description = "Desc",
+            InitDate = DateTime.Today.AddDays(-2),
+            FinalizeDate = DateTime.Today.AddDays(-1),
+            tblType_UID = 4,
+            Type = new PersistedType()
+            {
+                Id = 4,
+                Name = "TypeName",
+                Description = "TypeDesc",
+                Code = "TypeCode"
+            },
+            tblProvince_UID = 4,
+            Province = new PersistedProvince()
+            {
+                Id = 4,
+                Name = "ProvinceName",
+                tblAutonomousCommunity_UID = 4,
+                AutonomousCommunity = new PersistedAutonomousCommunity()
+                {
+                    Id = 4,
+                    Name = "ACname"
+                }
+            },
+            tblAutonomousCommunity_UID = 4,
+            IsNotified = true
         };
 
         public static PersistedOrganizer _dummyPersistedOrganizer_1 = new PersistedOrganizer()
