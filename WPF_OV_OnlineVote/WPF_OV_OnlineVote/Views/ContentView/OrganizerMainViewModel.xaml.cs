@@ -19,8 +19,6 @@ namespace WPF_OV_OnlineVote.Views.ContentView
         {
             _mainOrganizerViewModel = new MainOrganizerViewModel(organizer_UID, election_UID);
             await _mainOrganizerViewModel.ElectionManagementVM.LoadData();
-            //await _mainOrganizerViewModel.ElectionManagementVM.LoadData();
-            //await _mainSuperAdminViewModel.AllElectionVM.LoadData();
             DataContext = _mainOrganizerViewModel;
         }
 
@@ -39,7 +37,7 @@ namespace WPF_OV_OnlineVote.Views.ContentView
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            this.WindowState = WindowState.Minimized;
         }
 
         private void RadioButton_Click(object sender, RoutedEventArgs e)

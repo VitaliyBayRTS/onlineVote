@@ -323,15 +323,17 @@ namespace OV.MVX.ViewModels
             {
                 errorText += "- " + error.Key + " : " + error.Value + "\r\n\r\n";
             }
-
-            foreach (var error in _propertyError.OrderBy(_ => _.Key))
+            if(errors.Count == 0)
             {
-                var errorItemText = "";
-                foreach (var errorItem in error.Value)
+                foreach (var error in _propertyError.OrderBy(_ => _.Key))
                 {
-                    errorItemText += "- " + errorItem + "\r\n\r\n";
+                    var errorItemText = "";
+                    foreach (var errorItem in error.Value)
+                    {
+                        errorItemText += "- " + errorItem + "\r\n\r\n";
+                    }
+                    errorText += "- " + error.Key + " : " + errorItemText + "\r\n\r\n";
                 }
-                errorText += "- " + error.Key + " : " + errorItemText + "\r\n\r\n";
             }
             MessageBox.Show(errorText, "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
         }

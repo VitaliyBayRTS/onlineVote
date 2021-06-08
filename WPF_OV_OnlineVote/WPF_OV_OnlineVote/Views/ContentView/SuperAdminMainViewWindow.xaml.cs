@@ -21,7 +21,6 @@ namespace WPF_OV_OnlineVote.Views.ContentView
             _mainSuperAdminViewModel.SuperAdmin_UID = SuperAdmin_UID;
             await _mainSuperAdminViewModel.UnautorizedUsersVM.LoadData();
             await _mainSuperAdminViewModel.ElectionManagementVM.LoadData();
-            //await _mainSuperAdminViewModel.AllElectionVM.LoadData();
             DataContext = _mainSuperAdminViewModel;
         }
 
@@ -40,7 +39,7 @@ namespace WPF_OV_OnlineVote.Views.ContentView
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            this.WindowState = WindowState.Minimized;
         }
 
         private void RadioButton_Click(object sender, RoutedEventArgs e)

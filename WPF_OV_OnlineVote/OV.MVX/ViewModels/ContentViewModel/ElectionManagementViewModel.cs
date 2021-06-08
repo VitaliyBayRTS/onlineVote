@@ -58,7 +58,7 @@ namespace OV.MVX.ViewModels.ContentViewModel
         private ObservableCollection<AutonomousCommunity> _allAutonomousCommunities = new ObservableCollection<AutonomousCommunity>();
         private ObservableCollection<Province> _provincesOfCommunity = new ObservableCollection<Province>();
         private DateTime _initDate = DateTime.Today.AddDays(7);
-        private DateTime _finishDate = DateTime.Today.AddDays(1);
+        private DateTime _finishDate = DateTime.Today.AddDays(8);
         private string _initDateString = DateTime.Today.ToString("dd/MM/yyyy");
         private string _finishDateString = DateTime.Today.ToString("dd/MM/yyyy");
         private AutonomousCommunity _autonomousCommunity;
@@ -141,7 +141,7 @@ namespace OV.MVX.ViewModels.ContentViewModel
                 }
                 else if (!System.Text.RegularExpressions.Regex.IsMatch(_name, @"^[a-zA-ZñÑ áÁ óÓ éÉ íÍ úÚ]+$"))
                 {
-                    AddError(nameof(Name), "Solo caracteres alfabeticos");
+                    AddError(nameof(Name), "Nombre puede tener solo caracteres alfabeticos");
                 }
                 RaisePropertyChanged(() => Name);
             }
@@ -247,7 +247,7 @@ namespace OV.MVX.ViewModels.ContentViewModel
         public bool HasErrors => _propertyError.Any();
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
         public DateTime StartDateTime { get; set; } = DateTime.Today.AddDays(7);
-        public DateTime FinishElectionDateTime { get { return InitDate.AddDays(1); } }
+        public DateTime FinishElectionDateTime { get { return _initDate.AddDays(1); } }
         public DateTime InitDate
         {
             get { return _initDate; }
@@ -257,7 +257,7 @@ namespace OV.MVX.ViewModels.ContentViewModel
                 InitDateString = value.ToString("dd/MM/yyyy");
                 if (_initDate > FinishDate)
                 {
-                    FinishDate = _initDate;
+                    FinishDate = _initDate.AddDays(1);
                     FinishDateString = InitDateString;
                 }
                 RaisePropertyChanged(() => InitDate);
@@ -453,7 +453,7 @@ namespace OV.MVX.ViewModels.ContentViewModel
             }
             if (SelectedUsers.Count < 1)
             {
-                errors.Add("Organizador", "hay que selecionar al menos un organizador");
+                errors.Add("Organizador", "Hay que selecionar al menos un organizador");
             }
 
             return errors;
@@ -465,15 +465,17 @@ namespace OV.MVX.ViewModels.ContentViewModel
             {
                 errorText += "- " + error.Key + " : " + error.Value + "\r\n\r\n";
             }
-
-            foreach (var error in _propertyError.OrderBy(_ => _.Key))
+            if(errors.Count == 0 )
             {
-                var errorItemText = "";
-                foreach (var errorItem in error.Value)
+                foreach (var error in _propertyError.OrderBy(_ => _.Key))
                 {
-                    errorItemText += "- " + errorItem + "\r\n\r\n";
+                    var errorItemText = "";
+                    foreach (var errorItem in error.Value)
+                    {
+                        errorItemText += "- " + errorItem + "\r\n\r\n";
+                    }
+                    errorText += "- " + errorItemText + "\r\n\r\n";
                 }
-                errorText += "- " + error.Key + " : " + errorItemText + "\r\n\r\n";
             }
             MessageBox.Show(errorText, "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
         }

@@ -112,7 +112,8 @@ namespace OV.MVX.ViewModels.ContentViewModel
         {
             OptionModel winner = Options.OrderByDescending(x => x.Votes).FirstOrDefault();
             List<OptionModel> TestList = new List<OptionModel>();
-            TestList.Add(winner);
+            if(winner != null && winner.Votes > 0) 
+                TestList.Add(winner);
             Winner = new BindableCollection<OptionModel>(TestList);
         }
     }

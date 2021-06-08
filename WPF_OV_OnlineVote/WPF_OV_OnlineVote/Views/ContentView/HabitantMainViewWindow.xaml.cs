@@ -37,7 +37,7 @@ namespace WPF_OV_OnlineVote.Views.ContentView
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            this.WindowState = WindowState.Minimized;
         }
 
         private void RadioButton_Click(object sender, RoutedEventArgs e)

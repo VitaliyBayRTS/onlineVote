@@ -19,6 +19,8 @@ namespace WPF_OV_OnlineVote.Views
     {
         private OvMainDbContext _ovMainDbContext;
         private IFindAutonomousCommunityDataService _findAutonomousCommunityService;
+
+
         //OvMainDbContext ovMainDbContext
         public InitialView()
         {
@@ -169,7 +171,7 @@ namespace WPF_OV_OnlineVote.Views
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            //Application.Current.H;
+            Application.Current.Windows[0].WindowState = WindowState.Minimized;
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Reflection;
+using System.Resources;
 
 namespace OV.MVX.Models.Organizer
 {
@@ -35,9 +37,11 @@ namespace OV.MVX.Models.Organizer
 
         private void SetElectionState(DateTime initDate, DateTime finalizeDate)
         {
+            ResourceManager rm = new ResourceManager("OV.MVX.Translation.Translation", Assembly.GetExecutingAssembly());
+
             if (initDate <= DateTime.Now && finalizeDate >= DateTime.Now)
             {
-                CurrentState = State.EnCurso.ToString();
+                CurrentState = rm.GetString(State.EnCurso.ToString());
             }
             else if (initDate > DateTime.Now)
             {

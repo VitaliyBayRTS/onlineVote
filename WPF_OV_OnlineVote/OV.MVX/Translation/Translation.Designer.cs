@@ -97,6 +97,15 @@ namespace OV.MVX.Translation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to En curso.
+        /// </summary>
+        internal static string EnCurso {
+            get {
+                return ResourceManager.GetString("EnCurso", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fecha de fin de elección es obligatoria.
         /// </summary>
         internal static string FinishDateIsEmpty {

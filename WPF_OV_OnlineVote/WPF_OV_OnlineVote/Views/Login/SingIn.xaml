@@ -177,7 +177,7 @@
                    FontWeight="Light"
                    FontSize="20"
                    Foreground="White">
-                    Comunidad autonoma
+                    Comunidad autónoma
                     <TextBlock BaselineOffset="20" Foreground="RED" Text="*"/>
                 </TextBlock>
                 <StackPanel Orientation="Horizontal">
@@ -244,7 +244,7 @@
                 <TextBlock BaselineOffset="20" Foreground="RED" Text="*"/>
                 <TextBlock.ToolTip>
                      <TextBlock>
-                        El caracter obligatorio es: @
+                        El carácter obligatorio es: @
                         <LineBreak /> 
                         Ejemplo: test@test
                      </TextBlock>

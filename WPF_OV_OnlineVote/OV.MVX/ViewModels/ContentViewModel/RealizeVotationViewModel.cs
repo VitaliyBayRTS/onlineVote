@@ -142,7 +142,7 @@ namespace OV.MVX.ViewModels.ContentViewModel
         private void OpenOptionDataDetailsView()
         {
             if (SelectedElection != null)
-                VoteByOptionVM.LoadData(SelectedElection.Id.Value, User_UID);
+                VoteByOptionVM.LoadData(SelectedElection.Id.Value, SelectedElection.CurrentState,  User_UID);
             CurrentDetailsView = VoteByOptionVM;
         }
     }

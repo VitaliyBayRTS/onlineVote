@@ -3,6 +3,7 @@ using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using OV.MainDb.Option.Find.Models.Public;
 using OV.MainDb.Option.IncreaseVotes.Models.Public;
+using OV.MVX.Models;
 using OV.MVX.Models.Organizer;
 using OV.MVX.Services.Option;
 using OV.MVX.Services.UserElection;
@@ -35,6 +36,7 @@ namespace OV.MVX.ViewModels.ContentViewModel
         //!Properties
         public int User_UID { get; set; }
         public int Election_UID { get; set; }
+        public string ElectionState { get; set; }
 
 
         public BindableCollection<OptionModel> Options
@@ -114,7 +116,7 @@ namespace OV.MVX.ViewModels.ContentViewModel
                 if (result is IncreaseVotesSuccess success)
                 {
                     MessageBox.Show("La operación se ha realizado correctamente", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-                    LoadData(User_UID, Election_UID);
+                    LoadData(User_UID, ElectionState, Election_UID);
                 }
                 else
                 {
@@ -123,12 +125,13 @@ namespace OV.MVX.ViewModels.ContentViewModel
             }
         }
 
-        public async void LoadData(int election_UID, int userId)
+        public async void LoadData(int election_UID, string state, int userId)
         {
             IsBtnEnable = true;
             BtnText = _canVote;
             User_UID = userId;
             Election_UID = election_UID;
+            ElectionState = state;
             var result = await _userElectionService.FindAsync(userId, election_UID, new CancellationToken());
             var resultList = result.ToList();
             if(resultList.Count != 0)
@@ -137,6 +140,11 @@ namespace OV.MVX.ViewModels.ContentViewModel
                 BtnText = _alreadyMade;
             }
             ReloadOptions();
+
+            if(state == State.Pendiente.ToString() || state == State.Terminado.ToString())
+            {
+                IsBtnEnable = false;
+            }
         }
 
         private async void ReloadOptions()

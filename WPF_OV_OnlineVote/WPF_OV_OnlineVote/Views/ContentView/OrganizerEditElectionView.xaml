@@ -269,7 +269,7 @@
                    FontWeight="Light"
                    FontSize="14"
                    Foreground="White">
-                    Comunidad Autonoma
+                    Comunidad Autónoma
                 </TextBlock>
                 <Grid HorizontalAlignment="Left">
                     <Grid.ColumnDefinitions>
