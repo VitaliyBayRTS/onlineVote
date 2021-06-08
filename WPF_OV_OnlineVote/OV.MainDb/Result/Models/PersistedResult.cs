@@ -13,6 +13,7 @@ namespace OV.MainDb.Result.Models
         [Column("Winner_UID")] public int? Winner_UID { get; set; }
         [Column("TotalHabitants")] public int TotalHabitants { get; set; }
         [Column("HabitantsThatParticipate")] public int HabitantsThatParticipate { get; set; }
+        [Column("TblElection_UID")] public int TblElection_UID { get; set; }
 
         public PersistedElection Election { get; set; }
 
@@ -25,6 +26,7 @@ namespace OV.MainDb.Result.Models
                 Winner_UID = Winner_UID,
                 TotalHabitants = TotalHabitants,
                 HabitantsThatParticipate = HabitantsThatParticipate,
+                TblElection_UID = TblElection_UID,
                 Election = Election.ToElection()
             };
         }

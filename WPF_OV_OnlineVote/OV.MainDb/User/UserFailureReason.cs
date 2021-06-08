@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace OV.MainDb.User
+﻿namespace OV.MainDb.User
 {
     public enum UserFailureReason
     {
@@ -15,6 +11,7 @@ namespace OV.MainDb.User
         ProvinceIsEmpty,
         ProvinceDoesNotExist,
         EmailIsEmpty,
+        DNI_NIEAlreadyExist,
         PhoneNumberIsEmpty,
         FailureInsertingIntoDataBase
     }

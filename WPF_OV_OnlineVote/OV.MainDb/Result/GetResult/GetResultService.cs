@@ -33,11 +33,11 @@ namespace OV.MainDb.Result.GetResult
 
                 var optionsResponse = await _findOptionDataService.FindAsync(OptionFilter.ByElectionId(tblElection_UID), cancellationToken);
 
-                response.Options = optionsResponse.Select(o => o.ToOption());
+                response.Options = optionsResponse.Select(o => o.ToOption()).ToList();
 
                 return response;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return new GetResultResponse()
                 {

@@ -35,6 +35,11 @@ namespace OV.MainDb.User.Find
                 users = users.Where(u => u.Id == filter.Id);
             }
 
+            if(!string.IsNullOrEmpty(filter.DNI_NIE))
+            {
+                users = users.Where(u => u.DNI_NIE == filter.DNI_NIE);
+            }
+
             if(filter.Ac != default(int))
             {
                 users = users.Where(u => u.Province.tblAutonomousCommunity_UID == filter.Ac);

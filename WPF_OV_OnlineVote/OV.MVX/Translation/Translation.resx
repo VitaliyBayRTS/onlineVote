@@ -123,6 +123,9 @@
   <data name="Description" xml:space="preserve">
     <value>Descripción no puede ser vacio</value>
   </data>
+  <data name="DNI_NIEAlreadyExist" xml:space="preserve">
+    <value>Ya existe usuario con este DNI/NIE</value>
+  </data>
   <data name="EmailIsEmpty" xml:space="preserve">
     <value>Campo 'Correo' es obligatorio</value>
   </data>

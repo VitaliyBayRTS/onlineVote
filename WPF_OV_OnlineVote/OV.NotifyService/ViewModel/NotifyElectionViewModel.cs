@@ -1,4 +1,5 @@
-﻿using OV.MainDb.User.Find.Models.Public;
+﻿using OV.MainDb.Result.Create.Models.Public;
+using OV.MainDb.User.Find.Models.Public;
 using OV.Models.MainDb.Type;
 using OV.NotifyService.Models;
 using OV.NotifyService.Result;
@@ -123,10 +124,21 @@ namespace OV.NotifyService.ViewModel
             if(users.ToList().Count > 0)
             {
                 var result = await _resultService.GetResult(election.Id.Value, new CancellationToken());
+
+                if (result.Error) return;
+
                 var winnerResult = result.Options;
                 if(winnerResult != null)
                 {
+                    var totalVotes = 0;
+                    foreach (var item in winnerResult)
+                    {
+                        totalVotes += item.Votes != null ? item.Votes.Value : 0;
+                    }
                     var winner = winnerResult.OrderByDescending(o => o.Votes).FirstOrDefault();
+
+                    if (winner == null) return;
+
                     var text = election.Id + " " + election.Name + " " + election.Type.Name + " "
                         + result.TotalHabitant + " " + result.HabitantCountThatParticipate
                         + " Winner " + winner.Id + " " + winner.Name + " " + winner.Votes;
@@ -134,6 +146,22 @@ namespace OV.NotifyService.ViewModel
                     {
                         var message = Mailer.GenerateEmailMessage(user.Email, "Resultados de elección " + election.Name, text);
                         Mailer.SendEmail(message);
+                    }
+
+                    var cancellationToken = new CancellationToken();
+                    CreateResultRequest request = new CreateResultRequest()
+                    {
+                        TblElection_UID = election.Id.Value,
+                        TotalHabitants = result.TotalHabitant,
+                        TotalHabitantsThatParticipate = result.HabitantCountThatParticipate,
+                        Winner_UID = winner.Id.Value,
+                        TotalVotes = totalVotes
+                    };
+                    var createResult = await _resultService.CreateAsync(request, cancellationToken);
+
+                    if(createResult)
+                    {
+                        await _electionService.Notify(election.Id.Value, cancellationToken);
                     }
                 }
             }

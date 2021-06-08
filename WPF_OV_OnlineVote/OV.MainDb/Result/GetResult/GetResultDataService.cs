@@ -29,7 +29,9 @@ namespace OV.MainDb.Result.GetResult
 
             if(election.Type.Code == OV_Types.NL.ToString())
             {
-                totalHabitantCount = _ovMainDbContext.Users.Where(u => DocumentValidation.GetDocumentType(u.DNI_NIE) == "DNI").ToList().Count;
+                var allUsers = _ovMainDbContext.Users.Where(u => true);
+                var allUsersList = await allUsers.ToListAsync(cancellationToken);
+                totalHabitantCount = allUsersList.Where(u => DocumentValidation.GetDocumentType(u.DNI_NIE) == "DNI").ToList().Count;
             }
 
             if(election.Type.Code == OV_Types.ACL.ToString())

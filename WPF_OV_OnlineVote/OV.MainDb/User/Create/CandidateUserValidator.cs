@@ -2,6 +2,8 @@
 using OV.MainDb.AutonomousCommunity.Find;
 using OV.MainDb.Province.Find;
 using OV.MainDb.Province.Find.Models.Public;
+using OV.MainDb.User.Find;
+using OV.MainDb.User.Find.Models.Public;
 using System;
 using System.Linq;
 
@@ -14,10 +16,21 @@ namespace OV.MainDb.User.Create
     public class CandidateUserValidator : CandidateUserValidatorBase, ICandidateUserValidator
     {
         public CandidateUserValidator(IFindAutonomousCommunityDataService findAutonomousCommunityDataService,
-                                    IFindProvinceDataService findProvinceDataService)
+                                    IFindProvinceDataService findProvinceDataService,
+                                    IFindUserDataService findUserDataService)
         {
             if (findAutonomousCommunityDataService == null) throw new ArgumentNullException(nameof(findAutonomousCommunityDataService));
             if (findProvinceDataService == null) throw new ArgumentNullException(nameof(findProvinceDataService));
+            if (findUserDataService == null) throw new ArgumentNullException(nameof(findUserDataService));
+
+            RuleFor(candidate => candidate.DNI_NIE)
+                .MustAsync(async (candidate, tblProvince_UID, cancellationToken) =>
+                {
+                    var existingUser = await findUserDataService
+                                    .FindAsync(UserFilter.ByDNI_NIE(candidate.DNI_NIE), cancellationToken);
+                    return !existingUser.Any();
+                })
+                .WithErrorCode(UserFailureReason.DNI_NIEAlreadyExist.ToString());
 
             RuleFor(candidate => candidate.FirstName)
                 .NotEmpty()
@@ -47,6 +60,7 @@ namespace OV.MainDb.User.Create
                     return existingProvince.Any();
                 })
                 .WithErrorCode(UserFailureReason.ProvinceDoesNotExist.ToString());
+
 
             RuleFor(candidate => candidate.Email)
                 .NotEmpty()

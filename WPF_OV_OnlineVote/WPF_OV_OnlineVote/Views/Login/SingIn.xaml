@@ -240,7 +240,7 @@
                                  VerticalAlignment="Center"
                                  HorizontalAlignment="Center"
                                  Foreground="#FF0069CA"/>
-                    Correo electronico
+                    Correo electrónico
                 <TextBlock BaselineOffset="20" Foreground="RED" Text="*"/>
                 <TextBlock.ToolTip>
                      <TextBlock>
@@ -278,7 +278,7 @@
                                  VerticalAlignment="Center"
                                  HorizontalAlignment="Center"
                                  Foreground="#FF0069CA"/>
-                    Número de telefono
+                    Número de teléfono
                 <TextBlock BaselineOffset="20" Foreground="RED" Text="*"/>
                 <TextBlock.ToolTip>
                     Admite solo caracteres númericos

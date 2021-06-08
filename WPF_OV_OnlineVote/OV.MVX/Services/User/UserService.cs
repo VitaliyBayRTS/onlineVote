@@ -38,7 +38,9 @@ namespace OV.MVX.Services.User
 
             var findAutonomousCommunityDataService = new FindAutonomousCommunityDataService(_dbContext);
             var findProvinceDataService = new FindProvinceDataService(_dbContext);
-            var validator = new CandidateUserValidator(findAutonomousCommunityDataService, findProvinceDataService);
+            var validator = new CandidateUserValidator(findAutonomousCommunityDataService, 
+                findProvinceDataService, 
+                new FindUserDataService(_ovMainDbContextFactory));
 
             _createUserService = new CreateUserService(new CreateUserDataService(_ovMainDbContextFactory), validator);
             _findUserService = new FindUserService(new FindUserDataService(_ovMainDbContextFactory));

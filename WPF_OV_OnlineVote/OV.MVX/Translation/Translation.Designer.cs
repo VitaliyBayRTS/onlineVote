@@ -79,6 +79,15 @@ namespace OV.MVX.Translation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ya existe usuario con este DNI/NIE.
+        /// </summary>
+        internal static string DNI_NIEAlreadyExist {
+            get {
+                return ResourceManager.GetString("DNI_NIEAlreadyExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Campo &apos;Correo&apos; es obligatorio.
         /// </summary>
         internal static string EmailIsEmpty {

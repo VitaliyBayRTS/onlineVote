@@ -7,6 +7,7 @@ using OV.MainDb.Province.Models;
 using OV.MainDb.User;
 using OV.MainDb.User.Create;
 using OV.MainDb.User.Create.Models.Public;
+using OV.MainDb.User.Find;
 using OV.MainDb.User.Models.Public;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,7 @@ namespace OV.MainDb.Tests.User.Create
                 _findAutonomousCommunityDataService = new FindAutonomousCommunityDataService(_inMemoryOvMainDbContext);
                 _findProvinceDataService = new FindProvinceDataService(_inMemoryOvMainDbContext);
 
-                _validator = new CandidateUserValidator(_findAutonomousCommunityDataService, _findProvinceDataService);
+                _validator = new CandidateUserValidator(_findAutonomousCommunityDataService, _findProvinceDataService, new FindUserDataService(_inMemoryOvMainDbContextFactory));
                 _createUserDataService = new CreateUserDataService(_inMemoryOvMainDbContextFactory);
 
                 _createUserService = new CreateUserService(_createUserDataService, _validator);

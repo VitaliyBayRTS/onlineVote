@@ -151,28 +151,23 @@
                     </ItemsControl.ItemsPanel>
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Border BorderBrush="Black" 
-                                BorderThickness="1" 
-                                Padding="5 0 5 0"
-                                Width="198">
-                                <Grid Margin="0,2">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="1*"/>
-                                        <RowDefinition Height="1*"/>
-                                        <RowDefinition Height="1*"/>
-                                    </Grid.RowDefinitions>
+                            <Grid Margin="0,2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                </Grid.RowDefinitions>
 
-                                    <TextBlock Grid.Row="0" 
+                                <TextBlock Grid.Row="0" 
                                        Text="{Binding Index}"
                                        Foreground="White"/>
-                                    <TextBlock Grid.Row="1" 
+                                <TextBlock Grid.Row="1" 
                                        Text="{Binding Name}"
                                        Foreground="White"/>
-                                    <TextBlock Grid.Row="2" 
+                                <TextBlock Grid.Row="2" 
                                        Text="{Binding VotesString}"
                                        Foreground="White"/>
-                                </Grid>
-                            </Border>
+                            </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
