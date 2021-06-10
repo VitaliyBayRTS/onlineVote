@@ -10,6 +10,7 @@ using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using System.Windows;
 using OV.Services.Email;
+using OV.Services.Email.EmailTemplates;
 
 namespace OV.MVX.ViewModels.ContentViewModel
 {
@@ -65,8 +66,8 @@ namespace OV.MVX.ViewModels.ContentViewModel
                 var response = await userService.AutorizeAsync(SelectedUnautorizedUser.Id, new CancellationToken());
                 if(response)
                 {
-                    //TODO: Create nice email text
-                    var email = Mailer.GenerateEmailMessage(SelectedUnautorizedUser.Email, "Usuario autorizado", "Hola " + SelectedUnautorizedUser.FirstName + ". Su usuario ha sido autorizado");
+                    var emailTemplate = GenerateTemplate.GenerateEmailTemplate("Usuario autorizado", "Hola " + SelectedUnautorizedUser.FirstName + ". Su usuario ha sido autorizado");
+                    var email = Mailer.GenerateEmailMessage(SelectedUnautorizedUser.Email, "Usuario autorizado", emailTemplate);
                     Mailer.SendEmail(email);
                     await LoadData();
                 }
@@ -81,8 +82,8 @@ namespace OV.MVX.ViewModels.ContentViewModel
                 var response = await userService.DeleteAsync(SelectedUnautorizedUser.Id, new CancellationToken());
                 if(response)
                 {
-                    //TODO: Create nice email text
-                    var email = Mailer.GenerateEmailMessage(SelectedUnautorizedUser.Email, "Usuario NO autorizado", "Hola " + SelectedUnautorizedUser.FirstName + ". Su usuario NO ha sido autorizado");
+                    var emailTemplate = GenerateTemplate.GenerateEmailTemplate("Usuario NO autorizado", "Hola " + SelectedUnautorizedUser.FirstName + ". Su usuario NO ha sido autorizado");
+                    var email = Mailer.GenerateEmailMessage(SelectedUnautorizedUser.Email, "Usuario NO autorizado", emailTemplate);
                     Mailer.SendEmail(email);
                     await LoadData();
                 }

@@ -28,8 +28,8 @@ namespace OV.MainDb.Election.GetUnnotified
             var elections = ovMainDbContext.Elections
                                 .AsNoTracking()
                                 .Include(e => e.Type)
-                                .Where(e => (e.IsNotified == null && e.FinalizeDate < DateTime.Today)
-                    || (e.IsNotified.Value && e.FinalizeDate < DateTime.Today));
+                                .Where(e => (e.IsNotified == null && e.FinalizeDate <= DateTime.Today)
+                    || (e.IsNotified.Value && e.FinalizeDate <= DateTime.Today));
 
             var electionToReturn = await elections.ToListAsync(cancellationToken);
 

@@ -6,6 +6,7 @@ using OV.NotifyService.Result;
 using OV.NotifyService.Service.Election;
 using OV.NotifyService.Service.User;
 using OV.Services.Email;
+using OV.Services.Email.EmailTemplates;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -74,8 +75,8 @@ namespace OV.NotifyService.ViewModel
 
             new Thread(async () =>
             {
-                await NotifyUser();
-                Thread.Sleep(20000);
+                    await NotifyUser();
+                    await LoadData();
             }).Start();
         }
 
@@ -83,6 +84,7 @@ namespace OV.NotifyService.ViewModel
         {
             var notifiedElections = await _electionService.GetNotifiedAsync(new CancellationToken());
             List<NotifyElectionModel> notifyElectionModels = new List<NotifyElectionModel>();
+            if (notifiedElections == null) return;
             foreach (var election in notifiedElections)
             {
                 var notifyElectionModel = new NotifyElectionModel();
@@ -139,12 +141,13 @@ namespace OV.NotifyService.ViewModel
 
                     if (winner == null) return;
 
-                    var text = election.Id + " " + election.Name + " " + election.Type.Name + " "
-                        + result.TotalHabitant + " " + result.HabitantCountThatParticipate
-                        + " Winner " + winner.Id + " " + winner.Name + " " + winner.Votes;
+                    var text = "Id de elección: " + election.Id + " </br> Nombre de elección: " + election.Name + " </br> Tipo: " + election.Type.Name
+                        + " </br> Número total de habitatnes" + result.TotalHabitant + " </br> Número total de habitatnes que participaron" + result.HabitantCountThatParticipate
+                        + "</br> Ganador: " + winner.Id + "(Id) " + winner.Name + "(Nombre) " + winner.Votes + "(Número de votos)";
+                    var emailTemplate = GenerateTemplate.GenerateEmailTemplate("Resultado de " + election.Name + " votación", text);
                     foreach (var user in users)
                     {
-                        var message = Mailer.GenerateEmailMessage(user.Email, "Resultados de elección " + election.Name, text);
+                        var message = Mailer.GenerateEmailMessage(user.Email, "Resultados de elección " + election.Name, emailTemplate);
                         Mailer.SendEmail(message);
                     }
 

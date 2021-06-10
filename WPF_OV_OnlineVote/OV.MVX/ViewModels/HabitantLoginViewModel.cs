@@ -2,7 +2,9 @@
 using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using OV.MainDb.Habitant.Find.Models.Public;
+using OV.MainDb.User.Find.Models.Public;
 using OV.MVX.Services.Habitant;
+using OV.MVX.Services.User;
 using OV.Services.AES_Operation;
 using OV.Services.DocumentValidator;
 using System;
@@ -29,6 +31,7 @@ namespace OV.MVX.ViewModels
         private string _dni_nie;
         private SecureString _password;
         private IHabitantService _habitantService;
+        private IUserService _userService;
         private readonly Dictionary<string, List<string>> _propertyError = new Dictionary<string, List<string>>();
         public bool HasErrors => _propertyError.Any();
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
@@ -68,6 +71,7 @@ namespace OV.MVX.ViewModels
         {
             _pwdBox = pwdBox;
             _habitantService = new HabitantService();
+            _userService = new UserService();
             LogInHabitantCommand = new MvxCommand(LogInHabitant);
         }
 
@@ -83,10 +87,10 @@ namespace OV.MVX.ViewModels
             else
             {
                 var encryptedPassword = EncrypedPassword();
-                var habitant = await _habitantService.FindAsync(HabitantFilter.ByDNI_NIEAndPassword(DNI_NIE, encryptedPassword), new CancellationToken());
+                var habitant = await _userService.FindAsync(UserFilter.ByDNI_NIEAndPassword(DNI_NIE, encryptedPassword), new CancellationToken());
                 if(habitant.Count() > 0)
                 {
-                    Messenger.Default.Send(new NotificationMessage(MessageTypes.HabitantLoginSuccess.ToString() + "=>" + habitant.FirstOrDefault().Id + "|" + habitant.FirstOrDefault().tblUser_UID));
+                    Messenger.Default.Send(new NotificationMessage(MessageTypes.HabitantLoginSuccess.ToString() + "=>" + habitant.FirstOrDefault().Id + "|" + habitant.FirstOrDefault().Id));
                     DNI_NIE = "";
                     ClearError(nameof(DNI_NIE));
                     _pwdBox.Clear();

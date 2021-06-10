@@ -46,12 +46,13 @@ namespace OV.MVX.ViewModels.ContentViewModel
         //!Methods
         private async void OpenHomeVM()
         {
-            //await UnautorizedUsersVM.LoadData();
+            await UnautorizedUsersVM.LoadData();
             CurrentView = UnautorizedUsersVM;
         }
 
         private void OpenElectionVM()
         {
+            ElectionManagementVM.LoadData();
             CurrentView = ElectionManagementVM;
         }
 

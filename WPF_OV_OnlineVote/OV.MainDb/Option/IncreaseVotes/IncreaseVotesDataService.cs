@@ -33,8 +33,9 @@ namespace OV.MainDb.Option.IncreaseVotes
         public async Task<bool> IncreaseVote(int tblOption_UID, CancellationToken cancellationToken)
         {
             var option = _ovMainDbContext.Options.First(o => o.Id == tblOption_UID);
+            var previusCountOfVotes = option.Votes;
 
-            option.Votes = option.Votes == null ? 1 : option.Votes++;
+            option.Votes = option.Votes == null ? 1 : (previusCountOfVotes + 1);
 
             await _ovMainDbContext.SaveChangesAsync(cancellationToken);
 

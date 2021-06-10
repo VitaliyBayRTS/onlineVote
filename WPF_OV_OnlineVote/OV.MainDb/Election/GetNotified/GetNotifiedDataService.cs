@@ -32,6 +32,8 @@ namespace OV.MainDb.Election.GetNotified
 
             var electionToReturn = await elections.ToListAsync(cancellationToken);
 
+            electionToReturn.ForEach(e => e.Type.Election = null);
+
             return electionToReturn;
         }
     }

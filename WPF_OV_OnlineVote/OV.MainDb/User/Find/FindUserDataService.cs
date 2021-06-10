@@ -35,12 +35,17 @@ namespace OV.MainDb.User.Find
                 users = users.Where(u => u.Id == filter.Id);
             }
 
-            if(!string.IsNullOrEmpty(filter.DNI_NIE))
+            if (!string.IsNullOrEmpty(filter.DNI_NIE) && !string.IsNullOrEmpty(filter.Password))
             {
-                users = users.Where(u => u.DNI_NIE == filter.DNI_NIE);
+                users = users.Where(h => h.DNI_NIE.Equals(filter.DNI_NIE) && h.Password.Equals(filter.Password) && h.IsAutorized);
             }
 
-            if(filter.Ac != default(int))
+            if (!string.IsNullOrEmpty(filter.DNI_NIE) && string.IsNullOrEmpty(filter.Password))
+            {
+                users = users.Where(h => h.DNI_NIE.Equals(filter.DNI_NIE));
+            }
+
+            if (filter.Ac != default(int))
             {
                 users = users.Where(u => u.Province.tblAutonomousCommunity_UID == filter.Ac);
             }

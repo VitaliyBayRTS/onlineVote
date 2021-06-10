@@ -20,6 +20,7 @@ using OV.MVX.Services.Type;
 using OV.MVX.Services.User;
 using OV.Services.DocumentValidator;
 using OV.Services.Email;
+using OV.Services.Email.EmailTemplates;
 using OV.Services.ReferenceNumber;
 using System;
 using System.Collections.Generic;
@@ -59,8 +60,8 @@ namespace OV.MVX.ViewModels.ContentViewModel
         private ObservableCollection<Province> _provincesOfCommunity = new ObservableCollection<Province>();
         private DateTime _initDate = DateTime.Today.AddDays(7);
         private DateTime _finishDate = DateTime.Today.AddDays(8);
-        private string _initDateString = DateTime.Today.ToString("dd/MM/yyyy");
-        private string _finishDateString = DateTime.Today.ToString("dd/MM/yyyy");
+        private string _initDateString = DateTime.Today.AddDays(7).ToString("dd/MM/yyyy");
+        private string _finishDateString = DateTime.Today.AddDays(8).ToString("dd/MM/yyyy");
         private AutonomousCommunity _autonomousCommunity;
         private Province _province;
         private bool _allowAddOrganizer = true;
@@ -308,8 +309,8 @@ namespace OV.MVX.ViewModels.ContentViewModel
             RemoveUserCommand = new MvxCommand(RemoveUser);
             CreateElectionCommand = new MvxCommand(CreateElection);
             ovType = OV_Types.NL;
-            _initDateString = DateTime.Today.ToString("dd/MM/yyyy");
-            _finishDateString = DateTime.Today.ToString("dd/MM/yyyy");
+            _initDateString = DateTime.Today.AddDays(7).ToString("dd/MM/yyyy");
+            _finishDateString = DateTime.Today.AddDays(8).ToString("dd/MM/yyyy");
         }
 
 
@@ -376,9 +377,9 @@ namespace OV.MVX.ViewModels.ContentViewModel
             Description = "";
             AutonomousCommunity = null;
             Province = null;
-            InitDate = DateTime.Today.AddDays(1);
+            InitDate = DateTime.Today.AddDays(7);
             ClearError(nameof(InitDate));
-            FinishDate = DateTime.Today;
+            FinishDate = DateTime.Today.AddDays(8);
             ClearError(nameof(InitDate));
             SearchByDNI_NIE_Value = "";
             foreach (var selectedUser in SelectedUsers.ToList())
@@ -392,9 +393,9 @@ namespace OV.MVX.ViewModels.ContentViewModel
 
         public void SendEmailToOrganizers(string userEmail, Election election, string referenceNumber, string userName)
         {
-            //TODO: Create proper email text
-            var email = Mailer.GenerateEmailMessage(userEmail, "Organizador de " + election.Name + " votación", "Hola " + userName + ". usted es organizador de "
-                + election.Name + " votación, su numero de referencia es " + referenceNumber + " (se utiliza para entrar en la aplicación)");
+            var emailTemplate = GenerateTemplate.GenerateEmailTemplate("Organizador de " + election.Name + " votación", "Hola " + userName + ". usted es organizador de "
+                + election.Name + " votación, su numero de referencia es <strong><b>" + referenceNumber + "</b></strong> (se utiliza para entrar en la aplicación)");
+            var email = Mailer.GenerateEmailMessage(userEmail, "Organizador de " + election.Name + " votación", emailTemplate);
             Mailer.SendEmail(email);
         }
 
