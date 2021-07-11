@@ -8,18 +8,18 @@ namespace OV.Services.Tests.Email
     {
         public class SendEmail
         {
-            [Fact]
-            public void ShouldSendEmail()
-            {
-                //Arrange
-                var emailObj = Mailer.GenerateEmailMessage("vitaliygbbay@gmail.com", "Test", "TestBody</br>New Line");
+            //[Fact]
+            //public void ShouldSendEmail()
+            //{
+            //    //Arrange
+            //    var emailObj = Mailer.GenerateEmailMessage("vitaliygbbay@gmail.com", "Test", "TestBody</br>New Line");
 
-                //Act
-                Mailer.SendEmail(emailObj);
+            //    //Act
+            //    Mailer.SendEmail(emailObj);
 
-                //Assert
-                emailObj.Should().NotBeNull();
-            }
+            //    //Assert
+            //    emailObj.Should().NotBeNull();
+            //}
         }
 
     }
